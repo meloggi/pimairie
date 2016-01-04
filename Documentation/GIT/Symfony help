@@ -1,0 +1,49 @@
+Lancer serveur:
+sudo /opt/lampp/lampp start
+
+Pour fermer:
+stop
+
+
+Pour créer un nouveau projet:
+cd /opt/lampp/htdocs
+mkdir tests
+
+Se mettre en super utilisateur:
+gksudo nautilus
+
+Créer un nouveau projet:
+sudo php symfony.phar new Symfony
+
+Installation correcte:
+ Preparing project...
+
+ ✕  Symfony 3.0.1 was successfully installed but your system doesn't meet its
+     technical requirements! Fix the following issues before executing
+     your Symfony application:
+
+ * date.timezone setting must be set
+   > Set the "date.timezone" setting in php.ini* (like Europe/Paris).
+
+ After fixing these issues, re-check Symfony requirements executing this command:
+
+   php Symfony/bin/symfony_requirements
+
+ Then, you can:
+
+    * Change your current directory to /opt/lampp/htdocs/PI/Symfony
+
+    * Configure your application in app/config/parameters.yml file.
+
+    * Run your application:
+        1. Execute the php bin/console server:run command.
+        2. Browse to the http://localhost:8000 URL.
+
+    * Read the documentation at http://symfony.com/doc
+
+
+Interface graphique control panel xamp:
+gksu /opt/lampp/share/xampp-control-panel/xampp-control-panel
+
+
+
