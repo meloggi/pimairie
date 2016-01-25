@@ -1,0 +1,4 @@
+services:
+#    pi.example:
+#        class: PIBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

@@ -1,0 +1,5 @@
+pi:
+    resource: "@PIBundle/Resources/config/routing.yml"
+    prefix:   /
+
+

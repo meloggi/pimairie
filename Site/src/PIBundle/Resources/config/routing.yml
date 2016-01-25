@@ -1,0 +1,3 @@
+pi_homepage:
+    path:     /
+    defaults: { _controller: PIBundle:Default:index }
