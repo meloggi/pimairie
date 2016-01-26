@@ -1,0 +1,3 @@
+[2016-01-26 03:26:56] php.DEBUG: fsockopen(): unable to connect to 127.0.0.1:8000 (Connection refused) {"type":2,"file":"/srv/http/PI/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Command/ServerCommand.php","line":59,"level":28928} []
+[2016-01-26 03:27:02] request.INFO: Matched route "pi_homepage". {"route_parameters":{"_controller":"PIBundle\\Controller\\DefaultController::indexAction","_route":"pi_homepage"},"request_uri":"http://localhost:8000/"} []
+[2016-01-26 03:27:03] security.INFO: Populated the TokenStorage with an anonymous Token. [] []
