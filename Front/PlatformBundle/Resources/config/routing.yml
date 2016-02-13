@@ -1,0 +1,13 @@
+ls_platform_homepage:
+    path:     /accueil
+    defaults: { _controller: LSPlatformBundle:Default:index }
+
+ls_platform_admin_homepage:
+    path:     /admin/accueil
+    defaults: { _controller: LSPlatformBundle:Admin:index }
+
+ls_platform_admin_dashboard:
+    path:     /admin/dashboard
+    defaults: { _controller: LSPlatformBundle:Admin:dashboard }
+
+
