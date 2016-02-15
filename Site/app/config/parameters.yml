@@ -3,10 +3,10 @@ parameters:
     database_host: localhost
     database_port: null
     database_name: PIDB
-    database_user: root
-    database_password: PI2016mairie
     mailer_transport: smtp
     mailer_host: 127.0.0.1
     mailer_user: null
     mailer_password: null
     secret: 42af53db8766d372f5fb46c12e68c1f74b9f9ca1
+    database_user: root
+    database_password: PI2016mairie
