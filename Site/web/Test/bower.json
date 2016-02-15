@@ -1,0 +1,22 @@
+{
+  "name": "web",
+  "authors": [
+    "paul.le-noach@telecomnancy.net"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "proprietary",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6"
+  }
+}

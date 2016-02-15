@@ -1,6 +1,6 @@
 <?php
 
-namespace LS\PlatformBundle\DependencyInjection;
+namespace PI\PIBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
