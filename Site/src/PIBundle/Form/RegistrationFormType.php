@@ -9,8 +9,7 @@ class RegistrationFormType extends BaseType
     {
         parent::buildForm($builder, $options);
 
-        // Ajoutez vos champs ici, revoilà notre champ *location* :
-      //  $builder->add('location');
+       $builder->add('location');
     }
 
     public function getName()

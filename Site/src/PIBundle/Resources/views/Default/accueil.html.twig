@@ -20,6 +20,8 @@
   </head>
 
   <body>
+     
+
     <nav class="navbar navbar-default navbar-fixed-top" style="background-color: #FFFFFF">
         <div class="navbar-header">
           <img src="{{ asset('images/logo-villers.png') }}" width="60%">
@@ -31,15 +33,45 @@
           </button>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
+
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Accueil</a></li>
             <li><a href="#about">Créer une demande</a></li>
             <li><a href="#about">Accéder à ma demande</a></li>
+                  <li><a href="../navbar/">Aide</a></li>
+            <li><a href="../navbar-static-top/" style="margin-right: 20px">Contact</a></li>
+   
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="../navbar/">Aide</a></li>
-            <li><a href="../navbar-static-top/" style="margin-right: 20px">Contact</a></li>
-          </ul>
+       <li>       <div>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                <a href="{{ path('fos_user_security_logout') }}" class="btn btn-lg btn-secondary" role="button">
+                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                </a>
+            {% else %}
+                <a href="{{ path('fos_user_security_login') }}" class="btn btn-lg btn-secondary" role="button">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                <a href="{{ path('fos_user_registration_register') }}" class="btn btn-lg btn-secondary" role="button">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+                 <a href="{{ path('fos_user_resetting_request') }}" class="btn btn-lg btn-secondary" role="button">{{ 'Mot de passe perdu?'|trans({}, 'FOSUserBundle') }}</a>
+            {% endif %}
+        </div>
+
+        {% if app.request.hasPreviousSession %}
+            {% for type, messages in app.session.flashbag.all() %}
+                {% for message in messages %}
+                    <div class="flash-{{ type }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+
+        <div>
+            {% block fos_user_content %}
+            {% endblock fos_user_content %}
+        </div> </li>
+
+             </ul>
         </div>
     </nav>
     

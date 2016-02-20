@@ -91,11 +91,6 @@ fos_user:
             from_email:
                 address:             noreply@exemple.com
                 sender_name:         noreply
-
-        form:
-            type:                 fos_user_registration
-            name:                 fos_user_registration_form
-            validation_groups:
     resetting:
         token_ttl:            86400
 

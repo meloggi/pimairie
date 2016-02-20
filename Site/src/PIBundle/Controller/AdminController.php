@@ -2,6 +2,7 @@
 
 namespace PIBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class AdminController extends Controller
@@ -13,6 +14,7 @@ class AdminController extends Controller
 
     public function dashboardAction()
     {
-        return $this->render('PIBundle:Admin:dashboard.html.twig');
+          return $this->render('PIBundle:Admin:dashboard.html.twig');
     }
+
 }
