@@ -85,6 +85,8 @@ fos_user:
             type:                 fos_user_change_password
             name:                 fos_user_change_password_form
     registration:
+        form:
+            type: PIBundle\Form\RegistrationType
         confirmation:
             enabled:              false
             template: FOSUserBundle:Registration:email.txt.twig

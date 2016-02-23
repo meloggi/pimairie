@@ -52,7 +52,7 @@
             {% else %}
                 <a href="{{ path('fos_user_security_login') }}" class="btn btn-lg btn-secondary" role="button">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
                 <a href="{{ path('fos_user_registration_register') }}" class="btn btn-lg btn-secondary" role="button">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
-                 <a href="{{ path('fos_user_resetting_request') }}" class="btn btn-lg btn-secondary" role="button">{{ 'Mot de passe perdu?'|trans({}, 'FOSUserBundle') }}</a>
+                 <a href="{{ path('fos_user_resetting_request') }}" class="btn btn-lg btn-secondary" role="button" style="margin-right: 20px">Mot de passe perdu?</a>
             {% endif %}
         </div>
 
