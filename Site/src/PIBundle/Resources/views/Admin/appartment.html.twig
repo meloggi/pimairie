@@ -1,0 +1,230 @@
+{# app/Resources/views/Admin/appartment.html.twig #}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin_Appartements</title>
+
+    {% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    {% endblock %}
+
+    {% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ asset('css/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery-1.10.2.min.js') }}"></script>
+    {% endblock %}
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- you need to include the shieldui css and js assets in order for the charts to work -->
+    <link rel="stylesheet" type="text/css" href="https://www.shieldui.com/shared/components/latest/css/light-bootstrap/all.min.css" />
+    <script type="text/javascript" src="https://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+    <script type="text/javascript" src="https://www.prepbootstrap.com/Content/js/gridData.js"></script>
+
+    <style>
+      #map {
+        width: 550px;
+        height: 250px;
+      }
+    </style>
+
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">            
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ path('platform_admin_dashboard') }}">Mairie Villers-lès-Nancy Administrateur</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li><a href="{{ path('platform_admin_dashboard') }}"><i class="fa fa-tachometer"></i> Tableau de bord</a></li>
+                    <li class="active"><a href="{{ path('platform_admin_appartment') }}"><i class="fa fa-building-o "></i> Appartements</a></li>                    
+                    <li><a href="blog.html"><i class="fa fa-users"></i> Demandeurs</a></li>
+                    <li><a href="forms.html"><i class="fa fa-bar-chart "></i> Statistiques</a></li>
+                    <li><a href="typography.html"><i class="fa fa-archive"></i> Archives</a></li>                    
+                </ul>
+                <ul class="nav navbar-nav navbar-right navbar-user">
+                    <li class="dropdown messages-dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-triangle"></i> Notifications <span class="badge">6</span> <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header">2 Nouvelles demandes</li>
+                            <li class="message-preview">
+                                <a href="#">
+                                    <span class="avatar"><i class="fa fa-user-plus"></i></span>
+                                    <span class="message">Alain DUPONT</span>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">2 Demandes erronées</li>
+                            <li class="message-preview">
+                                <a href="#">
+                                    <span class="avatar"><i class="fa fa-user-times"></i></span>
+                                    <span class="message">Eric BOMPART</span>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">2 Demandes expirées</li>
+                            <li class="message-preview">
+                                <a href="#">
+                                    <span class="avatar"><i class="fa fa-clock-o"></i></span>
+                                    <span class="message">Antoine BIBOTEUR</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown user-dropdown">
+                       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Admin Mairie<b class="caret"></b></a>
+                       <ul class="dropdown-menu">
+                           <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
+                           <li><a href="#"><i class="fa fa-gear"></i> Réglages</a></li>
+                           <li class="divider"></li>
+                           <li><a href="#"><i class="fa fa-power-off"></i> Déconnection</a></li>
+                       </ul>
+                   </li>
+                </ul>
+            </div>
+        </nav>
+
+         <div class="container">
+          <div class="row">
+              <div class="col-lg-6 col-md-6">
+                  <a href="#">
+                      <div id="map"></div>
+                      <script>
+                        function initMap() {
+                          var mapDiv = document.getElementById('map');
+                          var map = new google.maps.Map(mapDiv, {
+                            center: {lat: 44.540, lng: -78.546},
+                            zoom: 8
+                          });
+                        }
+                      </script>
+                      <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+                      async defer></script>
+                  </a>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                  <h3>F4 - Haussonville</h3>
+                  <h4>Batigere</h4>
+                  <p>
+                      Adresse: 10 rue des emmerdes </br> 
+                      Loyer: 2000 </br>
+                  </p>
+                  <div class="text-center">
+                      <button type="button" class="btn btn-primary"><i class="fa fa-link"></i>Attribuer</button>
+                      <button type="button" class="btn btn-warning"><i class="fa fa-pencil"></i>Editer</button>
+                      <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i>Supprimer</button>
+                  </div>
+              </div>
+          </div>
+          <hr />
+          <div class="row">
+              <div class="col-lg-6 col-md-6">
+                  <a href="#">
+                      <div id="map"></div>
+                      <script>
+                        function initMap() {
+                          var mapDiv = document.getElementById('map');
+                          var map = new google.maps.Map(mapDiv, {
+                            center: {lat: 44.540, lng: -78.546},
+                            zoom: 8
+                          });
+                        }
+                      </script>
+                      <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+                      async defer></script>
+                  </a>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                  <h3>F4 - Haussonville</h3>
+                  <h4>Batigere</h4>
+                  <p>
+                      Adresse: 10 rue des emmerdes </br> 
+                      Loyer: 2000 </br>
+                  </p>
+                  <div class="text-center">
+                      <button type="button" class="btn btn-primary"><i class="fa fa-link"></i>Attribuer</button>
+                      <button type="button" class="btn btn-warning"><i class="fa fa-pencil"></i>Editer</button>
+                      <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i>Supprimer</button>
+                  </div>
+              </div>
+          </div>
+          <hr />
+          <div class="row">
+              <div class="col-lg-6 col-md-6">
+                  <a href="#">
+                      <div id="map"></div>
+                      <script>
+                        function initMap() {
+                          var mapDiv = document.getElementById('map');
+                          var map = new google.maps.Map(mapDiv, {
+                            center: {lat: 44.540, lng: -78.546},
+                            zoom: 8
+                          });
+                        }
+                      </script>
+                      <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+                      async defer></script>
+                  </a>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                  <h3>F4 - Haussonville</h3>
+                  <h4>Batigere</h4>
+                  <p>
+                      Adresse: 10 rue des emmerdes </br> 
+                      Loyer: 2000 </br>
+                  </p>
+                  <div class="text-center">
+                      <button type="button" class="btn btn-primary"><i class="fa fa-link"></i>Attribuer</button>
+                      <button type="button" class="btn btn-warning"><i class="fa fa-pencil"></i>Editer</button>
+                      <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i>Supprimer</button>
+                  </div>
+              </div>
+          </div>
+          <hr />
+          <div class="row">
+              <div class="col-lg-6 col-md-6">
+                  <a href="#">
+                      <div id="map"></div>
+                      <script>
+                        function initMap() {
+                          var mapDiv = document.getElementById('map');
+                          var map = new google.maps.Map(mapDiv, {
+                            center: {lat: 44.540, lng: -78.546},
+                            zoom: 8
+                          });
+                        }
+                      </script>
+                      <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+                      async defer></script>
+                  </a>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                  <h3>F4 - Haussonville</h3>
+                  <h4>Batigere</h4>
+                  <p>
+                      Adresse: 10 rue des emmerdes </br> 
+                      Loyer: 2000 </br>
+                  </p>
+                  <div class="text-center">
+                      <button type="button" class="btn btn-primary"><i class="fa fa-link"></i>Attribuer</button>
+                      <button type="button" class="btn btn-warning"><i class="fa fa-pencil"></i>Editer</button>
+                      <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i>Supprimer</button>
+                  </div>
+              </div>
+          </div>
+    </div>
+
+</body>
+</html>
