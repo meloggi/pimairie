@@ -1,7 +1,43 @@
 {% trans_default_domain 'PIBundle' %}
 
 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
-    {{ form_widget(form) }}
+      
+
+      <!--	ici pour modifier le CSS du formulaire de registration Mr Brian-->
+
+      <div class="form-group" id="fos_user_registration_form">
+      <div>
+        {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'form.email'|trans } }) }}
+        {{ form_errors(form.email) }}
+</div>
+
+     <div>
+        {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'form.password'|trans } }) }}
+        {{ form_errors(form.plainPassword.first) }}
+</div>
+
+        <div>
+        {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'form.password_confirmation'|trans } }) }}
+        {{ form_errors(form.plainPassword.second) }}
+</div>
+
+        <div>
+ 		 {{ form_widget(form.firstname, { 'attr': {'class': 'form-control', 'placeholder': 'prénom' } }) }}
+        {{ form_errors(form.firstname) }}
+
+          {{ form_widget(form.lastname, { 'attr': {'class': 'form-control', 'placeholder': 'nom' } }) }}
+        {{ form_errors(form.lastname) }}
+</div>
+
+<div>
+       {{ form_widget(form.salary, { 'attr': {'class': 'form-control', 'placeholder': 'salaire' } }) }}
+        {{ form_errors(form.salary) }}
+</div>
+     
+     
+      
+
+    </div>
     <div>
         <input type="submit" value="{{ 'Valider' }}" />
     	
