@@ -13,11 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Housing
 {
     /**
-   * @ORM\Column(name="published", type="boolean")
-   */
-    private $free = true;
-
-    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")

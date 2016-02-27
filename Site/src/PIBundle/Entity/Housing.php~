@@ -13,11 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Housing
 {
     /**
-   * @ORM\Column(name="published", type="boolean")
-   */
-    private $free = true;
-
-    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -130,5 +125,28 @@ class Housing
     {
         return $this->floor;
     }
-}
 
+    /**
+     * Set free
+     *
+     * @param boolean $free
+     *
+     * @return Housing
+     */
+    public function setFree($free)
+    {
+        $this->free = $free;
+
+        return $this;
+    }
+
+    /**
+     * Get free
+     *
+     * @return boolean
+     */
+    public function getFree()
+    {
+        return $this->free;
+    }
+}

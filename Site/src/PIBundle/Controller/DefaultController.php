@@ -4,7 +4,7 @@ namespace PIBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use PIBundle\Entity\Housing;
-use Symfony\Component\HttpFoundation\Request;
+use PIBundle\Form\HousingType;
 
 class DefaultController extends Controller
 {
@@ -12,4 +12,15 @@ class DefaultController extends Controller
     {
         return $this->render('PIBundle:Default:accueil2.html.twig');
     }
+
+    public function form1Action()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        
+        $form = $this->createForm(new HousingType()); 
+
+        return $this->render('PIBundle:Default:form1.html.twig', array('form' => $form->createView()));
+    }
+
+
 }
