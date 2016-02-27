@@ -16,4 +16,6 @@ platform_admin_appartment:
     path:     /appartment
     defaults: { _controller: PIBundle:Admin:appartment }
 
-
+form1:
+    path:     /form1
+    defaults: { _controller: PIBundle:Default:form1 }
