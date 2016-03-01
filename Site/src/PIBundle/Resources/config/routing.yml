@@ -19,3 +19,8 @@ platform_admin_appartment:
 form1:
     path:     /form1
     defaults: { _controller: PIBundle:Default:form1 }
+
+ajouter:
+    path:     /ajouter
+    defaults: { _controller: PIBundle:Default:ajouter}
+
