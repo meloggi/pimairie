@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class HousingType extends AbstractType
 {
@@ -16,9 +17,15 @@ class HousingType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('location',   TextType::class, array('label' => 'lieu'))
-            ->add('rent',   NumberType::class, array('label' => 'loyer'))
-            ->add('floor',   IntegerType::class, array('label' => 'étage'))
+            ->add('location',   TextType::class, array('label' => 'Localisation: '))
+            ->add('bailleur',   TextType::class, array('label' => 'Bailleur: '))
+            ->add('adress',   TextType::class, array('label' => 'Adresse: '))
+            ->add('residence',   TextType::class, array('label' => 'Résidence: '))
+            ->add('type',   TextType::class, array('label' => 'Type: '))
+            ->add('rent',   NumberType::class, array('label' => 'Loyer: '))
+            ->add('floor',   IntegerType::class, array('label' => 'Etage: '))
+            ->add('numero',   IntegerType::class, array('label' => 'Numéro: '))
+            ->add('contingent',   CheckboxType::class, array('label' => 'Contingent: '))
             ->add('Valider',      SubmitType::class)
         ;
     }
