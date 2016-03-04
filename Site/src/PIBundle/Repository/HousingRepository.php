@@ -10,4 +10,67 @@ namespace PIBundle\Repository;
  */
 class HousingRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function findAppartment($location, $bailleur, $adress, $residence, $type, $rentmin, $rentmax, $floor, $numero, $contingent, $attribution)
+	{
+        $query = $this->createQueryBuilder('a');
+
+        $query->where('a.rent BETWEEN :rentmin AND :rentmax')
+        			->setParameter('rentmin', $rentmin)
+        			->setParameter('rentmax', $rentmax);
+        
+        if($location != 'Tous')
+        {
+        	$query->andWhere('a.location = :location')
+        				->setParameter('location', $location);
+        }
+
+        if($bailleur != 'Tous')
+        {
+        	$query->andWhere('a.bailleur = :bailleur')
+        				->setParameter('bailleur', $bailleur);
+        }
+
+        if($adress != 'Tous')
+        {
+        	$query->andWhere('a.adress = :adress')
+        				->setParameter('adress', $adress);
+        }
+
+        if($residence != 'Tous')
+        {
+        	$query->andWhere('a.residence = :residence')
+        				->setParameter('residence', $residence);
+        }
+
+        if($type != 'Tous')
+        {
+        	$query->andWhere('a.type = :type')
+        				->setParameter('type', $type);
+        }
+
+        if($floor != 'Tous')
+        {
+        	$query->andWhere('a.floor = :floor')
+        				->setParameter('floor', $floor);
+        }
+
+        if($numero != 'Tous')
+        {
+        	$query->andWhere('a.numero = :numero')
+        				->setParameter('numero', $numero);
+        }
+
+        if($contingent != 'Tous')
+        {
+        	if($contingent = 'Oui')
+        	$query->andWhere('a.contingent = :true')
+        				->setParameter('contingent', $contingent);
+        	if($contingent = 'Non')
+        	$query->andWhere('a.contingent = :false')
+        				->setParameter('contingent', $contingent);
+        }
+
+        return $query->getQuery()->getResult();
+
+    }
 }

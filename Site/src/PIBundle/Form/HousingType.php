@@ -20,7 +20,7 @@ class HousingType extends AbstractType
             ->add('location',   TextType::class, array('label' => 'Localisation: '))
             ->add('bailleur',   TextType::class, array('label' => 'Bailleur: '))
             ->add('adress',   TextType::class, array('label' => 'Adresse: '))
-            ->add('residence',   TextType::class, array('label' => 'Résidence: '))
+            ->add('residence',   TextType::class, array('label' => 'Résidence: ', 'required' => false, 'empty_data'  => 0))
             ->add('type',   TextType::class, array('label' => 'Type: '))
             ->add('rent',   NumberType::class, array('label' => 'Loyer: '))
             ->add('floor',   IntegerType::class, array('label' => 'Etage: '))

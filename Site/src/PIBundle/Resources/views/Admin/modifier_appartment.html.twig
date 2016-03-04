@@ -83,15 +83,15 @@
         </nav>
         <div class="container">
           <div class="row">
-          <h1>Ajouter un nouveau logement</h1>
+          <h1>Modifier les informations du logement</h1>
           </div>
           <div class="row">
           <div class="col-lg-12">
-            <form action="{{path('platform_admin_ajouter_appartment')}}" method="post" role="form">
+            <form action="{{path('platform_admin_modifier_appartment', { 'id': housing.id })}}" method="post" role="form">
                 
                <div class="form-group">
                     <label for="location">{{ form_label(form.location) }}</label>
-                    <select class="form-control" id="housing_location" type="text" required="required" name="housing[location]">
+                    <select class="form-control" id="housing_location" type="text" required="required" name="housing[location]" value={{housing.location}}>
                       <option>Villers-centre</option>
                       <option>Villers-bas</option>
                       <option>Clairlieu</option>
@@ -102,7 +102,7 @@
 
                 <div class="form-group">
                     <label for="bailleur">{{ form_label(form.bailleur) }}</label>
-                    <select class="form-control" id="housing_bailleur" type="text" required="required" name="housing[bailleur]">
+                    <select class="form-control" id="housing_bailleur" type="text" required="required" name="housing[bailleur]" value={{housing.bailleur}}>
                       <option>BATIGERE</option>
                       <option>3F - EST HABITAT CONSTRUCTION</option>
                       <option>MEURTHE ET MOSELLE HABITAT</option>
@@ -115,19 +115,19 @@
 
                 <div class="form-group">
                     <label for="adress">{{ form_label(form.adress) }}</label>
-                    <input class="form-control" id="housing_adress" type="text" required="required" name="housing[adress]"></input>
+                    <input class="form-control" id="housing_adress" type="text" required="required" name="housing[adress]" value={{housing.adress}}></input>
                     <p class="help-block">{{ form_errors(form.adress) }}</p>
                 </div>
 
                 <div class="form-group">
                     <label for="residence">{{ form_label(form.residence) }}</label>
-                    <input class="form-control" id="housing_residence" type="text" required="required" name="housing[residence]"></input>
+                    <input class="form-control" id="housing_residence" type="text" required="required" name="housing[residence]" value={{housing.residence}}></input>
                     <p class="help-block">{{ form_errors(form.residence) }}</p>
                 </div>
 
                 <div class="form-group">
                     <label for="type">{{ form_label(form.type) }}</label>
-                    <select class="form-control" id="housing_type" type="text" required="required" name="housing[type]">
+                    <select class="form-control" id="housing_type" type="text" required="required" name="housing[type]" value={{housing.type}}>
                       <option>F1</option>
                       <option>F1 bis</option>
                       <option>F2</option>
@@ -141,26 +141,26 @@
 
                 <div class="form-group">
                     <label for="floor">{{ form_label(form.floor) }}</label>
-                    <input class="form-control" id="housing_floor" type="number" required="required" name="housing[floor]"></input>
+                    <input class="form-control" id="housing_floor" type="number" required="required" name="housing[floor]" value={{housing.floor}}></input>
                     <p class="help-block">{{ form_errors(form.floor) }}</p>
                 </div>
 
                 <div class="form-group">
                     <label for="rent">{{ form_label(form.rent) }}</label>
-                    <input class="form-control" id="housing_rent" type="number" required="required" name="housing[rent]"></input>
+                    <input class="form-control" id="housing_rent" type="number" required="required" name="housing[rent]" value={{housing.rent}}></input>
                     <p class="help-block">{{ form_errors(form.rent) }}</p>
                 </div>
 
                 <div class="form-group">
                     <label for="numero">{{ form_label(form.numero) }}</label>
-                    <input class="form-control" id="housing_numero" type="number" required="required" name="housing[numero]"></input>
+                    <input class="form-control" id="housing_numero" type="number" required="required" name="housing[numero]" value={{housing.numero}}></input>
                     <p class="help-block">{{ form_errors(form.numero) }}</p>
                 </div>
 
                 <div class="form-group">
                 <label>{{ form_label(form.contingent) }}</label>
                 <label id="housing_contingent" name="housing[contingent]">
-                  <input type="checkbox" value="1" >
+                  <input type="checkbox" value={{housing.contingent}} >
                   <p class="help-block">{{ form_errors(form.contingent) }}</p> 
                 </label>
                 </div>

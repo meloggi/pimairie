@@ -28,4 +28,7 @@ platform_admin_ajouter_appartment:
     path:     /ajouter_appartment
     defaults: { _controller: PIBundle:Admin:ajouter_appartment }
 
+platform_admin_modifier_appartment:
+    path:     /modifier_appartment/{id}
+    defaults: { _controller: PIBundle:Admin:modifier_appartment }
 
