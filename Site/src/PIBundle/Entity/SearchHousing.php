@@ -373,4 +373,3 @@ class SearchHousing
         return $this->attribution;
     }
 }
-

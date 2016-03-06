@@ -2,12 +2,18 @@
 
 namespace PIBundle\Controller;
 use PIBundle\Entity\Housing;
+use PIBundle\Entity\Demand;
 use PIBundle\Entity\SearchHousing;
 use PIBundle\Form\HousingType;
+use PIBundle\Form\DemandType;
 use PIBundle\Form\SearchHousingType;
 use PIBundle\Repository\SearchHousingRepository;
+use PIBundle\Entity\User;
+use PIBundle\Form\UserRepository;
+use PIBundle\Form\RegistrationType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class AdminController extends Controller
 {
@@ -49,13 +55,7 @@ class AdminController extends Controller
     public function ajouter_appartmentAction(Request $request)
     {   
         $housing= new Housing();
-        $housing ->setAttribution("false");
-        /*$housing->setLocation("blabla")
-                 ->setRent("8000")
-                 ->setFloor("5");
-        $em->persist($housing);
-        $em->flush();
-        */
+        $housing ->setAttribution("Non");
         $form = $this->createForm(HousingType::class,$housing); 
         if ($form->handleRequest($request)->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -79,4 +79,70 @@ class AdminController extends Controller
         }
         return $this->render('PIBundle:Admin:modifier_appartment.html.twig', array('form' => $form->createView(), 'housing' => $housing));
     }
+
+    public function demandeurAction(Request $request)
+    {
+        $user = new User();
+        $em = $this->getDoctrine()->getManager();
+        $form = $this->createForm(RegistrationType::class,$user);
+        $liste_demandeur = 'vide';
+        if ($form->handleRequest($request)->isValid()) {
+            $em->persist($user);
+            $firstName = $user->getFirstName();
+            $lastName = $user->getLastName();
+            $email = $user->getEmail();
+            $liste_demandeur = $em->getRepository('PIBundle:User')->findDemandeur($firstName, $lastName, $email);
+            return $this->render('PIBundle:Admin:demandeur.html.twig', array('form' => $form->createView(), 'liste_demandeur' => $liste_demandeur ));
+        }
+        return $this->render('PIBundle:Admin:demandeur.html.twig', array('form' => $form->createView(), 'liste_demandeur' => $liste_demandeur ));
+    }
+
+    public function ajouter_demandeurAction(Request $request){
+        $user= new User();
+        $form = $this->createForm(RegistrationType::class,$user); 
+        $user ->setUsername("NULL");
+        if ($form->handleRequest($request)->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+            return $this->render('PIBundle:Admin:ajouter_demandeur.html.twig', array('form' => $form->createView()));
+        }
+        return $this->render('PIBundle:Admin:ajouter_demandeur.html.twig', array('form' => $form->createView()));
+    }
+
+    public function modifier_demandeurAction(Request $request, $id){
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('PIBundle:User')->find($id);
+        $form = $this->createForm(RegistrationType::class,$user);
+        if ($form->handleRequest($request)->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+            return $this->render('PIBundle:Admin:modifier_demandeur.html.twig', array('form' => $form->createView(), 'user' => $user));
+        }
+        return $this->render('PIBundle:Admin:modifier_demandeur.html.twig', array('form' => $form->createView(), 'user' => $user));
+    }
+
+    public function ajouter_demandeAction(Request $request, $id){
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('PIBundle:User')->find($id);
+        $demand= new Demand();
+        $form = $this->createForm(DemandType::class,$demand);
+        if ($form->handleRequest($request)->isValid()) {
+            $demand ->setViewed("Non")
+                ->setConfirmed("Non")
+                ->setArchived("Non")
+                ->setWrong("Non")
+                ->setDateAttribution(new \DateTime("0000-00-00 00:00:00"))
+                ->setDateArchivage(new \DateTime("0000-00-00 00:00:00"))
+                ->setIdAppartment('0')
+                ->setIdUser($user->getId())
+                ->setDateCreation(new \DateTime());
+            $em->persist($demand);
+            $em->flush();
+            return $this->render('PIBundle:Admin:ajouter_demande.html.twig', array('form' => $form->createView(), 'user' => $user, 'demand' => $demand));
+        }
+        return $this->render('PIBundle:Admin:ajouter_demande.html.twig', array('form' => $form->createView(), 'user' => $user, 'demand' => $demand));
+    }
+
 }

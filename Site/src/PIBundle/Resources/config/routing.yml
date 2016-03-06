@@ -32,3 +32,19 @@ platform_admin_modifier_appartment:
     path:     /modifier_appartment/{id}
     defaults: { _controller: PIBundle:Admin:modifier_appartment }
 
+platform_admin_demandeur:
+    path:     /demandeur
+    defaults: { _controller: PIBundle:Admin:demandeur }
+
+platform_admin_ajouter_demandeur:
+    path:     /ajouter_demandeur
+    defaults: { _controller: PIBundle:Admin:ajouter_demandeur }
+
+platform_admin_modifier_demandeur:
+    path:     /modifier_demandeur/{id}
+    defaults: { _controller: PIBundle:Admin:modifier_demandeur }
+
+platform_admin_ajouter_demande:
+    path:     /ajouter_demande/{id}
+    defaults: { _controller: PIBundle:Admin:ajouter_demande }
+

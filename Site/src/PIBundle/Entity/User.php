@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
+ * @ORM\Entity(repositoryClass="PIBundle\Repository\UserRepository")
  */
 class User extends BaseUser
 {
@@ -17,13 +18,6 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
-      /**
-     * @var string
-     *
-     * @ORM\Column(name="salary", type="decimal", precision=10, scale=0)
-     */
-    private $salary;
 
        /**
      * @var string
@@ -45,30 +39,6 @@ class User extends BaseUser
     {
         parent::__construct();
         // your own logic
-    }
-
-    /**
-     * Set salary
-     *
-     * @param string $salary
-     *
-     * @return User
-     */
-    public function setSalary($salary)
-    {
-        $this->salary = $salary;
-
-        return $this;
-    }
-
-    /**
-     * Get salary
-     *
-     * @return string
-     */
-    public function getSalary()
-    {
-        return $this->salary;
     }
 
     /**
@@ -118,12 +88,12 @@ class User extends BaseUser
     {
         return $this->lastName;
     }
+    
     public function setEmail($email){
     $email = is_null($email) ? '' : $email;
     parent::setEmail($email);
     $this->setUsername($email);
 
     return $this;
-
-}
+    }
 }

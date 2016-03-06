@@ -9,7 +9,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class HousingType extends AbstractType
 {
@@ -25,7 +24,7 @@ class HousingType extends AbstractType
             ->add('rent',   NumberType::class, array('label' => 'Loyer: '))
             ->add('floor',   IntegerType::class, array('label' => 'Etage: '))
             ->add('numero',   IntegerType::class, array('label' => 'Numéro: '))
-            ->add('contingent',   CheckboxType::class, array('label' => 'Contingent: '))
+            ->add('contingent',   TextType::class, array('label' => 'Contingent: '))
             ->add('Valider',      SubmitType::class)
         ;
     }

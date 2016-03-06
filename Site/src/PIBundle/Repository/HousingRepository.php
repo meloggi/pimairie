@@ -62,12 +62,14 @@ class HousingRepository extends \Doctrine\ORM\EntityRepository
 
         if($contingent != 'Tous')
         {
-        	if($contingent = 'Oui')
-        	$query->andWhere('a.contingent = :true')
-        				->setParameter('contingent', $contingent);
-        	if($contingent = 'Non')
-        	$query->andWhere('a.contingent = :false')
-        				->setParameter('contingent', $contingent);
+        	$query->andWhere('a.contingent = :contingent')
+                ->setParameter('contingent', $contingent);
+        }
+
+        if($attribution != 'Tous')
+        {
+          $query->andWhere('a.attribution = :attribution')
+                ->setParameter('attribution', $attribution);
         }
 
         return $query->getQuery()->getResult();

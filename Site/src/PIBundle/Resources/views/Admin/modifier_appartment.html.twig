@@ -30,13 +30,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ path('platform_admin_dashboard') }}">Mairie Villers-lès-Nancy Administrateur</a>
+                <a class="navbar-brand" href="{{ path('platform_admin_dashboard' ) }}">Mairie Villers-lès-Nancy Administrateur</a>
             </div>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li><a href="{{ path('platform_admin_dashboard') }}"><i class="fa fa-tachometer"></i> Tableau de bord</a></li>
+                    <li><a href="{{ path('platform_admin_dashboard' ) }}"><i class="fa fa-tachometer"></i> Tableau de bord</a></li>
                     <li class="active"><a href="{{ path('platform_admin_appartment') }}"><i class="fa fa-building-o "></i> Appartements</a></li>                    
-                    <li><a href="blog.html"><i class="fa fa-users"></i> Demandeurs</a></li>
+                    <li><a href="{{ path('platform_admin_demandeur') }}"><i class="fa fa-users"></i> Demandeurs</a></li>
                     <li><a href="forms.html"><i class="fa fa-bar-chart "></i> Statistiques</a></li>
                     <li><a href="typography.html"><i class="fa fa-archive"></i> Archives</a></li>                    
                 </ul>
@@ -83,32 +83,94 @@
         </nav>
         <div class="container">
           <div class="row">
+            <a type="button" class="btn btn-success" href="{{ path('platform_admin_appartment') }}"><i class="fa fa-chevron-left"></i> Retour</a>
           <h1>Modifier les informations du logement</h1>
           </div>
           <div class="row">
           <div class="col-lg-12">
-            <form action="{{path('platform_admin_modifier_appartment', { 'id': housing.id })}}" method="post" role="form">
-                
+            <form action="{{ path('platform_admin_modifier_appartment', { 'id': housing.id }) }}" method="post" role="form">
                <div class="form-group">
                     <label for="location">{{ form_label(form.location) }}</label>
-                    <select class="form-control" id="housing_location" type="text" required="required" name="housing[location]" value={{housing.location}}>
-                      <option>Villers-centre</option>
-                      <option>Villers-bas</option>
-                      <option>Clairlieu</option>
-                      <option>Autre</option>
+                    <select class="form-control" id="housing_location" type="text" required="required" name="housing[location]">
+                      {% if housing.location == "Villers-centre" %}
+                        <option selected="selected">Villers-centre</option>
+                        <option>Villers-bas</option>
+                        <option>Clairlieu</option>
+                        <option>Autre</option>
+                      {%endif%}
+                      {% if housing.location == "Villers-bas" %}
+                        <option>Villers-centre</option>
+                        <option selected="selected">Villers-bas</option>
+                        <option>Clairlieu</option>
+                        <option>Autre</option>
+                      {%endif%}
+                      {% if housing.location == "Clairlieu" %}
+                        <option>Villers-centre</option>
+                        <option>Villers-bas</option>
+                        <option selected="selected">Clairlieu</option>
+                        <option>Autre</option>
+                      {%endif%}
+                      {% if housing.location == "Autre" %}
+                        <option>Villers-centre</option>
+                        <option>Villers-bas</option>
+                        <option>Clairlieu</option>
+                        <option selected="selected">Autre</option>
+                      {%endif%}
                     </select>
                     <p class="help-block">{{ form_errors(form.location) }}</p>
                 </div>
 
                 <div class="form-group">
                     <label for="bailleur">{{ form_label(form.bailleur) }}</label>
-                    <select class="form-control" id="housing_bailleur" type="text" required="required" name="housing[bailleur]" value={{housing.bailleur}}>
-                      <option>BATIGERE</option>
-                      <option>3F - EST HABITAT CONSTRUCTION</option>
-                      <option>MEURTHE ET MOSELLE HABITAT</option>
-                      <option>OFFICE PUBLIC DE L'HABITAT</option>
-                      <option>SOCIETE LORRAINE D'HABITAT</option>
-                      <option>Autre</option>
+                    <select class="form-control" id="housing_bailleur" type="text" required="required" name="housing[bailleur]">
+                      {% if housing.bailleur == "BATIGERE" %}
+                        <option selected="selected">BATIGERE</option>
+                        <option>3F - EST HABITAT CONSTRUCTION</option>
+                        <option>MEURTHE ET MOSELLE HABITAT</option>
+                        <option>OFFICE PUBLIC DE L HABITAT</option>
+                        <option>SOCIETE LORRAINE D HABITAT</option>
+                        <option>Autre</option>
+                      {%endif%}
+                      {% if housing.bailleur == "3F - EST HABITAT CONSTRUCTION" %}
+                        <option>BATIGERE</option>
+                        <option selected="selected">3F - EST HABITAT CONSTRUCTION</option>
+                        <option>MEURTHE ET MOSELLE HABITAT</option>
+                        <option>OFFICE PUBLIC DE L HABITAT</option>
+                        <option>SOCIETE LORRAINE D HABITAT</option>
+                        <option>Autre</option>
+                      {%endif%}
+                      {% if housing.bailleur == "MEURTHE ET MOSELLE HABITAT" %}
+                        <option>BATIGERE</option>
+                        <option>3F - EST HABITAT CONSTRUCTION</option>
+                        <option selected="selected">MEURTHE ET MOSELLE HABITAT</option>
+                        <option>OFFICE PUBLIC DE L HABITAT</option>
+                        <option>SOCIETE LORRAINE D HABITAT</option>
+                        <option>Autre</option>
+                      {%endif%}
+                      {% if housing.bailleur == "OFFICE PUBLIC DE L HABITAT" %}
+                        <option>BATIGERE</option>
+                        <option>3F - EST HABITAT CONSTRUCTION</option>
+                        <option>MEURTHE ET MOSELLE HABITAT</option>
+                        <option selected="selected">OFFICE PUBLIC DE L HABITAT</option>
+                        <option>SOCIETE LORRAINE D HABITAT</option>
+                        <option>Autre</option>
+                      {%endif%}
+                      {% if housing.bailleur == "SOCIETE LORRAINE D HABITAT" %}
+                        <option>BATIGERE</option>
+                        <option>3F - EST HABITAT CONSTRUCTION</option>
+                        <option>MEURTHE ET MOSELLE HABITAT</option>
+                        <option>OFFICE PUBLIC DE L HABITAT</option>
+                        <option selected="selected">SOCIETE LORRAINE D HABITAT</option>
+                        <option>Autre</option>
+                      {%endif%}
+                      {% if housing.bailleur == "Autre" %}
+                        <option>BATIGERE</option>
+                        <option>3F - EST HABITAT CONSTRUCTION</option>
+                        <option>MEURTHE ET MOSELLE HABITAT</option>
+                        <option>OFFICE PUBLIC DE L HABITAT</option>
+                        <option>SOCIETE LORRAINE D HABITAT</option>
+                        <option selected="selected">Autre</option>
+                      {%endif%}
                     </select>
                     <p class="help-block">{{ form_errors(form.bailleur) }}</p>
                 </div>
@@ -127,14 +189,70 @@
 
                 <div class="form-group">
                     <label for="type">{{ form_label(form.type) }}</label>
-                    <select class="form-control" id="housing_type" type="text" required="required" name="housing[type]" value={{housing.type}}>
-                      <option>F1</option>
-                      <option>F1 bis</option>
-                      <option>F2</option>
-                      <option>F3</option>
-                      <option>F4</option>
-                      <option>F5</option>
-                      <option>F6</option>
+                    <select class="form-control" id="housing_type" type="text" required="required" name="housing[type]">
+                      {% if housing.type == "F1" %}
+                        <option selected="selected">F1</option>
+                        <option>F1 bis</option>
+                        <option>F2</option>
+                        <option>F3</option>
+                        <option>F4</option>
+                        <option>F5</option>
+                        <option>F6</option>
+                      {%endif%}
+                      {% if housing.type == "F1 bis" %}
+                        <option>F1</option>
+                        <option selected="selected">F1 bis</option>
+                        <option>F2</option>
+                        <option>F3</option>
+                        <option>F4</option>
+                        <option>F5</option>
+                        <option>F6</option>
+                      {%endif%}
+                      {% if housing.type == "F2" %}
+                        <option>F1</option>
+                        <option>F1 bis</option>
+                        <option selected="selected">F2</option>
+                        <option>F3</option>
+                        <option>F4</option>
+                        <option>F5</option>
+                        <option>F6</option>
+                      {%endif%}
+                      {% if housing.type == "F3" %}
+                        <option>F1</option>
+                        <option>F1 bis</option>
+                        <option>F2</option>
+                        <option selected="selected">F3</option>
+                        <option>F4</option>
+                        <option>F5</option>
+                        <option>F6</option>
+                      {%endif%}
+                      {% if housing.type == "F4" %}
+                        <option>F1</option>
+                        <option>F1 bis</option>
+                        <option>F2</option>
+                        <option>F3</option>
+                        <option selected="selected">F4</option>
+                        <option>F5</option>
+                        <option>F6</option>
+                      {%endif%}
+                      {% if housing.type == "F5" %}
+                        <option>F1</option>
+                        <option>F1 bis</option>
+                        <option>F2</option>
+                        <option>F3</option>
+                        <option>F4</option>
+                        <option selected="selected">F5</option>
+                        <option>F6</option>
+                      {%endif%}
+                      {% if housing.type == "F6" %}
+                        <option>F1</option>
+                        <option>F1 bis</option>
+                        <option>F2</option>
+                        <option>F3</option>
+                        <option>F4</option>
+                        <option>F5</option>
+                        <option selected="selected">F6</option>
+                      {%endif%}
                     </select>
                     <p class="help-block">{{ form_errors(form.type) }}</p>
                 </div>
@@ -159,14 +277,21 @@
 
                 <div class="form-group">
                 <label>{{ form_label(form.contingent) }}</label>
-                <label id="housing_contingent" name="housing[contingent]">
-                  <input type="checkbox" value={{housing.contingent}} >
+                    <select class="form-control" id="housing_contingent" type="text" required="required" name="housing[contingent]">
+                          {% if housing.contingent == "Oui" %}
+                            <option selected="selected">Oui</option>
+                            <option>Non</option>
+                          {%endif%}
+                          {% if housing.contingent == "Non" %}
+                            <option>Oui</option>
+                            <option selected="selected">Non</option>
+                          {%endif%}
+                    </select>
                   <p class="help-block">{{ form_errors(form.contingent) }}</p> 
-                </label>
                 </div>
 
                 {{ form_widget(form._token) }}
-                <input type="submit" class="btn btn-success" value="Valider" />
+                <input type="submit" class="btn btn-success" value="Valider" style="margin-bottom: 50px; margin-top: 20px"/>
 
             </form>
           </div>

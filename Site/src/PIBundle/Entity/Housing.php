@@ -59,7 +59,7 @@ class Housing
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=5)
+     * @ORM\Column(name="type", type="string", length=10)
      */
     private $type;
 
@@ -78,16 +78,16 @@ class Housing
     private $numero;
 
     /**
-     * @var contingent
+     * @var string
      *
-     * @ORM\Column(name="contingent", type="boolean")
+     * @ORM\Column(name="contingent", type="string", length=10)
      */
     private $contingent;
 
     /**
-     * @var attribution
+     * @var string
      *
-     * @ORM\Column(name="attribution", type="boolean")
+     * @ORM\Column(name="attribution", type="string", length=10)
      */
     private $attribution;
 
@@ -297,7 +297,7 @@ class Housing
     /**
      * Set contingent
      *
-     * @param boolean $contingent
+     * @param string $contingent
      *
      * @return Housing
      */
@@ -311,7 +311,7 @@ class Housing
     /**
      * Get contingent
      *
-     * @return contingent
+     * @return string
      */
     public function getContingent()
     {
@@ -321,7 +321,7 @@ class Housing
     /**
      * Set attribution
      *
-     * @param boolean $attribution
+     * @param string $attribution
      *
      * @return Housing
      */
@@ -335,7 +335,7 @@ class Housing
     /**
      * Get attribution
      *
-     * @return attribution
+     * @return string
      */
     public function getAttribution()
     {
