@@ -94,13 +94,6 @@ class Demand
     /**
      * @var string
      *
-     * @ORM\Column(name="comment", type="string", length=255)
-     */
-    private $comment;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="note", type="string", length=255)
      */
     private $note;
@@ -410,30 +403,6 @@ class Demand
     public function getType2()
     {
         return $this->type2;
-    }
-
-    /**
-     * Set comment
-     *
-     * @param string $comment
-     *
-     * @return Demand
-     */
-    public function setComment($comment)
-    {
-        $this->comment = $comment;
-
-        return $this;
-    }
-
-    /**
-     * Get comment
-     *
-     * @return string
-     */
-    public function getComment()
-    {
-        return $this->comment;
     }
 
     /**

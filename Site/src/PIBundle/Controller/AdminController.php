@@ -123,6 +123,21 @@ class AdminController extends Controller
         return $this->render('PIBundle:Admin:modifier_demandeur.html.twig', array('form' => $form->createView(), 'user' => $user));
     }
 
+    public function etat_demandeAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $list_demand_current = $em->getRepository('PIBundle:Demand')->findBy(array('idUser' => $id, 'archived' => "Non"));
+        return $this->render('PIBundle:Admin:etat_demande.html.twig', array('list_demand_current' => $list_demand_current, 'id' => $id));
+    }
+
+    public function affichage_demandeAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $demand_current = $em->getRepository('PIBundle:Demand')->findOneBy(array('idUser' => $id, 'archived' => "Non"));
+        $demand_current->setViewed("Oui");
+        $em->persist($demand_current);
+        $em->flush();
+        return $this->render('PIBundle:Admin:affichage_demande.html.twig', array('demand_current' => $demand_current, 'id' => $id));
+    }
+
     public function ajouter_demandeAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('PIBundle:User')->find($id);
@@ -140,9 +155,58 @@ class AdminController extends Controller
                 ->setDateCreation(new \DateTime());
             $em->persist($demand);
             $em->flush();
-            return $this->render('PIBundle:Admin:ajouter_demande.html.twig', array('form' => $form->createView(), 'user' => $user, 'demand' => $demand));
+            return $this->render('PIBundle:Admin:valider_demande.html.twig', array('form' => $form->createView(), 'user' => $user, 'demand' => $demand));
         }
         return $this->render('PIBundle:Admin:ajouter_demande.html.twig', array('form' => $form->createView(), 'user' => $user, 'demand' => $demand));
     }
+
+    public function valider_demandeAction(){
+        return $this->render('PIBundle:Admin:valider_demande.html.twig');
+    }
+
+    public function confirmer_demandeAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $demand_current = $em->getRepository('PIBundle:Demand')->findOneBy(array('idUser' => $id, 'archived' => "Non"));
+        $demand_current->setConfirmed("Oui");
+        $demand_current->setWrong("Non");
+        $em->persist($demand_current);
+        $em->flush();
+        return $this->render('PIBundle:Admin:confirmer_demande.html.twig');
+    }
+
+    public function archiver_demandeAction($id){
+    $em = $this->getDoctrine()->getManager();
+    $demand_current = $em->getRepository('PIBundle:Demand')->findOneBy(array('idUser' => $id, 'archived' => "Non"));
+    $demand_current->setArchived("Oui");
+    $em->persist($demand_current);
+    $em->flush();
+    return $this->render('PIBundle:Admin:archiver_demande.html.twig');
+    }
+
+    public function refuser_demandeAction($id){
+    $em = $this->getDoctrine()->getManager();
+    $demand_current = $em->getRepository('PIBundle:Demand')->findOneBy(array('idUser' => $id, 'archived' => "Non"));
+    $demand_current->setWrong("Oui");
+    $demand_current->setConfirmed("Non");
+    $em->persist($demand_current);
+    $em->flush();
+    return $this->render('PIBundle:Admin:refuser_demande.html.twig');
+    }
+
+    public function modifier_demandeAction(Request $request, $id){
+        $em = $this->getDoctrine()->getManager();
+        $demand = $em->getRepository('PIBundle:Demand')->find($id);
+        $form = $this->createForm(DemandType::class,$demand);
+        if ($form->handleRequest($request)->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $demand->setWrong("Non");
+            $em->persist($demand);
+            $em->flush();
+            return $this->render('PIBundle:Admin:modifier_demande.html.twig', array('form' => $form->createView(), 'demand' => $demand));
+        }
+        return $this->render('PIBundle:Admin:modifier_demande.html.twig', array('form' => $form->createView(), 'demand' => $demand));
+    }
+
+
 
 }

@@ -1,4 +1,4 @@
-{# app/Resources/views/Admin/demandeur.html.twig #}
+{# app/Resources/views/Admin/ajouter_demande.html.twig #}
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -35,7 +35,7 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li><a href="{{ path('platform_admin_dashboard') }}"><i class="fa fa-tachometer"></i> Tableau de bord</a></li>
-                    <li><a href="{{ path('platform_admin_appartment') }}"><i class="fa fa-building-o "></i> Appartements</a></li>
+                    <li><a href="{{ path('platform_admin_appartment') }}"><i class="fa fa-building-o "></i> Appartements</a></li>                    
                     <li class="active"><a href="{{ path('platform_admin_demandeur') }}"><i class="fa fa-users"></i> Demandeurs</a></li>
                     <li><a href="forms.html"><i class="fa fa-bar-chart "></i> Statistiques</a></li>
                     <li><a href="typography.html"><i class="fa fa-archive"></i> Archives</a></li>                    
@@ -81,86 +81,19 @@
                 </ul>
             </div>
         </nav>
-
-         <div class="container">
+        <div class="container">
           <div class="row">
-            <a type="button" class="btn btn-success" href="{{ path('platform_admin_ajouter_demandeur') }}"><i class="fa fa-plus"></i> Ajouter</a>
-            <div class="pull-right">
-              <button type="button" class="btn btn-primary"><i class="fa fa-upload"></i> Exporter</button>
-              <button type="button" class="btn btn-primary"><i class="fa fa-download"></i> Importer</button>
-            </div>
-            <div class="well" style="margin-top: 30px">
-              <h4><b>Formulaire de recherche de demandeur: </b></h4>
-              <div class="row">
-                
-                  <form action="{{path('platform_admin_demandeur')}}" method="post" role="form" novalidate>
-                    <div id="app_user_registration">
-
-                            <div class="col-lg-6">
-
-                              <div>
-                                <label for="app_user_registration_lastname" style="margin-top: 10px">Nom: </label>
-                                <input class="form-control" type="text" id="app_user_registration_lastname" name="app_user_registration[lastname]"/>
-                              </div>
-
-                              <div>
-                                <label for="app_user_registration_firstname" style="margin-top: 10px">Prénom: </label>
-                                <input class="form-control" type="text" id="app_user_registration_firstname" name="app_user_registration[firstname]"/>
-                              </div>
-                              
-                            </div>
-
-                            <div class="col-lg-6">
-
-                             <div>
-                                <label for="app_user_registration_email" class="required" style="margin-top: 10px">Adresse e-mail: </label>
-                                <input class="form-control" type="email" id="app_user_registration_email" name="app_user_registration[email]" required="required"/>
-                              </div>
-                              {{ form_widget(form._token) }}
-                              <input type="submit" class="btn btn-success pull-right" style="margin-top: 30px" value="Rechercher" />
-                            </div>
-                    </div>
-                  </form>     
-              </div>
-              </div>    
-            </div>
-          </div> 
-          {% if liste_demandeur != 'vide' %}
-            <p style="margin-left: 80px">Vous avez "{{liste_demandeur|length}}" résultats.</p>
-            <div class="panel-body" style="height: 300px; overflow-y: auto;">
-                            <table class="table table-hover">
-                                <thead>
-                                  <tr>
-                                    <th>Nom</th>
-                                    <th>Prénom</th>
-                                    <th>Email</th>
-                                    <th>Demande</th>
-                                    <th >Actions</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  {% for demandeur in liste_demandeur %}
-                                  <tr>
-                                    <td>{{demandeur.lastName}}</td>
-                                    <td>{{demandeur.firstName}}</td>
-                                    <td>{{demandeur.email}}</td>
-                                    <td>
-                                        <a type="button" class="btn btn-primary btn-xs" href="{{ path('platform_admin_etat_demande', { 'id': demandeur.id }) }}">
-                                          <i class="fa fa-plus"></i> Ajouter ou  afficher une demande</a>
-                                      
-                                    </td>
-                                    <td>
-                                      <a type="button" class="btn btn-warning btn-xs" href="{{ path('platform_admin_modifier_demandeur', { 'id': demandeur.id }) }}"><i class="fa fa-pencil"></i> Editer</a>
-                                      <button type="button" class="btn btn-danger btn-xs">
-                                        <i class="fa fa-trash-o"></i> Supprimer</button>
-                                    </td>
-                                  </tr>
-                                  {%endfor%}
-                                </tbody>
-                            </table>
-            </div>
-          {%endif%}
-
+          <a type="button" class="btn btn-success" href="{{ path('platform_admin_demandeur') }}">
+            <i class="fa fa-chevron-left"></i> Accéder aux demandeurs</a>
+          <h1>Votre nouvelle demande a bien été archivé</h1>
+          </div>
+          <div class="row">
+          <div class="col-lg-12">
+                <p>
+                    Pour visualiser la demande, veuillez rechercher la demande sur la page des archives.
+                </p>
+          </div>
+        </div>
     </div>
 
 </body>

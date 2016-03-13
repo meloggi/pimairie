@@ -27,7 +27,6 @@ class DemandType extends AbstractType
             ->add('locationClairlieu')
             ->add('type1')
             ->add('type2')
-            ->add('comment', TextType::class, array('required' => false, 'empty_data'  => 'Rien'))
             ->add('note', TextType::class, array('required' => false, 'empty_data'  => 'Rien'))
         ;
     }

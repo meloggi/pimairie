@@ -10,4 +10,9 @@ namespace PIBundle\Repository;
  */
 class DemandRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function findDemand($id){
+
+	$query = $em->createQuery('SELECT u FROM PIBundle:Demand u WHERE u.idUser = $id and u.archived ="Non" ');
+	return $query->getResult();
+	}
 }
