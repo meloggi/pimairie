@@ -1,0 +1,107 @@
+.img-responsive{
+  padding-left: -900px;
+}
+
+#logo{   
+        margin-top:0px;
+    margin-left:85px;
+    overflow:hidden;
+}
+
+#chateau{   
+        margin-top:20px;
+    margin-left:-20px;
+    overflow:hidden;
+}
+
+.connexion{   
+        margin-top:20px;
+        margin-left:425px;
+        overflow:hidden;
+}
+
+.coin {
+
+border:1px solid #DDEDF6;
+padding:5px;
+margin-left: 90px;
+margin-top: 150px;
+margin-right	: 110px;
+/*arrondir les coins en haut à gauche et en bas à droite*/
+border-radius: 14px; 
+-moz-border-radius: 14px; 
+-webkit-border-radius: 14px; 
+border: 2px solid #DDEDF6;
+border-width: 20px;
+background-color: #F3F7F7;
+	
+
+
+}
+
+h1
+{
+  font-size:20px;
+  font-family:Arial, Helvetica, sans-serif;
+  color: #393C3C;
+  font-weight: bold;
+  padding:10px;
+  font-size: medium;
+   
+  -moz-border-radius: 10px;
+
+  -webkit-border-radius: 0px 10px 10px 0px;
+  border-radius: 0px 10px 10px 0px;
+ 
+  margin-right: 400px;
+  margin-left: -5px;
+  background-color: #DDEDF6;
+
+  display:inline;
+
+  
+}
+
+p
+{
+	margin:16px;
+	padding-top: 0.5cm;
+	padding-bottom: 0.5cm;
+	font-size: small;
+}
+
+.btn-danger
+{
+	size:large;
+	margin-left: 410px;
+}
+
+.btn-success{
+ margin-left: 0cm;
+}
+.btn-outline {
+    background-color: transparent;
+    color: inherit;
+    transition: all .5s;
+}
+
+.btn-success.btn-outline:hover,
+.btn-danger.btn-outline:hover{
+  color: #fff;
+}
+
+.btn-success.btn-outline {
+    color: #5cb85c;
+}
+
+.btn-danger.btn-outline {
+    color: #d9534f;
+}
+.btn{
+ padding: 10px 40px 10px 40px;
+ 
+}
+
+.placement{
+  margin-left:-3cm;
+}

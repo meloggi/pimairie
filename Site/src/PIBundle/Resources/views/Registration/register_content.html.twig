@@ -29,10 +29,7 @@
         {{ form_errors(form.lastname) }}
 </div>
 
-<div>
-       {{ form_widget(form.salary, { 'attr': {'class': 'form-control', 'placeholder': 'salaire' } }) }}
-        {{ form_errors(form.salary) }}
-</div>
+
      
      
       
@@ -42,4 +39,5 @@
         <input type="submit" value="{{ 'Valider' }}" />
     	
     </div>
-{{ form_end(form) }}
+    {{ form_widget(form._token) }}
+{{ form_end(form, {'render_rest': false}) }}

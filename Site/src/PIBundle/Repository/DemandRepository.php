@@ -10,9 +10,19 @@ namespace PIBundle\Repository;
  */
 class DemandRepository extends \Doctrine\ORM\EntityRepository
 {
-	public function findDemand($id){
+		public function findByMail($demand, $em){
+	// 	$query = $em->createQuery('SELECT u FROM PIBundle\Entity\Demande u WHERE u.mail = '.$demande);
 
-	$query = $em->createQuery('SELECT u FROM PIBundle:Demand u WHERE u.idUser = $id and u.archived ="Non" ');
-	return $query->getResult();
+	// return $query->getResult();
+
+
+	$query = $em->createQuery('
+            SELECT u
+            FROM PIBundle:Demand u
+            WHERE u.email = :demand')
+    ->setParameter('demand', $demand);
+
+return $query->getResult();
+
 	}
 }

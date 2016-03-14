@@ -1,0 +1,128 @@
+.well {
+  margin-top: 150px;
+  margin-left:100px;
+  margin-right:100px;
+  border:1px solid #DDEDF6;
+  padding:5px;
+  /*arrondir les coins en haut à gauche et en bas à droite*/
+  border-radius: 14px; 
+  -moz-border-radius: 14px; 
+  -webkit-border-radius: 14px; 
+  border: 2px solid #DDEDF6;
+  border-width: 20px;
+  background-color: #F3F7F7;
+}
+
+.active {
+ font-size: medium;
+ background-color: #F3F7F7;
+}
+
+.onglet {
+  display: inline-block; margin-right: 2px;
+}
+
+a.onglet {
+  border: 1px solid #5e4238; background-color:#Ffffff; padding: 5px 20px;
+  -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px;
+  color: #5e4238; font-size: 13.8px; font-family: sans-serif;, Serif;
+  text-decoration: none; vertical-align: middle; 
+}
+
+.onglet-actif {
+  background-color:#F3F7F7; padding: 5px 20px;
+  -webkit-border-radius: 13.5px; -moz-border-radius: 8px; border-radius: 8px;
+  color: #5e4238; font-size: 13.8px; font-family: sans-serif;, Serif;
+  text-decoration: none; font-weight: bold;
+}
+
+#actif {
+  background-color: transparent;
+  background: transparent;
+}
+
+#nonactif:hover {
+  background: #e1e1e1;
+    border-top: 1px solid #d0d0d0;
+} 
+
+.nav{
+ background-color: #F3F7F7;
+
+ margin:none;
+ border: none;
+
+}
+
+h1
+{
+  font-size:20px;
+  font-family:Arial, Helvetica, sans-serif;
+  color: #393C3C;
+  font-weight: bold;
+  padding:10px;
+  font-size: medium;
+
+  -moz-border-radius: 10px;
+
+  -webkit-border-radius: 0px 10px 10px 0px;
+  border-radius: 0px 10px 10px 0px;
+
+  margin-right: 400px;
+  margin-left: -5.2cm;
+  background-color: #DDEDF6;
+
+  display:inline;
+}
+
+p
+{
+ margin:16px;
+ padding-top: 0.2cm;
+ padding-bottom: 0.2cm;
+ font-size: small;
+ font-weight: normal;
+}
+
+.info{
+ margin-left : 5cm;
+ margin-top : 1cm;
+}
+
+.btn-danger
+{
+ margin-left: 8cm;
+ margin-top: -0.8cm;
+}
+
+.btn-success{
+ margin-left: 0cm;
+}
+.btn-outline {
+    background-color: transparent;
+    color: inherit;
+    transition: all .5s;
+}
+
+.btn-success.btn-outline:hover,
+.btn-danger.btn-outline:hover{
+  color: #fff;
+}
+
+.btn-success.btn-outline {
+    color: #5cb85c;
+}
+
+.btn-danger.btn-outline {
+    color: #d9534f;
+}
+.btn{
+ padding: 10px 40px 10px 40px;
+ 
+}
+
+.placement{
+  margin-top:0cm;
+}
+
+

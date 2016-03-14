@@ -23,23 +23,23 @@
 }
 
 /*Strip the ul of padding and list styling*/
-ul {
+ul.main_menu {
     list-style-type:none;
     margin:0;
     padding:0;
     position: absolute;
-    left: 198px;
+    left: 280px;
 }
 
 /*Create a horizontal list with spacing*/
-li {
+li.main_menu {
     /*display:inline-block;*/
     float: left;
     margin-right: 1px;
 }
 
 /*Style for menu links*/
-li a {
+li.main_menu a {
     display:block;
     min-width:186.5px;
     height: 50px;
@@ -53,14 +53,14 @@ li a {
 }
 
 /*Hover state for top level links*/
-li:hover a {
+li.main_menu:hover a {
     background: #00a6e2;
     text-decoration: none;
     color: #ffffff;
 }
 
 /*Style for dropdown links*/
-li:hover ul a {
+li.main_menu:hover ul a {
     background: #f3f3f3;
     color: #2f3036;
     height: 40px;
@@ -68,91 +68,62 @@ li:hover ul a {
 }
 
 /*Hover state for dropdown links*/
-li:hover ul a:hover {
+li.main_menu:hover ul.main_menu a:hover {
     background: #19c589;
     color: #fff;
 }
 
-/*Hide dropdown links until they are needed*/
-li ul {
-    display: none;
-}
 
-/*Make dropdown links vertical*/
-li ul li {
-    display: block;
-    float: none;
-}
-
-/*Prevent text wrapping*/
-li ul li a {
-    width: auto;
-    min-width: 100px;
-    padding: 0 20px;
-}
 
 /*Display the dropdown on hover*/
-ul li a:hover + .hidden, .hidden:hover {
-    display: block;
-}
 
-/*Style 'show menu' label button and hide it by default*/
-.show-menu {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    text-decoration: none;
-    color: #888;
-    background: #ffffff;
-    text-align: center;
-    padding: 10px 0;
-    display: none;
-    border: 1px solid #ccc;
-
-}
-
-/*Hide checkbox*/
-input[type=checkbox]{
-    display: none;
-}
-
-/*Show menu when invisible checkbox is checked*/
-input[type=checkbox]:checked ~ #menu{
-    display: block;
-}
-
-
-/*Responsive Styles*/
-
-@media screen and (max-width : 760px){
-    /*Make dropdown links appear inline*/
-    ul {
-        position: static;
-        display: none;
-    }
-    /*Create vertical spacing*/
-    li {
-        margin-bottom: 1px;
-    }
-    /*Make all menu links full width*/
-    ul li, li a {
-        width: 100%;
-    }
-    /*Display 'show menu' link*/
-    .show-menu {
-        display:block;
-    }
-}
 
 .jumbotron {
     background: #ffffff;
     margin-top: 90px;
-    margin-left: 180px;
-    margin-right: 110px;
+    margin-left: 50px;
+    margin-right: 50px;
+    font-family: sans-serif;
+    font-size:50%;
   }
+
+  
 
 .panel{
     margin-left:90px;
     margin-right:110px;
     margin-top:150px;
+}
+
+h1
+{
+  font-size:20px;
+  font-family:Arial, Helvetica, sans-serif;
+  color: #393C3C;
+  font-weight: bold;
+  padding:10px;
+  font-size: medium;
+   
+  -moz-border-radius: 10px;
+
+  -webkit-border-radius: 0px 10px 10px 0px;
+  border-radius: 0px 10px 10px 0px;
+ 
+  margin-right: 400px;
+  margin-left: -5px;
+  background-color: #DDEDF6;
+
+  display:inline;
+
+  
+}
+
+p
+{
+    margin:16px;
+    padding-top: 0.5cm;
+    padding-bottom: 0.5cm;
+    font-size: small;
 }
 
 
