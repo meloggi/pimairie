@@ -119,7 +119,7 @@
 
                         <a type="button" class="btn btn-danger" 
                         href="{{ path('platform_admin_refuser_demande', 
-                        { 'id': demand_current.idUser }) }}">
+                        { 'id': demand_current.idUser }) }}" OnClick="return confirm('Voulez-vous vraiment refuser la demande ?');">
                         <i class="fa fa-times"></i> Refuser</a>
                     {% else %}
                         <p> Vous avez refusé la demande, elle est donc erronée. La demande pourra être confimé lorsque la demande sera modifiée par le demandeur de logement social ou si vous la modifiez vous même.</p>

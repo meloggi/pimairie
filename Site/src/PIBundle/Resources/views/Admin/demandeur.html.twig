@@ -151,7 +151,7 @@
                                     </td>
                                     <td>
                                       <a type="button" class="btn btn-warning btn-xs" href="{{ path('platform_admin_modifier_demandeur', { 'id': demandeur.id }) }}"><i class="fa fa-pencil"></i> Editer</a>
-                                      <button type="button" class="btn btn-danger btn-xs">
+                                      <button type="button" class="btn btn-danger btn-xs" OnClick="return confirm('Voulez-vous vraiment supprimer la demande ?');"> 
                                         <i class="fa fa-trash-o"></i> Supprimer</button>
                                     </td>
                                   </tr>

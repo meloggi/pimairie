@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints\DateTime;
 use FOS\UserBundle\Controller\RegistrationController;
 //use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-class RegistrationAdminController extends Controller
+class RegistrationController extends Controller
 {
     
 
