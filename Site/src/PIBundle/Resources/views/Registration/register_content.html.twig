@@ -5,39 +5,61 @@
 
       <!--	ici pour modifier le CSS du formulaire de registration Mr Brian-->
 
-      <div class="form-group" id="fos_user_registration_form">
-      <div>
-        {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'form.email'|trans } }) }}
+     <div class="container">
+              <!-- Codrops top bar -->
+              <div class="codrops-top">
+               
+                  <div class="clr"></div>
+              </div><!--/ Codrops top bar -->
+                  <section>       
+                  <div id="container_demo" >
+                        <a class="hiddenanchor" id="toregister"></a>
+                      <a class="hiddenanchor" id="tologin"></a>
+                      <div id="wrapper">
+
+
+      <div class="animate form" id="fos_user_registration_form">
+             <h1> S'enregistrer </h1> 
+
+      <p>
+        {{ form_widget(form.email, { 'attr': { 'id':'usernamesignup' , 'name':'usernamesignup','class': 'youmail', 'data-icon':'e', 'type':'text','placeholder': 'form.email'|trans } }) }}
         {{ form_errors(form.email) }}
-</div>
+</p>
 
      <div>
-        {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'form.password'|trans } }) }}
+        {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'youpasswd', 'data-icon':'p', 'placeholder': 'form.password'|trans } }) }}
         {{ form_errors(form.plainPassword.first) }}
 </div>
 
         <div>
-        {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'form.password_confirmation'|trans } }) }}
+        {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'youpasswd', 'data-icon':'p','placeholder': 'form.password_confirmation'|trans } }) }}
         {{ form_errors(form.plainPassword.second) }}
 </div>
 
         <div>
- 		 {{ form_widget(form.firstname, { 'attr': {'class': 'form-control', 'placeholder': 'prénom' } }) }}
+ 		 {{ form_widget(form.firstname, { 'attr': {'class': 'uname', 'data-icon':'u','placeholder': 'prénom' } }) }}
         {{ form_errors(form.firstname) }}
 
-          {{ form_widget(form.lastname, { 'attr': {'class': 'form-control', 'placeholder': 'nom' } }) }}
+          {{ form_widget(form.lastname, { 'attr': {'class': 'uname', 'data-icon':'u', 'placeholder': 'nom' } }) }}
         {{ form_errors(form.lastname) }}
 </div>
 
+  
 
-     
-     
-      
-
-    </div>
     <div>
-        <input type="submit" value="{{ 'Valider' }}" />
-    	
+        <input type="submit" value="{{ 'Valider' }}" href="/" />
+    	     </p>
+                                <p class="change_link">  
+                  Déjà enregistré?
+                  <a href="#tologin" class="to_register"> Connectez vous ici </a>
+                </p>
     </div>
     {{ form_widget(form._token) }}
 {{ form_end(form, {'render_rest': false}) }}
+  </div>
+
+
+                      </div>
+                  </div>  
+              </section>
+          </div>

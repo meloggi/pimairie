@@ -3,6 +3,7 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
+   <meta HTTP-EQUIV="Refresh" content="1;/"> 
     <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
     {% if targetUrl %}
     <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
