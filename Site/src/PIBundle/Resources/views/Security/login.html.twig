@@ -9,19 +9,52 @@
   
  <!--	ici pour modifier le CSS du formulaire de login Mr Brian-->
 
-<form action="{{ path("fos_user_security_check") }}" method="post">
-    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
-   <!-- <label for="username">{{ 'email' }}</label> -->
-    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" class="form-control" placeholder="email"/>
+   <div class="container">
+            <!-- Codrops top bar -->
+            <div class="codrops-top">
+             
+                <div class="clr"></div>
+            </div><!--/ Codrops top bar -->
+                <section>				
+                <div id="container_demo" >
+                      <a class="hiddenanchor" id="toregister"></a>
+                    <a class="hiddenanchor" id="tologin"></a>
+                    <div id="wrapper">
+                        <div id="login" class="animate form">
+                            <form action="{{ path("fos_user_security_check") }}" method="post" autocomplete="on"> 
+                                <h1>Connectez vous</h1> 
+                                  <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
-   <!-- <label for="password">{{ 'security.login.password'|trans }}</label> -->
-    <input type="password" id="password" name="_password" required="required" class="form-control" placeholder="mot de passe" />
+                                <p> 
+                                    <label for="username" class="uname" data-icon="u" >email</label>
+                            <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" class="uname" placeholder="email"/>
+       </p>
+                                <p> 
+                                    <label for="password" class="youpasswd" data-icon="p"> Mot de passe </label>
+                           <input type="password" id="password" name="_password" required="required" class="youpasswd" placeholder="mot de passe" />
+        </p>
+                                <p class="keeplogin"> 
+									<input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" /> 
+									<label for="loginkeeping">Se souvenir de moi</label>
+								</p>
+                                <p class="login button"> 
+                               <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+   	</p>
+                                <p class="change_link">
+									Pas encore inscrit?
+									<a href="/register" class="to_register">Enregistrez vous</a>
+								</p>
+                            </form>
 
-    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />  
-   <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label> 
+       
+                        </div>
+		
+                    </div>
+                </div>  
+            </section>
+        </div>
 
-    <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
-    
-</form>
+
+
 {% endblock fos_user_content %}
