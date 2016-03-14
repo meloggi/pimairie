@@ -141,6 +141,9 @@ class AdminController extends Controller
     public function ajouter_demandeAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('PIBundle:User')->find($id);
+
+        echo $user;
+
         $demand= new Demand();
         $form = $this->createForm(DemandType::class,$demand);
         if ($form->handleRequest($request)->isValid()) {

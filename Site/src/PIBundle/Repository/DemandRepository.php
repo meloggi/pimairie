@@ -11,10 +11,6 @@ namespace PIBundle\Repository;
 class DemandRepository extends \Doctrine\ORM\EntityRepository
 {
 		public function findByMail($demand, $em){
-	// 	$query = $em->createQuery('SELECT u FROM PIBundle\Entity\Demande u WHERE u.mail = '.$demande);
-
-	// return $query->getResult();
-
 
 	$query = $em->createQuery('
             SELECT u

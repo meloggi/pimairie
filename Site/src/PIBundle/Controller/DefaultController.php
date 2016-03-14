@@ -42,18 +42,31 @@ class DefaultController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $user= new Demand();
+        $id=$this->get('security.token_storage')->getToken()->getUser()->getId();
+
+        $user = $em->getRepository('PIBundle:User')->find($id);
+
+        $demand= new Demand();
         
-        $form = $this->createForm(DemandType::class,$user); 
+        $form = $this->createForm(DemandType::class,$demand); 
 
         if ($form->handleRequest($request)->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
+            $demand ->setViewed("Non")
+                ->setConfirmed("Non")
+                ->setArchived("Non")
+                ->setWrong("Non")
+                ->setDateAttribution(new \DateTime("0000-00-00 00:00:00"))
+                ->setDateArchivage(new \DateTime("0000-00-00 00:00:00"))
+                ->setIdAppartment('0')
+                ->setIdUser($user->getId())
+                ->setDateCreation(new \DateTime());
+            $em->persist($demand);
             $em->flush();
             
-            return $this->render('PIBundle:Default:form3.html.twig', array('form' => $form->createView(), 'demand' => $user));
+            return $this->render('PIBundle:Default:form3.html.twig', array('form' => $form->createView(), 'demand' => $demand));
         }
-        return $this->render('PIBundle:Default:form2.html.twig', array('form' => $form->createView(), 'demand' => $user));
+        return $this->render('PIBundle:Default:form2.html.twig', array('form' => $form->createView(), 'demand' => $demand));
     }
 
 
@@ -64,6 +77,7 @@ class DefaultController extends Controller
 
         $mail= $this->get('security.token_storage')->getToken()->getUser()->getEmail(); 
         
+
 
 
         $demand = $em->getRepository('PIBundle:Demand')->findByMail($mail, $em);
