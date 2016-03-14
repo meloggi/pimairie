@@ -51,7 +51,7 @@ class DefaultController extends Controller
             $em->persist($user);
             $em->flush();
             
-            return $this->render('PIBundle:Default:form2.html.twig', array('form' => $form->createView(), 'demand' => $user));
+            return $this->render('PIBundle:Default:form3.html.twig', array('form' => $form->createView(), 'demand' => $user));
         }
         return $this->render('PIBundle:Default:form2.html.twig', array('form' => $form->createView(), 'demand' => $user));
     }

@@ -99,7 +99,7 @@
                 </p>
 
                 <p>
-                  <label class="labelmail">Mail: {{ demand.mail}}</label>
+                  <label class="labelmail">Mail: {{ demand.email}}</label>
                 </p>
                 <p>
                   <label class="labelnumero">Numéro: {{ demand.numero}}</label>
@@ -145,7 +145,7 @@
                 </p>
 
                 <p>
-                  <label class="labelsalaire">Salaire : {{ demand.salaire}}</label>
+                  <label class="labelsalaire">Salaire : {{ demand.salary}}</label>
                 </p>
                 <p>
                   <label class="labelretraite">Retraite: {{ demand.retraite}}</label>
@@ -327,8 +327,9 @@
 
             <div class="placement">
               <a href="{{ path('form2_modifier') }}" class="btn btn-danger btn-outline"/>Modifier</a>
+              <a href="{{ path('homepage') }}" class="btn btn-success btn-outline " style="margin-bottom: 30px;"/>Valider</a>
 
-              <a href="{{ path('homepage') }}" class="btn btn-danger btn-outline"/>Valider</a>
+              
               
 
             </div>

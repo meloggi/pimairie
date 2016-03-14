@@ -173,7 +173,7 @@
                 </p>
 
                 <p>
-                  <label class="labelnom">Nom de votre employeur</label>
+                  <label class="labelnomemployeur">Nom de votre employeur</label>
                   <input class="input-xlarge" id="demand_nomemployeur" type="text"  name="demand[nomemployeur]"></input>
                   
                 </p>
@@ -184,7 +184,7 @@
                 </p>
 
                 <p>
-                  <label class="labelcommune">Commune du lieu de travail</label>
+                  <label class="labelcommuneemployeur">Commune du lieu de travail</label>
                   <input class="input-xlarge" id="demand_communeemployeur" type="text"  name="demand[communeemployeur]"></input>
                 </p>
 
@@ -271,11 +271,11 @@
 
            <div class="placement">
            <!--   <a href="{{ path('homepage') }}" class="btn btn-danger btn-outline"/>Annuler</a> -->
-               <button class="btn btn-danger btn-outline" type="button" id="bouton_js2" style="margin-bottom: 0.5cm; margin-top: 0.5cm margin-left: 5cm">Précédant</button>
+               <button class="btn btn-danger btn-outline" type="button" id="bouton_js2" style="margin-bottom: -0.3cm; margin-top: 0.5cm margin-left: 5cm">Précédent</button>
               
-              <button class="btn btn-success" type="button" id="bouton_js" style="margin-bottom: 0.5cm; margin-top: 0.5cm margin-left: 15cm">Suivant</button>
+              <button class="btn btn-success btn-outline" type="button" id="bouton_js" style="margin-bottom: 0.5cm; margin-top: 0.5cm margin-left: 15cm">Suivant</button>
           
-              <input type="submit" class="btn btn-success btn-outline" id="vrai_submit" value="Valider" style="margin-bottom: 50px; margin-top: 20px">
+              <input type="submit" class="btn btn-success btn-outline" id="vrai_submit" value="Suivant" style="margin-bottom: 39px; margin-top: 20px" ></input>
 
             </div>
           </form>
@@ -317,7 +317,8 @@
       $(".page4").hide(200);
         //derniere page ??
         $("#bouton_js2").show();
-
+$("#vrai_submit").show(200);
+        $("#bouton_js").hide();
         page_active=3;
         return;
       }
@@ -387,20 +388,22 @@
       $(".page2").show(200);
       $(".page3").hide(200);
       $(".page4").hide(200);
+      $("#bouton_js").hide();
+      $("#vrai_submit").show();
       page_active=2;
         return;
       }
 
-  if(page_active==4){
-         $(".page1").hide(200);
-      $(".page2").hide(200);
-      $(".page3").show(200);
-      $(".page4").hide(200);
-       $("#bouton_js").show();
-      $("#vrai_submit").hide();
-      page_active=3;
-        return;
-      }
+  // if(page_active==4){
+  //        $(".page1").hide(200);
+  //     $(".page2").hide(200);
+  //     $(".page3").show(200);
+  //     $(".page4").hide(200);
+  //      $("#bouton_js").hide();
+  //     $("#vrai_submit").show();
+  //     page_active=3;
+  //       return;
+  //     }
 
     });
 });

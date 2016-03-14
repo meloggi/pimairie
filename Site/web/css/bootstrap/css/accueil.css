@@ -75,16 +75,16 @@ li.main_menu:hover ul.main_menu a:hover {
 
 
 
-/*Display the dropdown on hover*/
+
 
 
 .jumbotron {
-    background: #ffffff;
-    margin-top: 90px;
+    background: #F3F7F7;
+    margin-top: 110px;
     margin-left: 50px;
     margin-right: 50px;
-    font-family: sans-serif;
-    font-size:50%;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:small;
   }
 
   
@@ -97,21 +97,14 @@ li.main_menu:hover ul.main_menu a:hover {
 
 h1
 {
-  font-size:20px;
+  
   font-family:Arial, Helvetica, sans-serif;
   color: #393C3C;
   font-weight: bold;
   padding:10px;
-  font-size: medium;
-   
-  -moz-border-radius: 10px;
 
-  -webkit-border-radius: 0px 10px 10px 0px;
-  border-radius: 0px 10px 10px 0px;
- 
-  margin-right: 400px;
-  margin-left: -5px;
-  background-color: #DDEDF6;
+  font-size: 0em;
+  font-weight: small;
 
   display:inline;
 

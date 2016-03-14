@@ -1,3 +1,10 @@
+ul.main_menu {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    position: absolute;
+    left: 430px;
+}
 
 .well {
   margin-top: 150px;
@@ -179,4 +186,56 @@ p
 
 .input-xlarge{
   margin-left: 0.4cm;
+}
+
+.labelavis{
+  margin-left: -1cm;
+}
+
+.labelsalaire{
+  margin-left: 0.8cm;
+}
+
+.labelretraite{
+  margin-left: 0.7cm;
+}
+
+.labelalloc{
+  margin-left: -1.3cm;
+}
+
+.labelpensionalim{
+  margin-left: -1.3cm;
+}
+
+.labelpensioninval{
+  margin-left: -1.15cm;
+}
+
+.labelallocfamilial{
+  margin-left: -1.2cm;
+}
+
+.labelrsa{
+  margin-left: -3.4cm;
+}
+
+.labelautres{
+  margin-left: 0.9cm;
+}
+
+.labelprofession{
+  margin-left: 1cm;
+}
+
+.labelnomemployeur{
+  margin-left: -1.3cm;
+}
+
+.labelcode{
+  margin-left: 0.8cm;
+}
+
+.labelcommuneemployeur{
+  margin-left: -1.8cm;
 }
