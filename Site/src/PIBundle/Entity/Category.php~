@@ -1,0 +1,82 @@
+<?php
+
+namespace PIBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+use PIBundle\Entity\Job;
+
+/**
+ * Category
+ *
+ * @ORM\Table(name="category")
+ * @ORM\Entity(repositoryClass="PIBundle\Repository\CategoryRepository")
+ */
+class Category
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
+     */
+    private $name;
+
+    /**
+     * @var ArrayCollection $jobs
+     *
+     * @ORM\OneToMany(targetEntity="Job", mappedBy="category", cascade={"persist", "remove", "merge"})
+     */
+    private $jobs;
+
+    /**
+     * @var ArrayCollection $category_affiliates
+     *
+     * @ORM\OneToMany(targetEntity="CategoryAffiliate", mappedBy="category", cascade={"persist", "remove", "merge"})
+     */
+    private $category_affiliates;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Category
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+}
+

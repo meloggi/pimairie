@@ -116,3 +116,11 @@ platform_admin_refuser_demande:
 platform_admin_archiver_demande:
     path:     /archiver_demande/{id}
     defaults: { _controller: PIBundle:Admin:archiver_demande }
+    
+contact:
+    path:     /contact
+    defaults: { _controller: PIBundle:Default:contact }
+
+form3:
+    path:     /form3
+    defaults: { _controller: PIBundle:Default:form3 }

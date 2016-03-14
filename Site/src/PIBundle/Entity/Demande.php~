@@ -9,10 +9,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Demande
  *
- * @ORM\Table(name="demand")
- * @ORM\Entity(repositoryClass="PIBundle\Repository\DemandRepository")
+ * @ORM\Table(name="demande")
+ * @ORM\Entity(repositoryClass="PIBundle\Repository\DemandeRepository")
  */
-class Demand
+class Demande
 {
     /**
      * @var int
@@ -152,9 +152,15 @@ class Demand
     /**
      * @var string
      *
+     * @ORM\Column(name="salaire", type="decimal", precision=10, scale=0, nullable=true)
+     */
+    private $salaire;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="allocationchomage", type="decimal", precision=10, scale=0, nullable=true)
      */
-  
     private $allocationchomage;
 
     /**
@@ -359,12 +365,7 @@ class Demand
      * @ORM\Column(name="wrong", type="string", length=10, nullable=true)
      */
     private $wrong;
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="comment", type="string", length=10, nullable=true)
-     */
-    private $comment;
+
 
 
 
@@ -812,6 +813,30 @@ class Demand
     }
 
     /**
+     * Set salaire
+     *
+     * @param string $salaire
+     *
+     * @return Demande
+     */
+    public function setSalaire($salaire)
+    {
+        $this->salaire = $salaire;
+
+        return $this;
+    }
+
+    /**
+     * Get salaire
+     *
+     * @return string
+     */
+    public function getSalaire()
+    {
+        return $this->salaire;
+    }
+
+    /**
      * Set allocationchomage
      *
      * @param string $allocationchomage
@@ -1152,7 +1177,7 @@ class Demand
      *
      * @param string $lastname
      *
-     * @return Demand
+     * @return Demande
      */
     public function setLastname($lastname)
     {
@@ -1176,7 +1201,7 @@ class Demand
      *
      * @param string $firstname
      *
-     * @return Demand
+     * @return Demande
      */
     public function setFirstname($firstname)
     {
@@ -1200,7 +1225,7 @@ class Demand
      *
      * @param string $email
      *
-     * @return Demand
+     * @return Demande
      */
     public function setEmail($email)
     {
@@ -1224,7 +1249,7 @@ class Demand
      *
      * @param integer $idUser
      *
-     * @return Demand
+     * @return Demande
      */
     public function setIdUser($idUser)
     {
@@ -1248,7 +1273,7 @@ class Demand
      *
      * @param string $salary
      *
-     * @return Demand
+     * @return Demande
      */
     public function setSalary($salary)
     {
@@ -1272,7 +1297,7 @@ class Demand
      *
      * @param string $locationVillersCentre
      *
-     * @return Demand
+     * @return Demande
      */
     public function setLocationVillersCentre($locationVillersCentre)
     {
@@ -1296,7 +1321,7 @@ class Demand
      *
      * @param string $locationVillersBas
      *
-     * @return Demand
+     * @return Demande
      */
     public function setLocationVillersBas($locationVillersBas)
     {
@@ -1320,7 +1345,7 @@ class Demand
      *
      * @param string $locationClairlieu
      *
-     * @return Demand
+     * @return Demande
      */
     public function setLocationClairlieu($locationClairlieu)
     {
@@ -1344,7 +1369,7 @@ class Demand
      *
      * @param string $type1
      *
-     * @return Demand
+     * @return Demande
      */
     public function setType1($type1)
     {
@@ -1368,7 +1393,7 @@ class Demand
      *
      * @param string $type2
      *
-     * @return Demand
+     * @return Demande
      */
     public function setType2($type2)
     {
@@ -1392,7 +1417,7 @@ class Demand
      *
      * @param string $note
      *
-     * @return Demand
+     * @return Demande
      */
     public function setNote($note)
     {
@@ -1416,7 +1441,7 @@ class Demand
      *
      * @param integer $idAppartment
      *
-     * @return Demand
+     * @return Demande
      */
     public function setIdAppartment($idAppartment)
     {
@@ -1440,7 +1465,7 @@ class Demand
      *
      * @param \DateTime $dateCreation
      *
-     * @return Demand
+     * @return Demande
      */
     public function setDateCreation($dateCreation)
     {
@@ -1464,7 +1489,7 @@ class Demand
      *
      * @param \DateTime $dateAttribution
      *
-     * @return Demand
+     * @return Demande
      */
     public function setDateAttribution($dateAttribution)
     {
@@ -1488,7 +1513,7 @@ class Demand
      *
      * @param \DateTime $dateArchivage
      *
-     * @return Demand
+     * @return Demande
      */
     public function setDateArchivage($dateArchivage)
     {
@@ -1512,7 +1537,7 @@ class Demand
      *
      * @param string $viewed
      *
-     * @return Demand
+     * @return Demande
      */
     public function setViewed($viewed)
     {
@@ -1536,7 +1561,7 @@ class Demand
      *
      * @param string $confirmed
      *
-     * @return Demand
+     * @return Demande
      */
     public function setConfirmed($confirmed)
     {
@@ -1560,7 +1585,7 @@ class Demand
      *
      * @param string $archived
      *
-     * @return Demand
+     * @return Demande
      */
     public function setArchived($archived)
     {
@@ -1584,7 +1609,7 @@ class Demand
      *
      * @param string $wrong
      *
-     * @return Demand
+     * @return Demande
      */
     public function setWrong($wrong)
     {
@@ -1601,29 +1626,5 @@ class Demand
     public function getWrong()
     {
         return $this->wrong;
-    }
-
-    /**
-     * Set comment
-     *
-     * @param string $comment
-     *
-     * @return Demand
-     */
-    public function setComment($comment)
-    {
-        $this->comment = $comment;
-
-        return $this;
-    }
-
-    /**
-     * Get comment
-     *
-     * @return string
-     */
-    public function getComment()
-    {
-        return $this->comment;
     }
 }

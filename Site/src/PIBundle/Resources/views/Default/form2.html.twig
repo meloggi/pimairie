@@ -13,7 +13,7 @@
 
   <script src="jquery2.2.1.min.js"></script>
 
-  <title>demand de logement social-Mairie de Villers-lès-Nancy</title>
+  <title>Demande de logement social-Mairie de Villers-lès-Nancy</title>
 
   {% block stylesheets %}
   <link rel="stylesheet" href="{{ asset('css/bootstrap/css/bootstrap.min.css') }}">
@@ -67,9 +67,7 @@
     </div>
     <ul class="main_menu">
       <li class="main_menu"><a href="{{ path('homepage') }}">Home</a></li>
-      <li class="main_menu"><a href="{{ path('form1') }}">Créer une demande</a>
-        <li class="main_menu"><a href="#">Accéder à ma demande</a>
-          <li class="main_menu"><a>Contact</a></li>
+          <li class="main_menu"><a href="{{ path('contact') }}">Contact</a></li>
         </li>
       </ul> 
 
@@ -85,7 +83,7 @@
           <div class="tab-pane active in" id="home">
 
 
-            <form action="{{path('form2_modifier')}}" method="post" role="form">
+            <form action="{{path('form2')}}" method="post" role="form">
 
               <div class="info page1">
                 <h1>Coordonnées</h1>
@@ -271,11 +269,13 @@
 
             {{ form_widget(form._token) }}
 
-            <div class="placement">
-              <a href="{{ path('homepage') }}" class="btn btn-danger btn-outline"/>Annuler</a>
-              <button class="btn btn-success" type="button" id="bouton_js">Suivant</button>
+           <div class="placement">
+           <!--   <a href="{{ path('homepage') }}" class="btn btn-danger btn-outline"/>Annuler</a> -->
+               <button class="btn btn-danger btn-outline" type="button" id="bouton_js2" style="margin-bottom: 0.5cm; margin-top: 0.5cm margin-left: 5cm">Précédant</button>
               
-              <input type="submit" class="btn btn-success btn-outline" id="vrai_submit" value="Valider" style="margin-bottom: 50px; margin-top: 20px" href="{{ path('form2_modifier') }}">
+              <button class="btn btn-success" type="button" id="bouton_js" style="margin-bottom: 0.5cm; margin-top: 0.5cm margin-left: 15cm">Suivant</button>
+          
+              <input type="submit" class="btn btn-success btn-outline" id="vrai_submit" value="Valider" style="margin-bottom: 50px; margin-top: 20px">
 
             </div>
           </form>
@@ -287,10 +287,7 @@
     
   </div>
 
-
-  <script>
-
-
+<script>
   $(document).ready(function(){
 
     var page_active=1;
@@ -319,13 +316,13 @@
       $(".page3").show(200);      
       $(".page4").hide(200);
         //derniere page ??
-        
+        $("#bouton_js2").show();
 
         page_active=3;
         return;
       }
 
-    //   if(page_active==3){
+    //   if(page_active==4){
     //   $(".page1").hide(200);
     //   $(".page2").hide(200);
     //   $(".page3").hide(200);      
@@ -346,17 +343,70 @@
         $("#vrai_submit").show(200);
         $("#bouton_js").hide();
 
-        page_active=3;
+        page_active=4;
         return;
       }
       
     });
 
+
+ $("#bouton_js2").on('click',function(){
+
+    if(page_active==1){
+    document.location.href = "form1";
+      return;
+    }
+
+    if(page_active==2){
+      $(".page1").show(200);
+      $(".page2").hide(200);
+      $(".page3").hide(200);      
+      $(".page4").hide(200);
+         
+        
+
+        page_active=1;
+        return;
+      }
+
+
+ //   if(page_active==4){
+    //   $(".page1").hide(200);
+    //   $(".page2").hide(200);
+    //   $(".page3").hide(200);      
+    //   $(".page4").show(200);
+    //     //derniere page ??
+        
+
+    //     page_active=4;
+    //     return;
+    //   }
+
+       if(page_active==3){
+         $(".page1").hide(200);
+      $(".page2").show(200);
+      $(".page3").hide(200);
+      $(".page4").hide(200);
+      page_active=2;
+        return;
+      }
+
+  if(page_active==4){
+         $(".page1").hide(200);
+      $(".page2").hide(200);
+      $(".page3").show(200);
+      $(".page4").hide(200);
+       $("#bouton_js").show();
+      $("#vrai_submit").hide();
+      page_active=3;
+        return;
+      }
+
+    });
 });
 
 
   </script>
-
 
 </body>
 </html>

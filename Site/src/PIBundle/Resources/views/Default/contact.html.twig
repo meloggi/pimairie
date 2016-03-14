@@ -69,26 +69,10 @@
       <li class="main_menu"><a href="{{ path('homepage') }}">Home</a></li>
       <li class="main_menu"><a {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %} href="{{ path('form1') }}" {% else %} href="{{ path('fos_user_security_login') }}" {% endif %}>Créer une demande</a>
         <li class="main_menu"><a href="{{ path('form2_modifier') }}">Accéder à ma demande</a>
-          <li class="main_menu"><a href="{{ path('contact') }}">Contact</a></li>
+          <li class="main_menu"><a >Contact</a></li>
         </li>
       </ul> 
 
-
-      
-
-      <div class="jumbotron">
-        <h1>Demande de logement social</h1>
-        <p>Ce site permet d’enregistrer une demande de logement social nouvelle, pour laquelle un « numéro unique d’enregistrement » n'a pas encore été délivré.  </p>
-        <p>Après validation, votre demande sera rendue disponible aux organismes de logement social disposant de logements sur les communes recherchées. Pour commencer l'enregistrement d'une demande nouvelle, cliquez le bouton « Créer une demande ».</p>
-        <p>
-          <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">Créer une demande &raquo;</a>
-        </p>
-        <p>Vous pouvez également consulter, mettre à jour ou renouveler une demande de logement social existante, c'est à dire pour laquelle vous disposez déjà du « numéro unique d’enregistrement ».</p> 
-        <p>Pour renouveler, mettre à jour ou consulter une demande existante, cliquez le bouton « Accéder à ma demande ». Attention, si vous souhaitez renouveler votre demande, veillez à bien conserver le récépissé qui sera téléchargeable et qui vous sera envoyé par courrier électronique à la fin de la procédure.</p>
-        <p>
-          <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">Accéder à ma demande &raquo;</a>
-        </p>
-      </div>
     </div>
 
 
