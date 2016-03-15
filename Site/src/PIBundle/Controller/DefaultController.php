@@ -107,38 +107,6 @@ class DefaultController extends Controller
 }
 
 
-public function form_proAction(Request $request)
-{
-       //  $em = $this->getDoctrine()->getManager();
-       // // $user = $em->getRepository('PIBundle:Demand')->findDemand($mail);
-       //  $form = $this->createForm(DemandType::class,$user);
-
-
-       //  $em = $this->getDoctrine()->getManager();
-       //  $user->setMail($mail);
-       //  $em->persist($user);
-       //  $em->flush();
-
-       //  return $this->render('PIBundle:Default:form_pro.html.twig', array('form' => $form->createView(), 'demand' => $user));
- $user= new DemandDemand(); 
-
-
- $form = $this->createForm(DemandDemandType::class,$user); 
-
-
-
-
- if ($form->handleRequest($request)->isValid()) {
-    $em = $this->getDoctrine()->getManager();
-    $em->persist($user);
-    $em->flush();
-
-    return $this->render('PIBundle:Default:form_pro.html.twig', array('form' => $form->createView(), 'demand_demand' => $user));
-}
-return $this->render('PIBundle:Default:form2_modifier.html.twig', array('form' => $form->createView(), 'demand_demand' => $user)); 
-
-}
-
 public function form_justificatifAction()
 {
     return $this->render('PIBundle:Default:form_justificatif.html.twig');

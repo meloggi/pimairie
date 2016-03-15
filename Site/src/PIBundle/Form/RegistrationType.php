@@ -12,7 +12,8 @@
               $builder
               ->add('firstname')
               ->add('lastname')
-            ->remove('username');
+            ->remove('username')
+            ->add('isAdmin');
         }
     
         public function getBlockPrefix()

@@ -22,6 +22,13 @@ class Housing
     private $id;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id_demand", type="integer")
+     */
+    private $idDemand;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="location", type="string", length=255)
@@ -91,6 +98,13 @@ class Housing
      */
     private $attribution;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="note", type="string", length=255)
+     */
+    private $note;
+
 
     /**
      * Get id
@@ -100,6 +114,30 @@ class Housing
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set idDemand
+     *
+     * @param integer $idDemand
+     *
+     * @return Housing
+     */
+    public function setIdDemand($idDemand)
+    {
+        $this->idDemand = $idDemand;
+
+        return $this;
+    }
+
+    /**
+     * Get idDemand
+     *
+     * @return int
+     */
+    public function getIdDemand()
+    {
+        return $this->idDemand;
     }
 
     /**
@@ -340,6 +378,30 @@ class Housing
     public function getAttribution()
     {
         return $this->attribution;
+    }
+
+    /**
+     * Set note
+     *
+     * @param string $note
+     *
+     * @return Housing
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+
+        return $this;
+    }
+
+    /**
+     * Get note
+     *
+     * @return string
+     */
+    public function getNote()
+    {
+        return $this->note;
     }
 
 }

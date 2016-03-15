@@ -340,11 +340,13 @@ class AdminController extends Controller
         return $this->render('PIBundle:Admin:afficher_locataire.html.twig', array('demand' => $demand, 'id' => $id));
     }
 
-    public function delete_demand($id){
+    public function delete_demandAction($id){
         $em = $this->getDoctrine()->getManager();
         $demand = $em->getRepository('PIBundle:Demand')->find($id);
         $em->remove($demand);
         $em->flush();
+                return $this->render('PIBundle:Admin:affichage_demande.html.twig', array('demand' => $demand, 'id' => $id));
+
     }
 
 

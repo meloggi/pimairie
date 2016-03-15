@@ -3,10 +3,6 @@ homepage:
     defaults: { _controller: PIBundle:Default:accueil }
 
 
-admin_homepage:
-    path:     /accueil
-    defaults: { _controller: PIBundle:Admin:index }
-
 form1:
     path:     /form1
     defaults: { _controller: PIBundle:Default:form1 }
@@ -129,7 +125,7 @@ platform_admin_afficher_locataire:
     defaults: { _controller: PIBundle:Admin:afficher_locataire }
 
 platform_admin_delete_demand:
-    path:     /dashboard
+    path:     /supprimer_demande/{id}
     defaults: { _controller: PIBundle:Admin:delete_demand }
 
 form3:
@@ -145,12 +141,6 @@ form2:
 form2_modifier:
      path:     /form2_modifier
      defaults: { _controller: PIBundle:Default:form2_modifier }
- 
- 
- 
-form_pro:
-     path:     /form_pro
-     defaults: { _controller: PIBundle:Default:form_pro }
  
 form_logement:
      path:     /form_logement
@@ -171,7 +161,4 @@ form_justificatif:
 telecharger:
      path:     /telecharger
      defaults: { _controller: PIBundle:Default:telecharger }
-  
-ajouter:
-     path:     /ajouter
-     defaults: { _controller: PIBundle:Default:ajouter}
+

@@ -46,6 +46,20 @@
 
   
 
+
+    <div>
+
+  {% if is_granted("ROLE_ADMIN") %}
+            
+                                <p class="change_link"> 
+                                <input type="checkbox" name="isAdmin" value="isAdmin"> Créer un administrateur<br>
+                </p>
+     
+      
+        {% endif %}
+
+ </div>
+
     <div>
         <input type="submit" value="{{ 'Valider' }}" href="/" />
     	     </p>
@@ -54,6 +68,9 @@
                   <a href="#tologin" class="to_register"> Connectez vous ici </a>
                 </p>
     </div>
+    
+ 
+
     {{ form_widget(form._token) }}
 {{ form_end(form, {'render_rest': false}) }}
   </div>
