@@ -44,6 +44,10 @@ platform_admin_modifier_demandeur:
     path:     /modifier_demandeur/{id}
     defaults: { _controller: PIBundle:Admin:modifier_demandeur }
 
+platform_admin_modifier_demande:
+    path:     /modifier_demande/{id}
+    defaults: { _controller: PIBundle:Admin:modifier_demande }
+
 platform_admin_ajouter_demande:
     path:     /ajouter_demande/{id}
     defaults: { _controller: PIBundle:Admin:ajouter_demande }
