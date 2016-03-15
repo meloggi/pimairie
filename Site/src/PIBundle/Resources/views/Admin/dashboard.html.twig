@@ -18,13 +18,7 @@
     <script type="text/javascript" src="{{ asset('css/bootstrap/js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery-1.10.2.min.js') }}"></script>
     {% endblock %}
-    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- you need to include the shieldui css and js assets in order for the charts to work -->
-    <link rel="stylesheet" type="text/css" href="https://www.shieldui.com/shared/components/latest/css/light-bootstrap/all.min.css" />
-    <script type="text/javascript" src="https://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
-    <script type="text/javascript" src="https://www.prepbootstrap.com/Content/js/gridData.js"></script>
 </head>
 <body>
     <div id="wrapper">
@@ -43,7 +37,7 @@
                     <li class="active"><a href="{{ path('platform_admin_dashboard') }}"><i class="fa fa-tachometer"></i> Tableau de bord</a></li>
                     <li><a href="{{ path('platform_admin_appartment') }}"><i class="fa fa-building-o "></i> Appartements</a></li>                    
                     <li><a href="{{ path('platform_admin_demandeur') }}"><i class="fa fa-users"></i> Demandeurs</a></li>
-                    <li><a href="forms.html"><i class="fa fa-bar-chart "></i> Statistiques</a></li>
+                    <li><a href="{{ path('platform_admin_statistiques') }}"><i class="fa fa-bar-chart "></i> Statistiques</a></li>
                     <li><a href="{{ path('platform_admin_archive') }}"><i class="fa fa-archive"></i> Archives</a></li>                    
                 </ul>
                 <ul class="nav navbar-nav navbar-right navbar-user">
@@ -104,7 +98,7 @@
                 <div class="col-lg-4">
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-user-plus"></i> Demandes à confirmer</h3>
+                            <h3 class="panel-title"><i class="fa fa-user-plus"></i> Demandes à confirmer<span class="badge pull-right">{{list_demand_new|length}}</span></h3>
                         </div>
                         <div class="panel-body" style="height: 300px; overflow-y: auto;">
                             <table class="table table-hover">
@@ -136,7 +130,7 @@
                 <div class="col-lg-4">
                     <div class="panel panel-danger">
                         <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-user-times"></i> Demandes erronées</h3>
+                            <h3 class="panel-title"><i class="fa fa-user-times"></i> Demandes erronées<span class="badge pull-right">{{list_demand_wrong|length}}</span></h3>
                         </div>
                         <div class="panel-body" style="height: 300px; overflow-y: auto;">
                             <table class="table table-hover">
@@ -205,10 +199,46 @@
                 <div class="col-lg-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Estimation du trafic ces 30 derniers jours</h3>
+                            <h3 class="panel-title"><i class="fa fa-users"></i> Demandes non attribuées<span class="badge pull-right">{{list_demand_free|length}}</span></h3>
                         </div>
-                        <div class="panel-body">
-                            <div id="shieldui-chart1"></div>
+                        <div class="panel-body" style="height: 300px; overflow-y: auto;">
+                              <table class="table table-hover">
+                                  <thead>
+                                    <tr>
+                                      <th>Date de création</th>
+                                      <th>Nom</th>
+                                      <th>Prénom</th>
+                                      <th>Email</th>
+                                      <th>Salaire</th>
+                                      <th>Type</th>
+                                      <th>Autre type</th>
+                                      <th>Villers-centre</th>
+                                      <th>Villers-bas</th>
+                                      <th>Clairlieu</th>
+                                      <th></th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    {% if list_demand_free %}
+                                      {% for demand in list_demand_free%}
+                                            <tr>
+                                              <td>{{ demand.dateCreation.format('j M Y à h:m a')}}</td>
+                                              <td>{{demand.lastName}}</td>
+                                              <td>{{demand.firstName}}</td>
+                                              <td>{{demand.email}}</td>
+                                              <td>{{demand.salary}}</td>
+                                              <td>{{demand.type1}}</td>
+                                              <td>{{demand.type2}}</td>
+                                              <td>{{demand.locationVillersCentre}}</td>
+                                              <td>{{demand.locationVillersBas}}</td>
+                                              <td>{{demand.locationClairlieu}}</td>
+                                              <td><a href="{{ path('platform_admin_etat_demande', {'id':demand.idUser}) }}"
+                                                <i class="fa fa-check" style="color:#01D758;"></i></td>
+                                            </tr>
+                                      {%endfor%}
+                                    {%endif%}
+                                  </tbody>
+                              </table>
                         </div>
                     </div>
                 </div>
@@ -218,96 +248,6 @@
     </div>
     <!-- /#wrapper -->
 
-   
-    <script type="text/javascript">
-        jQuery(function ($) {
-            var performance = [12, 43, 34, 22, 12, 33, 4, 17, 22, 34, 54, 67],
-                visits = [123, 323, 443, 32],
-                budget = [23, 19, 11, 134, 242, 352, 435, 22, 637, 445, 555, 57],
-                sales = [11, 9, 31, 34, 42, 52, 35, 22, 37, 45, 55, 57];
-
-            $("#shieldui-chart1").shieldChart({
-                primaryHeader: {
-                    text: "Visitors"
-                },
-                exportOptions: {
-                    image: false,
-                    print: false
-                },
-                dataSeries: [{
-                    seriesType: "area",
-                    collectionAlias: "Q Data",
-                    data: performance
-                }]
-            });
-
-            $("#shieldui-chart2").shieldChart({
-                primaryHeader: {
-                    text: "Logins Per week"
-                },
-                exportOptions: {
-                    image: false,
-                    print: false
-                },
-                seriesSettings: {
-                    donut: {
-                        enablePointSelection: true
-                    }
-                },
-                dataSeries: [{
-                    seriesType: "donut",
-                    collectionAlias: "logins",
-                    data: visits
-                }]
-            });
-
-            $("#shieldui-chart3").shieldChart({
-                primaryHeader: {
-                    text: "Budget"
-                },
-                dataSeries: [{
-                    seriesType: "line",
-                    collectionAlias: "Budget",
-                    data: budget
-                }]
-            });
-
-            $("#shieldui-chart4").shieldChart({
-                primaryHeader: {
-                    text: "Sales"
-                },
-                dataSeries: [{
-                    seriesType: "bar",
-                    collectionAlias: "sales",
-                    data: sales
-                }]
-            });
-
-            $("#shieldui-grid1").shieldGrid({
-                dataSource: {
-                    data: gridData
-                },
-                sorting: {
-                    multiple: true
-                },
-                paging: {
-                    pageSize: 12,
-                    pageLinksCount: 4
-                },
-                selection: {
-                    type: "row",
-                    multiple: true,
-                    toggle: false
-                },
-                columns: [
-                    { field: "id", width: "70px", title: "ID" },
-                    { field: "name", title: "Person Name" },
-                    { field: "company", title: "Company Name" },
-                    { field: "email", title: "Email Address", width: "270px" }
-                ]
-            });
-        });
-    </script>
 
 </body>
 </html>

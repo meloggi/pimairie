@@ -20,6 +20,10 @@ platform_admin_dashboard:
     path:     /dashboard
     defaults: { _controller: PIBundle:Admin:dashboard }
 
+platform_admin_statistiques:
+    path:     /statistiques
+    defaults: { _controller: PIBundle:Admin:statistiques }
+
 platform_admin_appartment:
     path:     /appartment
     defaults: { _controller: PIBundle:Admin:appartment }

@@ -28,10 +28,11 @@ class AdminController extends Controller
         $list_demand_new = $em->getRepository('PIBundle:Demand')->findBy(array('confirmed' => "Non", 'wrong' => "Non", 'archived' =>"Non"));
         $list_demand_wrong = $em->getRepository('PIBundle:Demand')->findBy(array('wrong' => "Oui", 'archived' => "Non"));
         $list_demand_expired = $em->getRepository('PIBundle:Demand')->findBy(array('archived' => "Non"));
+        $list_demand_free = $em->getRepository('PIBundle:Demand')->findBy(array('confirmed' => "Oui", 'archived' =>"Non"));
         $date = new \DateTime();
         $interval = new \DateInterval('P11M');
         $date->sub($interval);
-        return $this->render('PIBundle:Admin:dashboard.html.twig', array('list_demand_new' => $list_demand_new, 'list_demand_wrong' => $list_demand_wrong, 'list_demand_expired' => $list_demand_expired, 'date' => $date));
+        return $this->render('PIBundle:Admin:dashboard.html.twig', array('list_demand_new' => $list_demand_new, 'list_demand_free' => $list_demand_free, 'list_demand_wrong' => $list_demand_wrong, 'list_demand_expired' => $list_demand_expired, 'date' => $date));
     }
 
     public function appartmentAction(Request $request)
@@ -250,8 +251,33 @@ class AdminController extends Controller
     public function attribution_logementAction($id){
         $em = $this->getDoctrine()->getManager();
         $appartment = $em->getRepository('PIBundle:Housing')->find($id);
+        $type = $appartment ->getType();
+        $type_inf = "F1";
+        $type_sup = "F1";
+        if ($type == "F1"){
+            $type_inf = "F1 bis";
+            $type_sup = "F2";
+        }elseif ($type == "F2"){
+            $type_inf = "F1";
+            $type_sup = "F3";
+        }elseif ($type == "F3"){
+            $type_inf = "F2";
+            $type_sup = "F4";
+        }elseif ($type == "F4"){
+            $type_inf = "F3";
+            $type_sup = "F5";
+        }elseif ($type == "F5"){
+            $type_inf = "F4";
+            $type_sup = "F6";
+        }elseif ($type == "F6"){
+            $type_inf = "F5";
+            $type_sup = "F5";
+        }elseif ($type == "F1 bis"){
+            $type_inf = "F1";
+            $type_sup = "F2";
+        }
         $list_demand = $em->getRepository('PIBundle:Demand')->findBy(array('archived' => "Non", 'confirmed' => "Oui"));
-        return $this->render('PIBundle:Admin:attribution_logement.html.twig', array('appartment' => $appartment, 'list_demand' => $list_demand));
+        return $this->render('PIBundle:Admin:attribution_logement.html.twig', array('appartment' => $appartment, 'list_demand' => $list_demand, 'type_inf' => $type_inf, 'type_sup' => $type_sup));
     }
 
     public function attribuer_logementAction($id, $iddemand){
@@ -429,6 +455,23 @@ class AdminController extends Controller
             return $this->render('PIBundle:Admin:demandeur.html.twig', array('form' => $form->createView(), 'liste_demandeur' => $liste_demandeur ));
         }
         return $this->render('PIBundle:Admin:demandeur.html.twig', array('form' => $form->createView(), 'liste_demandeur' => $liste_demandeur ));
+    }
+
+    public function statistiquesAction(){
+        $em = $this->getDoctrine()->getManager();
+        $list_appartment_free = $em->getRepository('PIBundle:Housing')->findBy(array('attribution' => "Non"));
+        $list_appartment_occuped = $em->getRepository('PIBundle:Housing')->findBy(array('attribution' => "Oui"));
+        $list_appartment_total = $em->getRepository('PIBundle:Housing')->findAll();
+        $list_appartment_f1 = $em->getRepository('PIBundle:Housing')->findBy(array('type' => "F1"));
+        $list_appartment_f1bis = $em->getRepository('PIBundle:Housing')->findBy(array('type' => "F1 bis"));
+        $list_appartment_f2 = $em->getRepository('PIBundle:Housing')->findBy(array('type' => "F2"));
+        $list_appartment_f3 = $em->getRepository('PIBundle:Housing')->findBy(array('type' => "F3"));
+        $list_appartment_f4 = $em->getRepository('PIBundle:Housing')->findBy(array('type' => "F4"));
+        $list_appartment_f5 = $em->getRepository('PIBundle:Housing')->findBy(array('type' => "F5"));
+        $list_appartment_f6 = $em->getRepository('PIBundle:Housing')->findBy(array('type' => "F6"));
+        $list_appartment_contingent = $em->getRepository('PIBundle:Housing')->findBy(array('contingent' => "Oui"));
+        $list_appartment_noncontingent = $em->getRepository('PIBundle:Housing')->findBy(array('contingent' => "Non"));
+        return $this->render('PIBundle:Admin:statistiques.html.twig', array('list_appartment_free' => $list_appartment_free, 'list_appartment_contingent' => $list_appartment_contingent, 'list_appartment_noncontingent' => $list_appartment_noncontingent, 'list_appartment_occuped' => $list_appartment_occuped, 'list_appartment_total' => $list_appartment_total, 'list_appartment_f1' => $list_appartment_f1, 'list_appartment_f1bis' => $list_appartment_f1bis, 'list_appartment_f2' => $list_appartment_f2, 'list_appartment_f3' => $list_appartment_f3, 'list_appartment_f4' => $list_appartment_f4, 'list_appartment_f5' => $list_appartment_f5, 'list_appartment_f6' => $list_appartment_f6 ));
     }
 
 

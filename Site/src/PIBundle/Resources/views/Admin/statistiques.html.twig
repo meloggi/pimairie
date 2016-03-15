@@ -1,0 +1,212 @@
+{# app/Resources/views/Admin/dashboard.html.twig #}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin_Stats</title>
+
+    {% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/c3/c3.css')}}" type="text/css">
+    {% endblock %}
+
+    {% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ asset('css/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery-1.10.2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('css/d3/d3.min.js') }}" charset="utf-8"></script>
+    <script type="text/javascript" src="{{ asset('css/c3/c3.min.js') }}"></script>
+    {% endblock %}
+
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">            
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ path('platform_admin_dashboard') }}">Mairie Villers-lès-Nancy Administrateur</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li><a href="{{ path('platform_admin_dashboard') }}"><i class="fa fa-tachometer"></i> Tableau de bord</a></li>
+                    <li><a href="{{ path('platform_admin_appartment') }}"><i class="fa fa-building-o "></i> Appartements</a></li>                    
+                    <li><a href="{{ path('platform_admin_demandeur') }}"><i class="fa fa-users"></i> Demandeurs</a></li>
+                    <li class="active"><a href="{{ path('platform_admin_statistiques') }}"><i class="fa fa-bar-chart "></i> Statistiques</a></li>
+                    <li><a href="{{ path('platform_admin_archive') }}"><i class="fa fa-archive"></i> Archives</a></li>                    
+                </ul>
+                <ul class="nav navbar-nav navbar-right navbar-user">
+                    <li class="dropdown messages-dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-triangle"></i> Notifications <span class="badge">6</span> <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header">2 Nouvelles demandes</li>
+                            <li class="message-preview">
+                                <a href="#">
+                                    <span class="avatar"><i class="fa fa-user-plus"></i></span>
+                                    <span class="message">Alain DUPONT</span>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">2 Demandes erronées</li>
+                            <li class="message-preview">
+                                <a href="#">
+                                    <span class="avatar"><i class="fa fa-user-times"></i></span>
+                                    <span class="message">Eric BOMPART</span>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">2 Demandes expirées</li>
+                            <li class="message-preview">
+                                <a href="#">
+                                    <span class="avatar"><i class="fa fa-clock-o"></i></span>
+                                    <span class="message">Antoine BIBOTEUR</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown user-dropdown">
+                       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Admin Mairie<b class="caret"></b></a>
+                       <ul class="dropdown-menu">
+                           <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
+                           <li><a href="#"><i class="fa fa-gear"></i> Réglages</a></li>
+                           <li class="divider"></li>
+                           <li><a href="#"><i class="fa fa-power-off"></i> Déconnection</a></li>
+                       </ul>
+                   </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Administrateur <small>Statistiques</small></h1>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 20px">
+                <div class="col-lg-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-building-o"></i> Logements</h3>
+                        </div>
+                        <div class="panel-body" style="height: 450px; overflow-y: auto;">
+                            <div id="chart_appartment"></div>
+                            <p style="margin-top: 10px">Nombre de logements libres: <b>{{list_appartment_free|length}}</b></p>
+                            <p>Nombre de logements occupés: <b>{{list_appartment_occuped|length}}</b></p>
+                            <p>Nombre de logements total: <b>{{list_appartment_total|length}}</b></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-building-o"></i> Types de logement</h3>
+                        </div>
+                        <div class="panel-body" style="height: 450px; overflow-y: auto;">
+                            <div id="chart_type"></div>
+                            <p style="margin-top: 10px">Nombre de logements F1: <b>{{list_appartment_f1|length}}</b></p>
+                            <p>Nombre de logements F1 bis: <b>{{list_appartment_f1bis|length}}</b></p>
+                            <p>Nombre de logements F2: <b>{{list_appartment_f2|length}}</b></p>
+                            <p>Nombre de logements F3: <b>{{list_appartment_f3|length}}</b></p>
+                            <p>Nombre de logements F4: <b>{{list_appartment_f4|length}}</b></p>
+                            <p>Nombre de logements F5: <b>{{list_appartment_f5|length}}</b></p>
+                            <p>Nombre de logements F6: <b>{{list_appartment_f6|length}}</b></p>
+                            <p>Nombre de logements total: <b>{{list_appartment_total|length}}</b></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-building-o"></i> Contingent</h3>
+                        </div>
+                        <div class="panel-body" style="height: 450px;">
+                            <div id="chart_contingent"></div>
+                            <p style="margin-top: 10px">Nombre de logements contingent: <b>{{list_appartment_contingent|length}}</b></p>
+                            <p>Nombre de logements non contingent: <b>{{list_appartment_noncontingent|length}}</b></p>
+                            <p>Nombre de logements total: <b>{{list_appartment_total|length}}</b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="col-lg-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Estimation du trafic ces 30 derniers jours</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="shieldui-chart1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+
+    <script type="text/javascript">
+        var chart = c3.generate({
+            data: {
+                // iris data from R
+                columns: [
+                    ["Logements attribués", {{list_appartment_occuped|length}}],
+                    ["Logements libres", {{list_appartment_free|length}}],
+                ],
+                type : 'pie',
+                onclick: function (d, i) { console.log("onclick", d, i); },
+                onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+                onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+            },bindto: '#chart_appartment'
+        });
+
+        var chart = c3.generate({
+            data: {
+                columns: [
+                    ["F1", {{list_appartment_f1|length}}],
+                    ["F1 bis", {{list_appartment_f1bis|length}}],
+                    ["F2", {{list_appartment_f2|length}}],
+                    ["F3", {{list_appartment_f3|length}}],
+                    ["F4", {{list_appartment_f4|length}}],
+                    ["F5", {{list_appartment_f5|length}}],
+                    ["F6", {{list_appartment_f6|length}}],
+                ],
+                type : 'donut',
+                onclick: function (d, i) { console.log("onclick", d, i); },
+                onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+                onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+            },
+            donut: {
+                title: "Types de logement"
+            },bindto: '#chart_type'
+        });
+
+        var chart = c3.generate({
+            data: {
+                // iris data from R
+                columns: [
+                    ["Logements contingent", {{list_appartment_contingent|length}}],
+                    ["Logements libres", {{list_appartment_free|length}}],
+                ],
+                type : 'pie',
+                onclick: function (d, i) { console.log("onclick", d, i); },
+                onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+                onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+            },bindto: '#chart_contingent'
+        });
+
+
+
+
+    </script>
+
+</body>
+</html>

@@ -37,7 +37,7 @@
                     <li><a href="{{ path('platform_admin_dashboard') }}"><i class="fa fa-tachometer"></i> Tableau de bord</a></li>
                     <li class="active"><a href="{{ path('platform_admin_appartment') }}"><i class="fa fa-building-o "></i> Appartements</a></li>  
                     <li><a href="{{ path('platform_admin_demandeur') }}"><i class="fa fa-users"></i> Demandeurs</a></li>
-                    <li><a href="forms.html"><i class="fa fa-bar-chart "></i> Statistiques</a></li>
+                    <li><a href="{{ path('platform_admin_statistiques') }}"><i class="fa fa-bar-chart "></i> Statistiques</a></li>
                     <li><a href="{{ path('platform_admin_archive') }}"><i class="fa fa-archive"></i> Archives</a></li>                    
                 </ul>
                 <ul class="nav navbar-nav navbar-right navbar-user">
@@ -134,8 +134,7 @@
                                       <tbody>
                                         {% if list_demand %}
                                           {% for demand in list_demand%}
-                                            {% if demand.type1 == appartment.type or demand.type2 ==appartment.type %}
-                                              {% if demand.salary > appartment.rent * 32 %}
+                                            {% if demand.type1 == appartment.type or demand.type2 == appartment.type or demand.type1 == type_inf or demand.type2 == type_sup %}
                                                 <tr>
                                                   <td>{{ demand.dateCreation.format('j M Y à h:m a')}}</td>
                                                   <td>{{demand.lastName}}</td>
@@ -150,7 +149,6 @@
                                                   <td><a href="{{ path('platform_admin_attribuer_logement', {'id':appartment.id, 'iddemand':demand.id}) }}"
                                                     <i class="fa fa-check" style="color:#01D758;"></i></td>
                                                 </tr>
-                                              {%endif%}
                                             {%endif%}
                                           {%endfor%}
                                         {%endif%}
