@@ -33,18 +33,8 @@ class DefaultController extends Controller
 
     public function form1Action()
     {
-        $em = $this->getDoctrine()->getManager();
 
-        $id=$this->get('security.token_storage')->getToken()->getUser()->getId();
-
-        $user = $em->getRepository('PIBundle:User')->find($id);
-
-        $demand = $em->getRepository('PIBundle:Demand')->findOneBy(array('idUser' => $id, 'archived' => "Non"));
-        
-        if($demand == null){
         return $this->render('PIBundle:Default:form1.html.twig');
-    }
-        return $this->render('PIBundle:Default:contact.html.twig');
     }
 
     public function form2Action(Request $request)
@@ -57,7 +47,7 @@ class DefaultController extends Controller
         $user = $em->getRepository('PIBundle:User')->find($id);
 
         $demand = $em->getRepository('PIBundle:Demand')->findOneBy(array('idUser' => $id, 'archived' => "Non"));
-        
+        if($demand == null){
             $demand= new Demand();
             $form = $this->createForm(DemandType::class,$demand); 
 
@@ -77,41 +67,47 @@ class DefaultController extends Controller
                 $this->envoiMail();
                 return $this->render('PIBundle:Default:form3.html.twig', array('form' => $form->createView(), 'demand' => $demand));
             }
-
             return $this->render('PIBundle:Default:form2.html.twig');
+        }
+        return $this->render('PIBundle:Default:contact.html.twig');
     }
 
 
 
         public function form2_modifierAction(Request $request)
         {
-
             $em = $this->getDoctrine()->getManager();
 
-            $id=$this->get('security.token_storage')->getToken()->getUser()->getId();
-
-            $user = $em->getRepository('PIBundle:User')->find($id);
-
-            $demand = $em->getRepository('PIBundle:Demand')->findOneBy(array('idUser' => $id, 'archived' => "Non"));
-
+            $mail= $this->get('security.token_storage')->getToken()->getUser()->getEmail(); 
             
-                $form = $this->createForm(DemandType::class,$demand); 
+
+
+
+            $demand = $em->getRepository('PIBundle:Demand')->findByMail($mail, $em);
+            $taille=count($demand);
+            if($taille > 0){
+                $form = $this->createForm(DemandType::class,$demand[$taille-1]); 
 
                 if ($form->handleRequest($request)->isValid()) {
                     $em = $this->getDoctrine()->getManager();
-                    $em->persist($demand);
+                    $em->persist($demand[$taille-1]);
                     $em->flush();
                     $this->envoiMail();
-                    return $this->render('PIBundle:Default:form2_modifier.html.twig', array('form' => $form->createView(), 'demand' => $demand));
-            
+                    return $this->render('PIBundle:Default:form2_modifier.html.twig', array('form' => $form->createView(), 'demand' => $demand[$taille-1]));
                 }
-               return $this->render('PIBundle:Default:form2_modifier.html.twig', array('form' => $form->createView(), 'demand' => $demand));
+
+                return $this->render('PIBundle:Default:form2_modifier.html.twig', array('form' => $form->createView(), 'demand' => $demand[$taille-1]));
+            }else{
 
 
-}
 
-            
-        
+
+                return $this->render('PIBundle:Default:accueil2.html.twig');
+
+
+
+            }
+        }
 
 
         public function form_proAction(Request $request)
@@ -186,8 +182,8 @@ class DefaultController extends Controller
 
 
 
-
-
+        
+        
         $form = $this->createForm(DemandType::class,$demand1); 
 
         if ($form->handleRequest($request)->isValid()) {
@@ -202,8 +198,8 @@ class DefaultController extends Controller
             return $this->render('PIBundle:Default:form3.html.twig', array('form' => $form->createView(), 'demand' => $demand1));
         }
         return $this->render('PIBundle:Default:form3.html.twig', array('form' => $form->createView(), 'demand' => $demand1));
-
-
+        
+        
 
     }
 

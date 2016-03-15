@@ -120,7 +120,7 @@
                                                 <i class="fa fa-eye"></i> Voir logement attribué</a>
                                                 {%endif%}
                                                 <a type="button" class="btn btn-danger btn-xs" 
-                                                href="">
+                                                href="{{ path('platform_admin_delete_demand', {'iduser':demand.idUser, 'id':demand.id}) }}">
                                                 <i class="fa fa-trash-o"></i> Supprimer</a>
                                               </td>
                                             </tr>

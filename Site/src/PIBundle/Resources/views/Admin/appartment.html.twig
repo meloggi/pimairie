@@ -236,7 +236,7 @@
                                     <a type="button" class="btn btn-success" href="{{ path('platform_admin_afficher_locataire', { 'id': appartment.id }) }}"><i class="fa fa-eye"></i> Afficher locataire</a>
                                   {%endif%}
                                   <a type="button" class="btn btn-warning" href="{{ path('platform_admin_modifier_appartment', { 'id': appartment.id }) }}"><i class="fa fa-pencil"></i> Editer</a>
-                                  <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i> Supprimer</button>
+                                  <a type="button" class="btn btn-danger" href="{{ path('platform_admin_delete_appartment', { 'id': appartment.id }) }}"><i class="fa fa-trash-o"></i> Supprimer</a>
                               </div>
                           </div>
                       </div>

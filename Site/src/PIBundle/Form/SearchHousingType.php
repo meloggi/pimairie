@@ -22,7 +22,7 @@ class SearchHousingType extends AbstractType
             ->add('residence',   TextType::class, array('label' => 'Résidence: ', 'required' => false, 'empty_data'  => 'Tous'))
             ->add('type',   TextType::class, array('label' => 'Type: ', 'required' => false, 'empty_data'  => 'Tous'))
             ->add('rentmin',   IntegerType::class, array('label' => 'Loyer minimum: ', 'required' => false, 'empty_data'  => '0'))
-            ->add('rentmax',   IntegerType::class, array('label' => 'Loyer maximum: ', 'required' => false, 'empty_data'  => '100000'))
+            ->add('rentmax',   IntegerType::class, array('label' => 'Loyer maximum: ', 'required' => false, 'empty_data'  => '9999999999'))
             ->add('floor',   TextType::class, array('label' => 'Etage: ', 'required' => false, 'empty_data'  => 'Tous'))
             ->add('numero',   TextType::class, array('label' => 'Numéro: ', 'required' => false, 'empty_data'  => 'Tous'))
             ->add('contingent',   TextType::class, array('label' => 'Contingent: ', 'required' => false, 'empty_data'  => 'Tous'))

@@ -340,11 +340,95 @@ class AdminController extends Controller
         return $this->render('PIBundle:Admin:afficher_locataire.html.twig', array('demand' => $demand, 'id' => $id));
     }
 
-    public function delete_demand($id){
+    public function delete_demandAction($id, $iduser){
         $em = $this->getDoctrine()->getManager();
-        $demand = $em->getRepository('PIBundle:Demand')->find($id);
+        $demand = $em->getRepository('PIBundle:Demand')->find($id);  
+        $list_appartment = $em->getRepository('PIBundle:Housing')->findBy(array('idDemand' => $id));
+        foreach ($list_appartment as $appartment) {
+            $appartment->setIdDemand('0');
+            $appartment->setAttribution("Non");
+            $em->persist($appartment);
+        }
         $em->remove($demand);
         $em->flush();
+        $list_demand_archived = $em->getRepository('PIBundle:Demand')->findBy(array('idUser' => $iduser, 'archived' => "Oui"));
+        return $this->render('PIBundle:Admin:affichage_archive.html.twig', array('list_demand_archived' => $list_demand_archived ));
+    }
+
+    public function delete_appartmentAction(Request $request, $id){
+        $em = $this->getDoctrine()->getManager();
+        $appartment = $em->getRepository('PIBundle:Housing')->find($id);
+        $attribution = $appartment ->getAttribution();
+        $iddemand = $appartment ->getIdDemand();
+            if ($attribution == "Oui"){
+                $demand = $em->getRepository('PIBundle:Demand')->find($iddemand);
+                $demand ->setDateAttribution(new \DateTime("0000-00-00 00:00:00"));
+                $demand ->setIdAppartment('0');
+                $em->persist($demand);
+            }
+        $em->remove($appartment);
+        $em->flush();
+
+        $search = new SearchHousing();
+        $em = $this->getDoctrine()->getManager();
+        $form = $this->createForm(SearchHousingType::class,$search);
+        $liste_appartment = 'vide';
+        if ($form->handleRequest($request)->isValid()) {
+            $em->persist($search);
+            $location = $search->getLocation();
+            $bailleur = $search->getBailleur();
+            $adress = $search->getAdress();
+            $residence = $search->getResidence();
+            $type = $search->getType();
+            $rentmin = $search->getRentmin();
+            $rentmax = $search->getRentmax();
+            $floor = $search->getFloor();
+            $numero = $search->getNumero();
+            $contingent = $search->getContingent();
+            $attribution = $search->getAttribution();
+            $liste_appartment = $em->getRepository('PIBundle:Housing')->findAppartment($location, $bailleur, $adress, $residence, $type, $rentmin, $rentmax, $floor, $numero, $contingent, $attribution);
+            return $this->render('PIBundle:Admin:appartment.html.twig', array('form' => $form->createView(), 'liste_appartment' => $liste_appartment ));
+        }
+        return $this->render('PIBundle:Admin:appartment.html.twig', array('form' => $form->createView(), 'liste_appartment' => $liste_appartment ));
+
+    }
+
+    public function delete_userAction(Request $request, $id){
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('PIBundle:User')->find($id);
+        $list_demand = $em->getRepository('PIBundle:Demand')->findBy(array('idUser' => $id));
+        foreach ($list_demand as $demand){
+            $date_archivage = $demand ->getDateArchivage();
+            $date_zero = new \DateTime('0000-00-00 00:00');
+            if ($date_archivage == $date_zero){
+                $idappart = $demand ->getIdAppartment();
+                $appartment = $em->getRepository('PIBundle:Housing')->find($idappart);
+                if ($appartment){
+                    $appartment->setIdDemand('0');
+                    $appartment->setAttribution("Non");
+                    $em->persist($appartment);
+                }
+            }
+        }
+        foreach ($list_demand as $demand){
+            $em->remove($demand);
+        }
+        $em->remove($user);
+        $em->flush();
+
+        $user = new User();
+        $em = $this->getDoctrine()->getManager();
+        $form = $this->createForm(RegistrationType::class,$user);
+        $liste_demandeur = 'vide';
+        if ($form->handleRequest($request)->isValid()) {
+            $em->persist($user);
+            $firstName = $user->getFirstName();
+            $lastName = $user->getLastName();
+            $email = $user->getEmail();
+            $liste_demandeur = $em->getRepository('PIBundle:User')->findDemandeur($firstName, $lastName, $email);
+            return $this->render('PIBundle:Admin:demandeur.html.twig', array('form' => $form->createView(), 'liste_demandeur' => $liste_demandeur ));
+        }
+        return $this->render('PIBundle:Admin:demandeur.html.twig', array('form' => $form->createView(), 'liste_demandeur' => $liste_demandeur ));
     }
 
 

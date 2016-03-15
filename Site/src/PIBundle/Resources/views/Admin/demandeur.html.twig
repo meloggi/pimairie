@@ -151,8 +151,7 @@
                                     </td>
                                     <td>
                                       <a type="button" class="btn btn-warning btn-xs" href="{{ path('platform_admin_modifier_demandeur', { 'id': demandeur.id }) }}"><i class="fa fa-pencil"></i> Editer</a>
-                                      <button type="button" class="btn btn-danger btn-xs">
-                                        <i class="fa fa-trash-o"></i> Supprimer</button>
+                                      <a type="button" class="btn btn-danger btn-xs" href="{{ path('platform_admin_delete_user', { 'id': demandeur.id }) }}"><i class="fa fa-trash-o"></i> Supprimer</a>
                                     </td>
                                   </tr>
                                   {%endfor%}

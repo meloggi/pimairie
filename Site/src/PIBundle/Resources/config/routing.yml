@@ -128,6 +128,18 @@ platform_admin_afficher_locataire:
     path:     /afficher_locataire/{id}
     defaults: { _controller: PIBundle:Admin:afficher_locataire }
 
+platform_admin_delete_demand:
+    path:     /affichage_archive/{iduser}/{id}
+    defaults: { _controller: PIBundle:Admin:delete_demand }
+
+platform_admin_delete_appartment:
+    path:     /appartment/{id}
+    defaults: { _controller: PIBundle:Admin:delete_appartment }
+
+platform_admin_delete_user:
+    path:     /demandeur/{id}
+    defaults: { _controller: PIBundle:Admin:delete_user }
+
 # platform_admin_delete_demand:
 #     path:     /dashboard
 #     defaults: { _controller: PIBundle:Admin:delete_demand }

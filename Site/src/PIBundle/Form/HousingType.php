@@ -25,6 +25,7 @@ class HousingType extends AbstractType
             ->add('floor',   IntegerType::class, array('label' => 'Etage: '))
             ->add('numero',   IntegerType::class, array('label' => 'Numéro: '))
             ->add('contingent',   TextType::class, array('label' => 'Contingent: '))
+            ->add('note', TextType::class, array('required' => false, 'empty_data'  => 'Rien'))
             ->add('Valider',      SubmitType::class)
         ;
     }
