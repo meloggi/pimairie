@@ -38,7 +38,7 @@
                     <li><a href="{{ path('platform_admin_appartment') }}"><i class="fa fa-building-o "></i> Appartements</a></li>                    
                     <li class="active"><a href="{{ path('platform_admin_demandeur') }}"><i class="fa fa-users"></i> Demandeurs</a></li>
                     <li><a href="forms.html"><i class="fa fa-bar-chart "></i> Statistiques</a></li>
-                    <li><a href="typography.html"><i class="fa fa-archive"></i> Archives</a></li>                    
+                    <li><a href="{{ path('platform_admin_archive') }}"><i class="fa fa-archive"></i> Archives</a></li>                    
                 </ul>
                 <ul class="nav navbar-nav navbar-right navbar-user">
                     <li class="dropdown messages-dropdown">
@@ -108,7 +108,8 @@
                     </textarea>
                     <p class="help-block">La modification dans ce cadre n'est pas enregistré.</p>
                 {% if demand_current.confirmed == "Oui"%}
-                    <a type="button" class="btn btn-primary">
+                    <a type="button" class="btn btn-primary" href="{{ path('platform_admin_attribution_demande', 
+                        { 'id': demand_current.id }) }}">
                     <i class="fa fa-link"></i> Attribuer</a>
                 {% else %}
                     {% if demand_current.wrong == "Non"%}
@@ -119,7 +120,7 @@
 
                         <a type="button" class="btn btn-danger" 
                         href="{{ path('platform_admin_refuser_demande', 
-                        { 'id': demand_current.idUser }) }}" OnClick="return confirm('Voulez-vous vraiment refuser la demande ?');">
+                        { 'id': demand_current.idUser }) }}">
                         <i class="fa fa-times"></i> Refuser</a>
                     {% else %}
                         <p> Vous avez refusé la demande, elle est donc erronée. La demande pourra être confimé lorsque la demande sera modifiée par le demandeur de logement social ou si vous la modifiez vous même.</p>

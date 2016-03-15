@@ -11,46 +11,6 @@ form1:
     path:     /form1
     defaults: { _controller: PIBundle:Default:form1 }
 
-
-form2:
-    path:     /form2
-    defaults: { _controller: PIBundle:Default:form2 }
-
-form2_modifier:
-    path:     /form2_modifier
-    defaults: { _controller: PIBundle:Default:form2_modifier }
-
-
-
-form_pro:
-    path:     /form_pro
-    defaults: { _controller: PIBundle:Default:form_pro }
-
-form_logement:
-    path:     /form_logement
-    defaults: { _controller: PIBundle:Default:form_logement }
-
-form_motif:
-    path:     /form_motif
-    defaults: { _controller: PIBundle:Default:form_motif }
-
-form_ressource:
-    path:     /form_ressource
-    defaults: { _controller: PIBundle:Default:form_ressource}
-
-form_justificatif:
-    path:     /form_justificatif
-    defaults: { _controller: PIBundle:Default:form_justificatif}
-
-telecharger:
-    path:     /telecharger
-    defaults: { _controller: PIBundle:Default:telecharger }
-
-ajouter:
-    path:     /ajouter
-    defaults: { _controller: PIBundle:Default:ajouter}
-
-
 ajouter:
     path:     /ajouter
     defaults: { _controller: PIBundle:Default:ajouter}
@@ -88,7 +48,6 @@ platform_admin_ajouter_demande:
     path:     /ajouter_demande/{id}
     defaults: { _controller: PIBundle:Admin:ajouter_demande }
 
-
 platform_admin_etat_demande:
     path:     /etat_demande/{id}
     defaults: { _controller: PIBundle:Admin:etat_demande }
@@ -116,11 +75,56 @@ platform_admin_refuser_demande:
 platform_admin_archiver_demande:
     path:     /archiver_demande/{id}
     defaults: { _controller: PIBundle:Admin:archiver_demande }
-    
-contact:
-    path:     /contact
-    defaults: { _controller: PIBundle:Default:contact }
 
-form3:
-    path:     /form3
-    defaults: { _controller: PIBundle:Default:form3 }
+platform_admin_attribution_demande:
+    path:     /attribution_demande/{id}
+    defaults: { _controller: PIBundle:Admin:attribution_demande }
+
+platform_admin_attribuer_demande:
+    path:     /attribuer_demande/{id}/{idappart}
+    defaults: { _controller: PIBundle:Admin:attribuer_demande }
+
+platform_admin_valider_attribution_demande:
+    path:     /valider_attribution_demande/{id}/{idappart}
+    defaults: { _controller: PIBundle:Admin:valider_attribution_demande }
+
+platform_admin_attribution_logement:
+    path:     /attribution_logement/{id}
+    defaults: { _controller: PIBundle:Admin:attribution_logement }
+
+platform_admin_attribuer_logement:
+    path:     /attribuer_logement/{id}/{iddemand}
+    defaults: { _controller: PIBundle:Admin:attribuer_logement }
+
+platform_admin_valider_attribution_logement:
+    path:     /valider_attribution_logement/{id}/{iddemand}
+    defaults: { _controller: PIBundle:Admin:valider_attribution_logement }
+
+platform_admin_archive:
+    path:     /archive
+    defaults: { _controller: PIBundle:Admin:archive }
+
+platform_admin_liberer_logement:
+    path:     /liberer_logment/{id}
+    defaults: { _controller: PIBundle:Admin:liberer_logement }
+
+platform_admin_affichage_archive:
+    path:     /affichage_archive/{id}
+    defaults: { _controller: PIBundle:Admin:affichage_archive }
+
+platform_admin_affichage_logement_archive:
+    path:     /affichage_logement_archive/{id}
+    defaults: { _controller: PIBundle:Admin:affichage_logement_archive }
+
+platform_admin_liberer_demande:
+    path:     /liberer_demande/{id}
+    defaults: { _controller: PIBundle:Admin:liberer_demande }
+
+platform_admin_afficher_locataire:
+    path:     /afficher_locataire/{id}
+    defaults: { _controller: PIBundle:Admin:afficher_locataire }
+
+platform_admin_delete_demand:
+    path:     /dashboard
+    defaults: { _controller: PIBundle:Admin:delete_demand }
+

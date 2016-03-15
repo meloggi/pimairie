@@ -1,11 +1,11 @@
-{# app/Resources/views/Admin/ajouter_demandeur.html.twig #}
+{# app/Resources/views/Admin/appartment.html.twig #}
 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin_Demandeurs</title>
+    <title>Admin_Appartements</title>
 
     {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/bootstrap/css/bootstrap.min.css') }}">
@@ -35,7 +35,7 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li><a href="{{ path('platform_admin_dashboard') }}"><i class="fa fa-tachometer"></i> Tableau de bord</a></li>
-                    <li><a href="{{ path('platform_admin_appartment') }}"><i class="fa fa-building-o "></i> Appartements</a></li>
+                    <li><a href="{{ path('platform_admin_appartment') }}"><i class="fa fa-building-o "></i> Appartements</a></li>                    
                     <li class="active"><a href="{{ path('platform_admin_demandeur') }}"><i class="fa fa-users"></i> Demandeurs</a></li>
                     <li><a href="forms.html"><i class="fa fa-bar-chart "></i> Statistiques</a></li>
                     <li><a href="{{ path('platform_admin_archive') }}"><i class="fa fa-archive"></i> Archives</a></li>                    
@@ -81,42 +81,59 @@
                 </ul>
             </div>
         </nav>
-        <div class="container">
+
+         <div class="container">
           <div class="row">
-          <a type="button" class="btn btn-success" href="{{ path('platform_admin_demandeur') }}"><i class="fa fa-chevron-left"></i> Retour</a>
-          <h1>Ajouter un nouveau demandeur</h1>
+            <a type="button" class="btn btn-success" href="{{ path('platform_admin_attribution_demande', { 'id': demand.id }) }}"><i class="fa fa-chevron-left"></i> Retour</a>
+              <h1>Attribution d'un logement à une demande</h1>
           </div>
-          <div class="row">
-          <div class="col-lg-12">
-            <form action="/ajouter_demandeur" method="post" role="form">
-              <div id="app_user_registration">
-                <div>
-                  <label for="app_user_registration_email" class="required" style="margin-top: 10px">Adresse e-mail: </label>
-                  <input class="form-control" type="email" id="app_user_registration_email" name="app_user_registration[email]" required="required"/>
-                </div>
-                <div>
-                  <label for="app_user_registration_plainPassword_first" class="required" style="margin-top: 10px">Mot de passe: </label>
-                  <input class="form-control" type="password" id="app_user_registration_plainPassword_first" name="app_user_registration[plainPassword][first]" required="required" />
-                </div>
-                <div>
-                  <label for="app_user_registration_plainPassword_second" class="required" style="margin-top: 10px">Vérification: </label>
-                  <input class="form-control" type="password" id="app_user_registration_plainPassword_second" name="app_user_registration[plainPassword][second]" required="required" />
-                </div>
-                <div>
-                  <label for="app_user_registration_lastname" style="margin-top: 10px">Nom: </label>
-                  <input class="form-control" type="text" id="app_user_registration_lastname" name="app_user_registration[lastname]"/>
-                </div>
-                <div>
-                  <label for="app_user_registration_firstname" style="margin-top: 10px">Prénom: </label>
-                  <input class="form-control" type="text" id="app_user_registration_firstname" name="app_user_registration[firstname]"/>
-                </div>
-                {{ form_widget(form._token) }}
-              </div>
-              <input type="submit" class="btn btn-success" value="Valider" style="margin-bottom: 50px; margin-top: 20px" />
-            </form>
-          </div>
-        </div>
+                      <div class="row" style="margin-top: 20px">
+                          <div class="col-lg-6 col-md-6">
+                              {% if demand %}
+                                <h3>Demandeur</h3>
+                                <p style="margin-top: 20px"><b>Nom: </b>{{demand.lastName}}</p>
+                                <p><b>Prénom: </b>{{demand.firstName}}</p>
+                                <p><b>Email: </b>{{demand.email}}</p>
+                                <p><b>Salaire: </b>{{demand.salary}}</p>
+                                <p><b>Localisation à Villers-centre: </b>{{demand.locationVillersCentre}}</p>
+                                <p><b>Localisation à Villers-bas: </b>{{demand.locationVillersBas}}</p>
+                                <p><b>Localisation à Clairlieu: </b>{{demand.locationClairlieu}}</p>
+                                <p><b>Type: </b>{{demand.type1}}</p>
+                                <p><b>Autre type: </b>{{demand.type2}}</p>
+                                <p><b>Confirmé: </b>{{demand.confirmed}}</p>
+                                <p><b>Demande créée le: </b>{{ demand.dateCreation.format('j M Y à h:m a')}}</p>
+                                <label for="demand_note">Notes: </label>
+                                <textarea maxlength="200" class="form-control" rows="3">{{demand.note}}
+                                </textarea>
+                                <p class="help-block">La modification dans ce cadre n'est pas enregistré.</p>
+                              {%endif%}
+                          </div>
+                          <div class="col-lg-6 col-md-6">
+                              {% if appartment %}
+                                <h3>Appartement</h3>
+                                <p style="margin-top: 20px"><b>Type: </b>{{appartment.type}}</p>
+                                <p><b>Localisation: </b>{{appartment.location}}</p>
+                                <p><b>Bailleur: </b>{{appartment.bailleur}}</p>
+                                <p><b>Résidence: </b>{{appartment.residence}}</p>
+                                <p><b>Adresse: </b>{{appartment.adress}}</p>
+                                <p><b>Etage: </b>{{appartment.floor}}</p>
+                                <p><b>Numéro: </b>{{appartment.numero}}</p>
+                                <p><b>Contingent: </b>{{appartment.contingent}}</p>
+                                <p><b>Loyer: </b>{{appartment.rent}}</p>
+                                <label for="demand_note">Notes: </label>
+                                <textarea maxlength="200" class="form-control" rows="3">{{appartment.note}}
+                                </textarea>
+                                <p class="help-block">La modification dans ce cadre n'est pas enregistré.</p>
+                              {%endif%}
+                          </div>
+                      </div>   
+                      <a type="button" class="btn btn-success" 
+                      href="{{ path('platform_admin_valider_attribution_demande', {'id':demand.id, 'idappart':appartment.id}) }}" 
+                      style="margin-top: 20px; margin-bottom: 20px">
+                      <i class="fa fa-link"></i> Valider l'attribution</a>  
     </div>
+
+
 
 </body>
 </html>

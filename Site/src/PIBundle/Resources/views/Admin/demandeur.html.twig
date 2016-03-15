@@ -38,7 +38,7 @@
                     <li><a href="{{ path('platform_admin_appartment') }}"><i class="fa fa-building-o "></i> Appartements</a></li>
                     <li class="active"><a href="{{ path('platform_admin_demandeur') }}"><i class="fa fa-users"></i> Demandeurs</a></li>
                     <li><a href="forms.html"><i class="fa fa-bar-chart "></i> Statistiques</a></li>
-                    <li><a href="typography.html"><i class="fa fa-archive"></i> Archives</a></li>                    
+                    <li><a href="{{ path('platform_admin_archive') }}"><i class="fa fa-archive"></i> Archives</a></li>                    
                 </ul>
                 <ul class="nav navbar-nav navbar-right navbar-user">
                     <li class="dropdown messages-dropdown">
@@ -151,7 +151,7 @@
                                     </td>
                                     <td>
                                       <a type="button" class="btn btn-warning btn-xs" href="{{ path('platform_admin_modifier_demandeur', { 'id': demandeur.id }) }}"><i class="fa fa-pencil"></i> Editer</a>
-                                      <button type="button" class="btn btn-danger btn-xs" OnClick="return confirm('Voulez-vous vraiment supprimer la demande ?');"> 
+                                      <button type="button" class="btn btn-danger btn-xs">
                                         <i class="fa fa-trash-o"></i> Supprimer</button>
                                     </td>
                                   </tr>

@@ -44,7 +44,7 @@
                     <li><a href="{{ path('platform_admin_appartment') }}"><i class="fa fa-building-o "></i> Appartements</a></li>                    
                     <li><a href="{{ path('platform_admin_demandeur') }}"><i class="fa fa-users"></i> Demandeurs</a></li>
                     <li><a href="forms.html"><i class="fa fa-bar-chart "></i> Statistiques</a></li>
-                    <li><a href="typography.html"><i class="fa fa-archive"></i> Archives</a></li>                    
+                    <li><a href="{{ path('platform_admin_archive') }}"><i class="fa fa-archive"></i> Archives</a></li>                    
                 </ul>
                 <ul class="nav navbar-nav navbar-right navbar-user">
                     <li class="dropdown messages-dropdown">
@@ -104,7 +104,7 @@
                 <div class="col-lg-4">
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-user-plus"></i> Nouvelles demandes</h3>
+                            <h3 class="panel-title"><i class="fa fa-user-plus"></i> Demandes à confirmer</h3>
                         </div>
                         <div class="panel-body" style="height: 300px; overflow-y: auto;">
                             <table class="table table-hover">
@@ -113,99 +113,21 @@
                                     <th>Nom</th>
                                     <th>Prénom</th>
                                     <th>Email</th>
+                                    <th></th>
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <tr>
-                                    <td>John</td>
-                                    <td>Doe</td>
-                                    <td>john@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>Mary</td>
-                                    <td>Moe</td>
-                                    <td>mary@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>July</td>
-                                    <td>Dooley</td>
-                                    <td>july@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>John</td>
-                                    <td>Doe</td>
-                                    <td>john@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>Mary</td>
-                                    <td>Moe</td>
-                                    <td>mary@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>July</td>
-                                    <td>Dooley</td>
-                                    <td>july@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>John</td>
-                                    <td>Doe</td>
-                                    <td>john@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>Mary</td>
-                                    <td>Moe</td>
-                                    <td>mary@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>July</td>
-                                    <td>Dooley</td>
-                                    <td>july@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>John</td>
-                                    <td>Doe</td>
-                                    <td>john@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>Mary</td>
-                                    <td>Moe</td>
-                                    <td>mary@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>July</td>
-                                    <td>Dooley</td>
-                                    <td>july@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>John</td>
-                                    <td>Doe</td>
-                                    <td>john@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>Mary</td>
-                                    <td>Moe</td>
-                                    <td>mary@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>July</td>
-                                    <td>Dooley</td>
-                                    <td>july@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>John</td>
-                                    <td>Doe</td>
-                                    <td>john@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>Mary</td>
-                                    <td>Moe</td>
-                                    <td>mary@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>July</td>
-                                    <td>Dooley</td>
-                                    <td>july@example.com</td>
-                                  </tr>
+                                  {% if list_demand_new%}
+                                    {% for demand_new in list_demand_new %}
+                                      <tr>
+                                        <td>{{demand_new.lastName}}</td>
+                                        <td>{{demand_new.firstName}}</td>
+                                        <td>{{demand_new.email}}</td>
+                                        <td><a href="{{ path('platform_admin_affichage_demande', {'id':demand_new.idUser}) }}"
+                                                    <i class="fa fa-check" style="color:#01D758;"></i></td>
+                                      </tr>
+                                    {%endfor%}
+                                  {%endif%}
                                 </tbody>
                             </table>
                         </div>
@@ -223,24 +145,21 @@
                                     <th>Nom</th>
                                     <th>Prénom</th>
                                     <th>Email</th>
+                                    <th></th>
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <tr>
-                                    <td>John</td>
-                                    <td>Doe</td>
-                                    <td>john@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>Mary</td>
-                                    <td>Moe</td>
-                                    <td>mary@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>July</td>
-                                    <td>Dooley</td>
-                                    <td>july@example.com</td>
-                                  </tr>
+                                  {% if list_demand_wrong%}
+                                    {% for demand_wrong in list_demand_wrong %}
+                                      <tr>
+                                        <td>{{demand_wrong.lastName}}</td>
+                                        <td>{{demand_wrong.firstName}}</td>
+                                        <td>{{demand_wrong.email}}</td>
+                                        <td><a href="{{ path('platform_admin_affichage_demande', {'id':demand_wrong.idUser}) }}"
+                                                    <i class="fa fa-check" style="color:#01D758;"></i></td>
+                                      </tr>
+                                    {%endfor%}
+                                  {%endif%}
                                 </tbody>
                             </table>
                         </div>
@@ -249,161 +168,41 @@
                 <div class="col-lg-4">
                     <div class="panel panel-warning">
                         <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-clock-o"></i> Demandes expirées</h3>
+                            <h3 class="panel-title"><i class="fa fa-clock-o"></i> Demandes expirées (11 mois)</h3>
                         </div>
                         <div class="panel-body" style="height: 300px; overflow-y: auto;">
                             <table class="table table-hover">
                                 <thead>
                                   <tr>
+                                    <th>Date de création</th>
                                     <th>Nom</th>
                                     <th>Prénom</th>
                                     <th>Email</th>
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <tr>
-                                    <td>John</td>
-                                    <td>Doe</td>
-                                    <td>john@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>Mary</td>
-                                    <td>Moe</td>
-                                    <td>mary@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>July</td>
-                                    <td>Dooley</td>
-                                    <td>july@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>John</td>
-                                    <td>Doe</td>
-                                    <td>john@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>Mary</td>
-                                    <td>Moe</td>
-                                    <td>mary@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>July</td>
-                                    <td>Dooley</td>
-                                    <td>july@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>John</td>
-                                    <td>Doe</td>
-                                    <td>john@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>Mary</td>
-                                    <td>Moe</td>
-                                    <td>mary@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>July</td>
-                                    <td>Dooley</td>
-                                    <td>july@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>John</td>
-                                    <td>Doe</td>
-                                    <td>john@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>Mary</td>
-                                    <td>Moe</td>
-                                    <td>mary@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>July</td>
-                                    <td>Dooley</td>
-                                    <td>july@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>John</td>
-                                    <td>Doe</td>
-                                    <td>john@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>Mary</td>
-                                    <td>Moe</td>
-                                    <td>mary@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>July</td>
-                                    <td>Dooley</td>
-                                    <td>july@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>John</td>
-                                    <td>Doe</td>
-                                    <td>john@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>Mary</td>
-                                    <td>Moe</td>
-                                    <td>mary@example.com</td>
-                                  </tr>
-                                  <tr>
-                                    <td>July</td>
-                                    <td>Dooley</td>
-                                    <td>july@example.com</td>
-                                  </tr>
+                                  {% if list_demand_expired%}
+                                    {% for demand_expired in list_demand_expired %}
+                                        {% if demand_expired.dateCreation < date %}
+                                      <tr>
+                                        <td>{{ demand_expired.dateCreation.format('j M Y')}}</td>
+                                        <td>{{demand_expired.lastName}}</td>
+                                        <td>{{demand_expired.firstName}}</td>
+                                        <td>{{demand_expired.email}}</td>
+                                        <td><a 
+                                        href="{{ path('platform_admin_affichage_demande', {'id':demand_expired.idUser}) }}">
+                                        <i class="fa fa-check" style="color:#01D758;"></i></a></td>
+                                      </tr>
+                                        {%endif%}
+                                    {%endfor%}
+                                  {%endif%}
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-clock-o"></i> Alertes</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="row alert-success">
-                                <div class="col-xs-5">
-                                    <i class="fa fa-thumbs-o-up fa-5x"></i>
-                                </div>
-                                <div class="col-xs-5 text-right">
-                                    <p class="alerts-heading">2</p>
-                                    <p class="alerts-text">Nouvelles demandes</p>
-                                </div>
-                            </div>
-                            <div class="row alert-danger">
-                                <div class="col-xs-5">
-                                    <i class="fa fa-thumbs-o-down fa-5x"></i>
-                                </div>
-                                <div class="col-xs-5 text-right">
-                                    <p class="alerts-heading">2</p>
-                                    <p class="alerts-text">Demandes erronées</p>
-                                </div>
-                            </div>
-                            <div class="row alert-danger">
-                                <div class="col-xs-5">
-                                    <i class="fa fa-thumbs-o-down fa-5x"></i>
-                                </div>
-                                <div class="col-xs-5 text-right">
-                                    <p class="alerts-heading">2</p>
-                                    <p class="alerts-text">Demandes expirées</p>
-                                </div>
-                            </div>
-                            <div class="row alert-info">
-                                <div class="col-xs-5">
-                                    <i class="fa fa-thumbs-o-up fa-5x"></i>
-                                </div>
-                                <div class="col-xs-5 text-right">
-                                    <p class="alerts-heading">6</p>
-                                    <p class="alerts-text">Notifications</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-9">
+                <div class="col-lg-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Estimation du trafic ces 30 derniers jours</h3>
@@ -414,32 +213,12 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Sales personnel Data</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div id="shieldui-grid1"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
     </div>
     <!-- /#wrapper -->
 
-    <!--
-        This section initializes the chart widgets and a grid component, 
-        which visualize records and allow sorting and paging. 
-        For more information visit: 
-        http://www.shieldui.com/documentation/javascript.chart/getting.started
-        http://www.shieldui.com/documentation/grid/javascript/getting.started
-        http://www.shieldui.com/documentation/datasource/javascript/getting.started
-    -->
+   
     <script type="text/javascript">
         jQuery(function ($) {
             var performance = [12, 43, 34, 22, 12, 33, 4, 17, 22, 34, 54, 67],

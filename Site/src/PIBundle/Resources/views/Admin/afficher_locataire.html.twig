@@ -1,4 +1,4 @@
-{# app/Resources/views/Admin/ajouter_demandeur.html.twig #}
+{# app/Resources/views/Admin/ajouter_demande.html.twig #}
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -35,8 +35,8 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li><a href="{{ path('platform_admin_dashboard') }}"><i class="fa fa-tachometer"></i> Tableau de bord</a></li>
-                    <li><a href="{{ path('platform_admin_appartment') }}"><i class="fa fa-building-o "></i> Appartements</a></li>
-                    <li class="active"><a href="{{ path('platform_admin_demandeur') }}"><i class="fa fa-users"></i> Demandeurs</a></li>
+                    <li class="active"><a href="{{ path('platform_admin_appartment') }}"><i class="fa fa-building-o "></i> Appartements</a></li>                    
+                    <li><a href="{{ path('platform_admin_demandeur') }}"><i class="fa fa-users"></i> Demandeurs</a></li>
                     <li><a href="forms.html"><i class="fa fa-bar-chart "></i> Statistiques</a></li>
                     <li><a href="{{ path('platform_admin_archive') }}"><i class="fa fa-archive"></i> Archives</a></li>                    
                 </ul>
@@ -83,39 +83,19 @@
         </nav>
         <div class="container">
           <div class="row">
-          <a type="button" class="btn btn-success" href="{{ path('platform_admin_demandeur') }}"><i class="fa fa-chevron-left"></i> Retour</a>
-          <h1>Ajouter un nouveau demandeur</h1>
+          <a type="button" class="btn btn-success" href="{{ path('platform_admin_appartment') }}">
+            <i class="fa fa-chevron-left"></i> Retour</a>
+          <h1>Information sur le locataire</h1>
           </div>
           <div class="row">
           <div class="col-lg-12">
-            <form action="/ajouter_demandeur" method="post" role="form">
-              <div id="app_user_registration">
-                <div>
-                  <label for="app_user_registration_email" class="required" style="margin-top: 10px">Adresse e-mail: </label>
-                  <input class="form-control" type="email" id="app_user_registration_email" name="app_user_registration[email]" required="required"/>
-                </div>
-                <div>
-                  <label for="app_user_registration_plainPassword_first" class="required" style="margin-top: 10px">Mot de passe: </label>
-                  <input class="form-control" type="password" id="app_user_registration_plainPassword_first" name="app_user_registration[plainPassword][first]" required="required" />
-                </div>
-                <div>
-                  <label for="app_user_registration_plainPassword_second" class="required" style="margin-top: 10px">Vérification: </label>
-                  <input class="form-control" type="password" id="app_user_registration_plainPassword_second" name="app_user_registration[plainPassword][second]" required="required" />
-                </div>
-                <div>
-                  <label for="app_user_registration_lastname" style="margin-top: 10px">Nom: </label>
-                  <input class="form-control" type="text" id="app_user_registration_lastname" name="app_user_registration[lastname]"/>
-                </div>
-                <div>
-                  <label for="app_user_registration_firstname" style="margin-top: 10px">Prénom: </label>
-                  <input class="form-control" type="text" id="app_user_registration_firstname" name="app_user_registration[firstname]"/>
-                </div>
-                {{ form_widget(form._token) }}
-              </div>
-              <input type="submit" class="btn btn-success" value="Valider" style="margin-bottom: 50px; margin-top: 20px" />
-            </form>
+                <p><b>Prénom: </b>{{demand.firstName}}</p>
+                <p><b>Email: </b>{{demand.email}}</p>
+                <p><b>Salaire: </b>{{demand.salary}}</p>
+                <p><b>Date d'attribution: </b>{{ demand.dateAttribution.format('j M Y à h:m a')}}</p>
           </div>
         </div>
+        <a type="button" class="btn btn-success" href="{{ path('platform_admin_liberer_logement', { 'id': id }) }}"><i class="fa fa-link"></i> Libérer le logement</a>
     </div>
 
 </body>

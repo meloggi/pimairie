@@ -38,7 +38,7 @@
                     <li class="active"><a href="{{ path('platform_admin_appartment') }}"><i class="fa fa-building-o "></i> Appartements</a></li>                    
                     <li><a href="{{ path('platform_admin_demandeur') }}"><i class="fa fa-users"></i> Demandeurs</a></li>
                     <li><a href="forms.html"><i class="fa fa-bar-chart "></i> Statistiques</a></li>
-                    <li><a href="typography.html"><i class="fa fa-archive"></i> Archives</a></li>                    
+                    <li><a href="{{ path('platform_admin_archive') }}"><i class="fa fa-archive"></i> Archives</a></li>                    
                 </ul>
                 <ul class="nav navbar-nav navbar-right navbar-user">
                     <li class="dropdown messages-dropdown">
@@ -166,6 +166,12 @@
                   </select>
                   <p class="help-block">{{ form_errors(form.contingent) }}</p> 
                 </label>
+                </div>
+
+                <div class="form-group">
+                <label>Notes: </label>
+                    <textarea id="housing_note" name="housing[note]"maxlength="200" class="form-control" rows="3"></textarea>
+                    <p class="help-block">Maximum 200 caractères. Non communiqué au demandeur.</p>
                 </div>
 
                 {{ form_widget(form._token) }}
