@@ -128,3 +128,46 @@ platform_admin_delete_demand:
     path:     /dashboard
     defaults: { _controller: PIBundle:Admin:delete_demand }
 
+form3:
+    path:     /form3
+    defaults: { _controller: PIBundle:Default:form3 } 
+contact:
+    path:     /contact
+    defaults: { _controller: PIBundle:Default:contact }
+form2:
+     path:     /form2
+     defaults: { _controller: PIBundle:Default:form2 }
+ 
+form2_modifier:
+     path:     /form2_modifier
+     defaults: { _controller: PIBundle:Default:form2_modifier }
+ 
+ 
+ 
+form_pro:
+     path:     /form_pro
+     defaults: { _controller: PIBundle:Default:form_pro }
+ 
+form_logement:
+     path:     /form_logement
+     defaults: { _controller: PIBundle:Default:form_logement }
+ 
+form_motif:
+     path:     /form_motif
+     defaults: { _controller: PIBundle:Default:form_motif }
+ 
+form_ressource:
+     path:     /form_ressource
+     defaults: { _controller: PIBundle:Default:form_ressource}
+ 
+form_justificatif:
+     path:     /form_justificatif
+     defaults: { _controller: PIBundle:Default:form_justificatif}
+ 
+telecharger:
+     path:     /telecharger
+     defaults: { _controller: PIBundle:Default:telecharger }
+  
+ajouter:
+     path:     /ajouter
+     defaults: { _controller: PIBundle:Default:ajouter}
