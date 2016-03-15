@@ -18,7 +18,7 @@ class DemandRepository extends \Doctrine\ORM\EntityRepository
             WHERE u.email = :demand')
     ->setParameter('demand', $demand);
 
-return $query->getResult();
+return $query->getSingleResult();
 
 	}
 }

@@ -233,9 +233,85 @@ p
 }
 
 .labelcode{
-  margin-left: 0.8cm;
+  margin-left: 0.9cm;
 }
 
 .labelcommuneemployeur{
   margin-left: -1.8cm;
 }
+
+.labelgenre{
+  margin-left: 2cm;
+}
+
+.labelnompersonnecharge{
+  margin-left: 2cm;
+}
+
+.labelquestionpersonne{
+  margin-left: -1.1cm;
+}
+
+.labelstatu{
+  margin-left: 2cm;
+}
+
+.allo{
+  margin-left:0.5cm;
+}
+
+.labelsituation{
+  margin-left: -1cm;
+}
+
+.labelparking{
+  margin-left: -3.3cm;
+}
+
+.labelrdc{
+  margin-left: -1.9cm;
+}
+
+.labelascenseur{
+  margin-left: 1.2cm;
+}
+
+.labeltype{
+  margin-left: -0.2cm;
+}
+
+.labelcategorierecherche{
+  margin-left: -1.1cm;
+}
+
+.labelparking1{
+  margin-left: -1.7cm;
+}
+
+.labelnombrechambre{
+  margin-left: 0cm;
+}
+
+.labelrdc1{
+  margin-left: -1.18cm;
+}
+
+.labeltyperecherche{
+  margin-left: -0.1cm;
+}
+
+.labelmontantmaxi{
+  margin-left: -4.4cm;
+}
+
+.labeltypelogementrecherche{
+  margin-left: 0.3cm;
+}
+
+.labelsurface{
+  margin-left: 1.6cm;
+}
+
+
+
+

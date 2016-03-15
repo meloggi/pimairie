@@ -245,20 +245,14 @@ class User extends BaseUser
      */
     private $montantmaxi;
 
- /**
-     * @var string
-     *
-     * @ORM\Column(name="isAdmin", type="boolean", nullable=true)
-     */
-    private $isAdmin;
+
 
 
 
     public function __construct()
     {
         parent::__construct();
-        if(isAdmin==true)
-        $this->setRoles(array('ROLE_USER'));
+        // your own logic
     }
 
     /**

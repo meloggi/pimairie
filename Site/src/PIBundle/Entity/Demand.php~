@@ -26,17 +26,21 @@ class Demand
     /**
      * @var string
      *
-     * @ORM\Column(name="lastname", type="string", length=255)
+     * @ORM\Column(name="lastName", type="string", length=255)
      */
-    private $lastname;
+    private $lastName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="string", length=255, nullable=true)
+     * @ORM\Column(name="firstName", type="string", length=255)
      */
-    private $firstname;
+    private $firstName;
 
+   
+
+
+   
     /**
      * @var string
      *
@@ -145,9 +149,51 @@ class Demand
     /**
      * @var string
      *
-     * @ORM\Column(name="avisimposition", type="decimal", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="professionconjoint", type="string", length=255, nullable=true)
      */
-    private $avisimposition;
+    private $professionconjoint;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nomemployeurconjoint", type="string", length=255, nullable=true)
+     */
+    private $nomemployeurconjoint;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="codepostalemployeurconjoint", type="decimal", precision=10, scale=0, nullable=true)
+     */
+    private $codepostalemployeurconjoint;
+
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="statusconjoint", type="decimal", precision=10, scale=0, nullable=true)
+     */
+    private $statusconjoint;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="communeemployeurconjoint", type="string", precision=10, scale=0, nullable=true)
+     */
+    private $communeemployeurconjoint;
+
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="avisimposition1", type="decimal", precision=10, scale=0, nullable=true)
+     */
+    private $avisimposition1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="avisimposition2", type="decimal", precision=10, scale=0, nullable=true)
+     */
+    private $avisimposition2;
 
     /**
      * @var string
@@ -366,6 +412,82 @@ class Demand
      */
     private $comment;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="genre", type="string", length=255, nullable=true)
+     */
+    private $genre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=255, nullable=true)
+     */
+    private $status;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="loyerlogementactuel", type="decimal", precision=10, scale=0, nullable=true)
+     */
+    private $loyerlogementactuel;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="apllogementactuel", type="decimal", precision=10, scale=0, nullable=true)
+     */
+    private $apllogementactuel;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombrepersonnelogementactuel", type="decimal", precision=10, scale=0, nullable=true)
+     */
+    private $nbpersonnelogementactuel;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="categorielogementactuel", type="string", length=255, nullable=true)
+     */
+    private $categorielogementactuel;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="typelogementactuel", type="string", length=255, nullable=true)
+     */
+    private $typelogementactuel;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="surfacelogementactuel", type="decimal", precision=10, scale=0, nullable=true)
+     */
+    private $surfacelogementactuel;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="typelogementrecherche", type="decimal", precision=10, scale=0, nullable=true)
+     */
+    private $typelogementrecherche;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="categorielogementrecherche", type="decimal", precision=10, scale=0, nullable=true)
+     */
+    private $categorielogementrecherche;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="loyerlogementrecherche", type="decimal", precision=10, scale=0, nullable=true)
+     */
+    private $loyerlogementrecherche;
 
 
 
@@ -788,29 +910,9 @@ class Demand
         return $this->communeemployeur;
     }
 
-    /**
-     * Set avisimposition
-     *
-     * @param string $avisimposition
-     *
-     * @return Demande
-     */
-    public function setAvisimposition($avisimposition)
-    {
-        $this->avisimposition = $avisimposition;
+    
 
-        return $this;
-    }
-
-    /**
-     * Get avisimposition
-     *
-     * @return string
-     */
-    public function getAvisimposition()
-    {
-        return $this->avisimposition;
-    }
+    
 
     /**
      * Set allocationchomage
@@ -1148,53 +1250,9 @@ class Demand
         return $this->montantmaxi;
     }
 
-    /**
-     * Set lastname
-     *
-     * @param string $lastname
-     *
-     * @return Demand
-     */
-    public function setLastname($lastname)
-    {
-        $this->lastname = $lastname;
+   
 
-        return $this;
-    }
-
-    /**
-     * Get lastname
-     *
-     * @return string
-     */
-    public function getLastname()
-    {
-        return $this->lastname;
-    }
-
-    /**
-     * Set firstname
-     *
-     * @param string $firstname
-     *
-     * @return Demand
-     */
-    public function setFirstname($firstname)
-    {
-        $this->firstname = $firstname;
-
-        return $this;
-    }
-
-    /**
-     * Get firstname
-     *
-     * @return string
-     */
-    public function getFirstname()
-    {
-        return $this->firstname;
-    }
+    
 
     /**
      * Set email
@@ -1626,5 +1684,463 @@ class Demand
     public function getComment()
     {
         return $this->comment;
+    }
+
+    /**
+     * Set professionconjoint
+     *
+     * @param string $professionconjoint
+     *
+     * @return Demand
+     */
+    public function setProfessionconjoint($professionconjoint)
+    {
+        $this->professionconjoint = $professionconjoint;
+
+        return $this;
+    }
+
+    /**
+     * Get professionconjoint
+     *
+     * @return string
+     */
+    public function getProfessionconjoint()
+    {
+        return $this->professionconjoint;
+    }
+
+    /**
+     * Set nomemployeurconjoint
+     *
+     * @param string $nomemployeurconjoint
+     *
+     * @return Demand
+     */
+    public function setNomemployeurconjoint($nomemployeurconjoint)
+    {
+        $this->nomemployeurconjoint = $nomemployeurconjoint;
+
+        return $this;
+    }
+
+    /**
+     * Get nomemployeurconjoint
+     *
+     * @return string
+     */
+    public function getNomemployeurconjoint()
+    {
+        return $this->nomemployeurconjoint;
+    }
+
+    /**
+     * Set codepostalemployeurconjoint
+     *
+     * @param string $codepostalemployeurconjoint
+     *
+     * @return Demand
+     */
+    public function setCodepostalemployeurconjoint($codepostalemployeurconjoint)
+    {
+        $this->codepostalemployeurconjoint = $codepostalemployeurconjoint;
+
+        return $this;
+    }
+
+    /**
+     * Get codepostalemployeurconjoint
+     *
+     * @return string
+     */
+    public function getCodepostalemployeurconjoint()
+    {
+        return $this->codepostalemployeurconjoint;
+    }
+
+    /**
+     * Set statusconjoint
+     *
+     * @param string $statusconjoint
+     *
+     * @return Demand
+     */
+    public function setStatusconjoint($statusconjoint)
+    {
+        $this->statusconjoint = $statusconjoint;
+
+        return $this;
+    }
+
+    /**
+     * Get statusconjoint
+     *
+     * @return string
+     */
+    public function getStatusconjoint()
+    {
+        return $this->statusconjoint;
+    }
+
+    /**
+     * Set communeemployeurconjoint
+     *
+     * @param string $communeemployeurconjoint
+     *
+     * @return Demand
+     */
+    public function setCommuneemployeurconjoint($communeemployeurconjoint)
+    {
+        $this->communeemployeurconjoint = $communeemployeurconjoint;
+
+        return $this;
+    }
+
+    /**
+     * Get communeemployeurconjoint
+     *
+     * @return string
+     */
+    public function getCommuneemployeurconjoint()
+    {
+        return $this->communeemployeurconjoint;
+    }
+
+    /**
+     * Set avisimposition1
+     *
+     * @param string $avisimposition1
+     *
+     * @return Demand
+     */
+    public function setAvisimposition1($avisimposition1)
+    {
+        $this->avisimposition1 = $avisimposition1;
+
+        return $this;
+    }
+
+    /**
+     * Get avisimposition1
+     *
+     * @return string
+     */
+    public function getAvisimposition1()
+    {
+        return $this->avisimposition1;
+    }
+
+    /**
+     * Set avisimposition2
+     *
+     * @param string $avisimposition2
+     *
+     * @return Demand
+     */
+    public function setAvisimposition2($avisimposition2)
+    {
+        $this->avisimposition2 = $avisimposition2;
+
+        return $this;
+    }
+
+    /**
+     * Get avisimposition2
+     *
+     * @return string
+     */
+    public function getAvisimposition2()
+    {
+        return $this->avisimposition2;
+    }
+
+    /**
+     * Set genre
+     *
+     * @param string $genre
+     *
+     * @return Demand
+     */
+    public function setGenre($genre)
+    {
+        $this->genre = $genre;
+
+        return $this;
+    }
+
+    /**
+     * Get genre
+     *
+     * @return string
+     */
+    public function getGenre()
+    {
+        return $this->genre;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     *
+     * @return Demand
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set loyerlogementactuel
+     *
+     * @param string $loyerlogementactuel
+     *
+     * @return Demand
+     */
+    public function setLoyerlogementactuel($loyerlogementactuel)
+    {
+        $this->loyerlogementactuel = $loyerlogementactuel;
+
+        return $this;
+    }
+
+    /**
+     * Get loyerlogementactuel
+     *
+     * @return string
+     */
+    public function getLoyerlogementactuel()
+    {
+        return $this->loyerlogementactuel;
+    }
+
+    /**
+     * Set apllogementactuel
+     *
+     * @param string $apllogementactuel
+     *
+     * @return Demand
+     */
+    public function setApllogementactuel($apllogementactuel)
+    {
+        $this->apllogementactuel = $apllogementactuel;
+
+        return $this;
+    }
+
+    /**
+     * Get apllogementactuel
+     *
+     * @return string
+     */
+    public function getApllogementactuel()
+    {
+        return $this->apllogementactuel;
+    }
+
+    /**
+     * Set nbpersonnelogementactuel
+     *
+     * @param string $nbpersonnelogementactuel
+     *
+     * @return Demand
+     */
+    public function setNbpersonnelogementactuel($nbpersonnelogementactuel)
+    {
+        $this->nbpersonnelogementactuel = $nbpersonnelogementactuel;
+
+        return $this;
+    }
+
+    /**
+     * Get nbpersonnelogementactuel
+     *
+     * @return string
+     */
+    public function getNbpersonnelogementactuel()
+    {
+        return $this->nbpersonnelogementactuel;
+    }
+
+    /**
+     * Set categorielogementactuel
+     *
+     * @param string $categorielogementactuel
+     *
+     * @return Demand
+     */
+    public function setCategorielogementactuel($categorielogementactuel)
+    {
+        $this->categorielogementactuel = $categorielogementactuel;
+
+        return $this;
+    }
+
+    /**
+     * Get categorielogementactuel
+     *
+     * @return string
+     */
+    public function getCategorielogementactuel()
+    {
+        return $this->categorielogementactuel;
+    }
+
+    /**
+     * Set typelogementactuel
+     *
+     * @param string $typelogementactuel
+     *
+     * @return Demand
+     */
+    public function setTypelogementactuel($typelogementactuel)
+    {
+        $this->typelogementactuel = $typelogementactuel;
+
+        return $this;
+    }
+
+    /**
+     * Get typelogementactuel
+     *
+     * @return string
+     */
+    public function getTypelogementactuel()
+    {
+        return $this->typelogementactuel;
+    }
+
+    /**
+     * Set surfacelogementactuel
+     *
+     * @param string $surfacelogementactuel
+     *
+     * @return Demand
+     */
+    public function setSurfacelogementactuel($surfacelogementactuel)
+    {
+        $this->surfacelogementactuel = $surfacelogementactuel;
+
+        return $this;
+    }
+
+    /**
+     * Get surfacelogementactuel
+     *
+     * @return string
+     */
+    public function getSurfacelogementactuel()
+    {
+        return $this->surfacelogementactuel;
+    }
+
+    /**
+     * Set typelogementrecherche
+     *
+     * @param string $typelogementrecherche
+     *
+     * @return Demand
+     */
+    public function setTypelogementrecherche($typelogementrecherche)
+    {
+        $this->typelogementrecherche = $typelogementrecherche;
+
+        return $this;
+    }
+
+    /**
+     * Get typelogementrecherche
+     *
+     * @return string
+     */
+    public function getTypelogementrecherche()
+    {
+        return $this->typelogementrecherche;
+    }
+
+    /**
+     * Set categorielogementrecherche
+     *
+     * @param string $categorielogementrecherche
+     *
+     * @return Demand
+     */
+    public function setCategorielogementrecherche($categorielogementrecherche)
+    {
+        $this->categorielogementrecherche = $categorielogementrecherche;
+
+        return $this;
+    }
+
+    /**
+     * Get categorielogementrecherche
+     *
+     * @return string
+     */
+    public function getCategorielogementrecherche()
+    {
+        return $this->categorielogementrecherche;
+    }
+
+    /**
+     * Set loyerlogementrecherche
+     *
+     * @param string $loyerlogementrecherche
+     *
+     * @return Demand
+     */
+    public function setLoyerlogementrecherche($loyerlogementrecherche)
+    {
+        $this->loyerlogementrecherche = $loyerlogementrecherche;
+
+        return $this;
+    }
+
+    /**
+     * Get loyerlogementrecherche
+     *
+     * @return string
+     */
+    public function getLoyerlogementrecherche()
+    {
+        return $this->loyerlogementrecherche;
+    }
+
+    
+
+    /**
+     * Set lastName
+     *
+     * @param string $lastName
+     *
+     * @return Demand
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Get lastName
+     *
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
     }
 }

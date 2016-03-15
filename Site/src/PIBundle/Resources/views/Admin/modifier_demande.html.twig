@@ -91,30 +91,262 @@
             <form action="{{ path('platform_admin_modifier_demande', { 'id': demand.id }) }}" method="post" role="form" novalidate>
 
               <div class="form-group">
+              <p>
+              <label class="labelgenre">Genre: </label>
+              <INPUT type="radio" class="input-xlarge" name="demand[genre]" value="Monsieur" checked="checked">Monsieur
+                <INPUT type="radio" class="input-xlarge" name="demand[genre]" value="Madame"> Madame
+                  <INPUT type="radio" class="input-xlarge" name="demand[genre]" value="Mademoiselle"> Mademoiselle
+                  </input>
+                </p>
+              </div>
+
+              <div class="form-group">
                     <label for="demand_salary">Nom: </label>
-                    <input class="form-control" id="demand_lastname" type="text" required="required" name="demand[lastname]" value={{demand.lastname}}></input>
-                    <p class="help-block">{{ form_errors(form.lastname) }}</p>
-              </div>
+                    <input class="form-control" id="demand_lastName" type="text" required="required" name="demand[lastName]" value={{demand.lastName}}></input>
+                    <p class="help-block">{{ form_errors(form.lastName) }}</p>
+             
 
-              <div class="form-group">
+              
                     <label for="demand_salary">Prénom: </label>
-                    <input class="form-control" id="demand_firstname" type="text" required="required" name="demand[firstname]" value={{demand.firstname}}></input>
-                    <p class="help-block">{{ form_errors(form.firstname) }}</p>
-              </div>
+                    <input class="form-control" id="demand_firstName" type="text" required="required" name="demand[firstName]" value={{demand.firstName}}></input>
+                    <p class="help-block">{{ form_errors(form.firstName) }}</p>
+             
+              
+              <p>
+                  <label class="labeldate">Date de naissance</label>
+                  <input class="form-control" id="demand_date" type="text"  name="demand[date]" value={{demand.date}} ></input>
+                </p>
 
-              <div class="form-group">
+                <p>
+                  <label class="labeltel">Telephone</label>
+                  <input class="form-control" id="demand_telephone" type="text"  name="demand[telephone]" value={{ demand.telephone}} ></input>
+                </p>
+
+
+            
                     <label for="demand_email">Email: </label>
                     <input class="form-control" id="demand_email" type="tetx" required="required" name="demand[email]" value={{demand.email}}></input>
                     <p class="help-block">{{ form_errors(form.salary) }}</p>
+              
+
+
+                <h1>Adresse pour l'envoie du courrier</h1>
+                <div class="form-group">
+                <p>
+                  <label class="labelnumero">Numéro</label>
+                  <input class="form-control" id="demand_numero" type="text"  name="demand[numero]" value={{ demand.numero}}></input>
+                </p>
+              
+                <p>
+                  <label class="labelvoie">Voie</label>
+                  <input class="form-control" id="demand_voie" type="text"  name="demand[voie]" value={{ demand.voie}} ></input>
+                </p>
+             
+                <p>
+                  <label class="labelcomplement">Complément adresse</label>
+                  <input class="form-control" id="demand_complementadresse" type="text"  name="demand[complementadresse]" value={{ demand.complementadresse }}></input>
+                </p>
+                
+                <p>
+                  <label class="labellieu">Lieu-dit</label>
+                  <input class="form-control" id="demand_lieudit" type="text"  name="demand[lieudit]" value={{ demand.lieudit}}></input>
+                </p>
+                <p>
+                  <label class="labelcode">Code postal</label>
+                  <input class="form-control" id="demand_codepostal"  type="text"  name="demand[codepostal]" value={{ demand.codepostal}} ></input>
+                </p>
+                <p>
+                  <label class="labelcommune">Commune</label>
+                  <input class="form-control" id="demand_commune" type="text"  name="demand[commune]" value={{ demand.commune}} ></input>
+                </p>
+
               </div>
 
-              <div class="form-group">
+              <h1>Personne fiscalement à charges</h1>
+                <p>
+              <label class="labelquestionpersonne">Avez-vous des personnes<br> à charges ? </br></label>
+              <INPUT type="radio" class="input-xlarge" name="demand[personnecharge]" value="Oui">Oui
+                <INPUT type="radio" class="input-xlarge" name="demand[personnecharge]" value="Non" checkbox="checkbox"> Non
+                  </input>
+
+                </p>
+                <p>
+                  <label class="labelnbpersonne">Si oui, combien ?</label>
+                  <input class="form-control small" id="demand_nombrepersonnecharge" type="text"  name="demand[nombrepersonnecharge]" value={{ demand.nombrepersonnecharge}}></input>
+                </p>
+
+              </div>
+
+              <div class="info page2">
+                <h1>Le demandeur</h1>    
+                
+                <p>
+                  <label class="labelprofession">Profession</label>
+                  <input class="form-control" id="demand_profession" type="text"  name="demand[profession]"  ></input> 
+                </p>
+
+                <p>
+              <label class="labelstatu">Statut </label>
+              <INPUT type="radio" class="input-xlarge" name="demand[status]" value="CDI (ou fonctionnaire)" checkbox="checkbox">CDI (ou fonctionnaire)
+                <INPUT type="radio" class="input-xlarge" name="demand[status]" value="CDD, stage, intérim">CDD, stage, intérim
+                  <INPUT type="radio" class="input-xlarge" name="demand[status]" value="Artisan, commerçant, profession libérale">Artisan, commerçant, profession libérale
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                      <INPUT type="radio" class="input-xlarge" name="demand[status]" value="Chômage">Chômage
+                     <INPUT type="radio" class="input-xlarge" name="demand[status]" value="Etudiant">Etudiant
+                     <INPUT type="radio" class="input-xlarge" name="demand[status]" value="Retraité">Retraité
+                     <INPUT type="radio" class="input-xlarge" name="demand[status]" value="Autre">Autre
+                     </br>
+                  </input>
+                </p>
+
+                <p>
+                  <label class="labelnomemployeur">Nom de votre employeur</label>
+                  <input class="form-control" id="demand_nomemployeur" type="text"  name="demand[nomemployeur]"></input>
+                  
+                </p>
+
+                <p>
+                  <label class="labelcode">Code postal</label>
+                  <input class="form-control" id="demand_codeemployeur" type="text"  name="demand[codepostalemployeur]" ></input>
+                </p>
+
+                <p>
+                  <label class="labelcommuneemployeur">Commune du lieu de travail</label>
+                  <input class="form-control" id="demand_communeemployeur" type="text"  name="demand[communeemployeur]" ></input>
+                </p>
+                                <h1>Le conjoint ou le futur co-titulaire du bail</h1>    
+                
+
+                <p>
+                  <label class="labelprofession">Profession</label>
+                  <input class="form-control" id="demand_profession" type="text"  name="demand[professionconjoint]"  ></input> 
+                </p>
+
+                <p>
+              <label class="labelstatu">Statut </label>
+              <INPUT type="radio" class="input-xlarge" name="demand[statusconjoint]" value="CDI (ou fonctionnaire)">CDI (ou fonctionnaire)
+                <INPUT type="radio" class="input-xlarge" name="demand[statusconjoint]" value="CDD, stage, intérim">CDD, stage, intérim
+                  <INPUT type="radio" class="input-xlarge" name="demand[statusconjoint]" value="Artisan, commerçant, profession libérale">Artisan, commerçant, profession libérale
+                    <br>
+                      <INPUT type="radio" class="input-xlarge" name="demand[statusconjoint]" value="Chômage">Chômage
+                     <INPUT type="radio" class="input-xlarge" name="demand[statusconjoint]" value="Etudiant">Etudiant
+                     <INPUT type="radio" class="input-xlarge" name="demand[statusconjoint]" value="Retraité">Retraité
+                     <INPUT type="radio" class="input-xlarge" name="demand[statusconjoint]" value="Autre">Autre
+                     </br>
+                  </input>
+                </p>
+                 <p>
+                  <label class="labelnomemployeur">Nom de votre employeur</label>
+                  <input class="form-control" id="demand_nomemployeur" type="text"  name="demand[nomemployeurconjoint]"></input>
+                  
+                </p>
+
+                <p>
+                  <label class="labelcode">Code postal </label>
+
+                  <input class="form-control" id="demand_codeemployeur" type="text"  name="demand[codepostalemployeurconjoint]"></input>
+                </p>
+
+                <p>
+                  <label class="labelcommuneemployeur">Commune du lieu de travail</label>
+                  <input class="form-control" id="demand_communeemployeur" type="text"  name="demand[communeemployeurconjoint]"></input>
+                </p>
+              </div>
+
+              <div class="info page3">
+
+                <h1>Revenu fiscal de référence</h1>
+
+                <p>
+                  <label class="labelsalaire">Montant de l'avis d'imposition sur l'année en cours moins 2</label>
+                  <input class="form-control" id="demand_salary" type="text"  name="demand[salary]"     ></input>
+                </p>
+                <p>
+                  <label class="labelretraite">Montant de l'avis d'imposition sur l'année en cours moins 1</label>
+                  <input class="form-control" id="demand_retraitechomage" type="text"  name="demand[retraite]"     ></input>
+                </p>
+
+                <h1>Ressources Mensuelles</h1>
+                <p>
+                  <label class="labelsalaire">Salaire</label>
+                  <input class="form-control" id="demand_salary" type="text"  name="demand[salary]"     ></input>
+                </p>
+                <p>
+                  <label class="labelretraite">Retraite</label>
+                  <input class="form-control" id="demand_retraitechomage" type="text"  name="demand[retraite]"     ></input>
+                </p>
+                <p>
+                  <label class="labelalloc">Allocation chômage</label>
+                  <input class="form-control" id="demand_allocationchomage" type="text"  name="demand[allocationchomage]"     ></input>
+                </p>
+                <p>
+                  <label class="labelpensionalim">Pension alimentaire</label>
+                  <input class="form-control" id="demand_pensionalimentaire" type="text"  name="demand[pensionalimentaire]"     ></input>
+                </p>
+                <p>
+                  <label class="labelpensioninval">Pension d'invaidité</label>
+                  <input class="form-control" id="demand_pensioninvalidite" type="text"  name="demand[pensioninvalidite]"     ></input>
+                </p>
+                <p>
+                  <label class="labelallocfamilial">Allocation familiale</label>
+                  <input class="form-control" id="demand_allocationfamilial" type="text"  name="demand[allocationfamilial]"     ></input>
+                </p>
+                <p>
+                  <label class="labelrsa">Revenu de soldarité active (RSA)</label>
+                  <input class="form-control" id="demand_rsa" type="text"  name="demand[rsa]"     ></input>
+                </p>
+                <p>
+                  <label class="labelautres">Autres</label>
+                  <input class="form-control" id="demand_autres" type="text"  name="demand[autres]"     ></input>
+                </p>
+
+              </div>
+
+              <div class="info page4">
+                <h1>Logement Actuel</h1>
+                
+
+                <p>
+              <label class="labelsituation">Situation du logement</label>
+              <select class="form-control" id="search_housing_bailleur" type="text"  name="search_housing[bailleur]">
+                                  <option>Location HLM</option>
+                                  <option>Location parc privé</option>
+                                  <option>Autres</option>
+                                </select>
+                </p>
+
+                <p>
+                  <label class="labelparking">Si vous payez un loyer <br>ou une redevance, montant mensuel</br></label>
+                  <input class="form-control" id="demand_parking" type="text"  name="demand[loyerlogementactuel]" ></input>
+                </p>
+                
+                <p>
+                  <label class="labelrdc">Nombre de personne <br>occupant le logement actuel</br></label>
+                  <input class="form-control" id="demand_rdc" type="text"  name="demand[nbpersonnelogementactuel]" ></input>
+                </p>
+                <p>
+                  <label class="labelascenseur">Catégorie</label>
+                  <input class="form-control" id="demand_ascenseur" type="text"  name="demand[categorielogementactuel]" ></input>
+                </p>
+                <p>
+                  <label class="labeltyperecherche">Type de logement</label>
+                  <input class="form-control" id="demand_typelogement" type="text"  name="demand[typelogementactuel]" ></input>
+                </p>
+                
+
+                <p>
+                  <label class='labelsurface'>Surface</label>
+                  <input class="form-control" id="demand_montantmaxi" type="text"  name="demand[surfacelogementactuel]"></input>
+                  <label >m&sup2</label>
+                </p>
+
+              
                     <label for="demand_salary">Salaire: </label>
                     <input class="form-control" id="demand_salary" type="number" required="required" name="demand[salary]" value={{demand.salary}}></input>
                     <p class="help-block">{{ form_errors(form.salary) }}</p>
-              </div>
+             
 
-              <div class="form-group">
+            
                     <label for="demand_locationVillersCentre">Localisation à Villers-centre: </label>
                     <select class="form-control" id="demand_locationVillersCentre" type="text" required="required" name="demand[locationVillersCentre]">
                       {% if demand.locationVillersCentre == "Oui" %}
@@ -127,9 +359,9 @@
                       {%endif%}
                     </select>
                     <p class="help-block">{{ form_errors(form.locationVillersCentre) }}</p>
-              </div>
+            
 
-              <div class="form-group">
+              
                     <label for="demand_locationVillersBas">Localisation à Villers-bas: </label>
                     <select class="form-control" id="demand_locationVillersBas" type="text" required="required" name="demand[locationVillersBas]">
                       {% if demand.locationVillersBas == "Oui" %}
@@ -142,9 +374,9 @@
                       {%endif%}
                     </select>
                     <p class="help-block">{{ form_errors(form.locationVillersBas) }}</p>
-              </div>
+             
 
-              <div class="form-group">
+              
                     <label for="demand_locationClairlieu">Localisation à Clairlieu: </label>
                     <select class="form-control" id="demand_locationClairlieu" type="text" required="required" name="demand[locationClairlieu]">
                       {% if demand.locationClairlieu == "Oui" %}
@@ -157,9 +389,9 @@
                       {%endif%}
                     </select>
                     <p class="help-block">{{ form_errors(form.locationClairlieu) }}</p>
-              </div>
+              
 
-              <div class="form-group">
+              
                     <label for="demand_type1">Type: </label>
                     <select class="form-control" id="demand_type1" type="text" required="required" name="demand[type1]">
                       {% if demand.type1 == "F1" %}
@@ -227,9 +459,9 @@
                       {%endif%}
                     </select>
                     <p class="help-block">{{ form_errors(form.type1) }}</p>
-                </div>
+               
 
-                <div class="form-group">
+               
                     <label for="demand_type2">Autre type: </label>
                     <select class="form-control" id="demand_type2" type="text" required="required" name="demand[type2]">
                       {% if demand.type2 == "Non" %}

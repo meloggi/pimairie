@@ -245,19 +245,14 @@ class User extends BaseUser
      */
     private $montantmaxi;
 
- /**
-     * @var string
-     *
-     * @ORM\Column(name="isAdmin", type="boolean", nullable=true)
-     */
-    private $isAdmin;
+
 
 
 
     public function __construct()
     {
         parent::__construct();
-
+        // your own logic
     }
 
     /**
@@ -1034,43 +1029,5 @@ class User extends BaseUser
     public function getMontantmaxi()
     {
         return $this->montantmaxi;
-    }
-
-    /**
-     * Set isAdmin
-     *
-     * @param boolean $isAdmin
-     *
-     * @return User
-     */
-    public function setIsAdmin($isAdmin)
-    {
-/*
- $email = is_null($email) ? '' : $email;
-    parent::setEmail($email);
-    $this->setUsername($email);
-*/
-if($this->isAdmin){
-            echo "heyyy, c'est baboulinet";
-        $this->setRoles(array('ROLE_ADMIN'));
-    }else{
-         echo "heyyy";
-        $this->setRoles(array('ROLE_USER'));
-    }
-
-
-        $this->isAdmin = $isAdmin;
-  
-        return $this;
-    }
-
-    /**
-     * Get isAdmin
-     *
-     * @return boolean
-     */
-    public function getIsAdmin()
-    {
-        return $this->isAdmin;
     }
 }

@@ -74,13 +74,13 @@
       </ul> 
 
       <div class="well">
-        <ul class="nav nav-tabs">
+        <!-- <ul class="nav nav-tabs">
           <li><a id="actif" class="onglet-actif" href="{{ path('form2') }}" data-toggle="tab">Demande</a></li>
           <li><a id="nonactif" class="onglet"  data-toggle="tab" >Situation Professionnelle</a></li>
           <li><a id="nonactif" class="onglet"  data-toggle="tab">Ressources actuelles</a></li>
           <li><a id="nonactif" class="onglet"  data-toggle="tab">Motif et logement recherché</a></li>
           <li><a id="nonactif" class="onglet"  data-toggle="tab">Téléchargement</a></li>
-        </ul>
+        </ul> -->
         <div id="myTabContent" class="tab-content">
           <div class="tab-pane active in" id="home">
 
@@ -92,13 +92,13 @@
                 
                 <p>  
                   <label class="labelnom">Nom</label>
-                  <input class="input-xlarge" id="demand_nom" type="text" required="required" name="demand[lastname]"  value={{ app.user.firstname}}   ></input>
+                  <input class="input-xlarge" id="demand_nom" type="text" required="required" name="demand[lastName]"  value={{ app.user.firstName}}   ></input>
                 </p>
                 
 
                 <p>
                   <label class="labelprenom">Prénom</label>
-                  <input class="input-xlarge" id="demand_prenom" type="text"  name="demand[firstname]" value={{ app.user.lastname}}></input>
+                  <input class="input-xlarge" id="demand_prenom" type="text"  name="demand[firstName]" value={{ app.user.lastName}}></input>
                 </p>
                 <p>
                   <label class="labeldate">Date de naissance</label>
