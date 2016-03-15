@@ -1,0 +1,186 @@
+{# app/Resources/views/Admin/appartment.html.twig #}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin_Appartements</title>
+
+    {% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    {% endblock %}
+
+    {% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ asset('css/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery-1.10.2.min.js') }}"></script>
+    {% endblock %}
+
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">            
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ path('platform_admin_dashboard') }}">Mairie Villers-lès-Nancy Administrateur</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li><a href="{{ path('platform_admin_dashboard') }}"><i class="fa fa-tachometer"></i> Tableau de bord</a></li>
+                    <li class="active"><a href="{{ path('platform_admin_appartment') }}"><i class="fa fa-building-o "></i> Appartements</a></li>                    
+                    <li><a href="{{ path('platform_admin_demandeur') }}"><i class="fa fa-users"></i> Demandeurs</a></li>
+                    <li><a href="forms.html"><i class="fa fa-bar-chart "></i> Statistiques</a></li>
+                    <li><a href="{{ path('platform_admin_archive') }}"><i class="fa fa-archive"></i> Archives</a></li>                    
+                </ul>
+                <ul class="nav navbar-nav navbar-right navbar-user">
+                    <li class="dropdown messages-dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-triangle"></i> Notifications <span class="badge">6</span> <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header">2 Nouvelles demandes</li>
+                            <li class="message-preview">
+                                <a href="#">
+                                    <span class="avatar"><i class="fa fa-user-plus"></i></span>
+                                    <span class="message">Alain DUPONT</span>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">2 Demandes erronées</li>
+                            <li class="message-preview">
+                                <a href="#">
+                                    <span class="avatar"><i class="fa fa-user-times"></i></span>
+                                    <span class="message">Eric BOMPART</span>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">2 Demandes expirées</li>
+                            <li class="message-preview">
+                                <a href="#">
+                                    <span class="avatar"><i class="fa fa-clock-o"></i></span>
+                                    <span class="message">Antoine BIBOTEUR</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown user-dropdown">
+                       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Admin Mairie<b class="caret"></b></a>
+                       <ul class="dropdown-menu">
+                           <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
+                           <li><a href="#"><i class="fa fa-gear"></i> Réglages</a></li>
+                           <li class="divider"></li>
+                           <li><a href="#"><i class="fa fa-power-off"></i> Déconnection</a></li>
+                       </ul>
+                   </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
+          <div class="row">
+          <a type="button" class="btn btn-success" href="{{ path('platform_admin_appartment') }}"><i class="fa fa-chevron-left"></i> Retour</a>
+          <h1>Ajouter un nouveau logement</h1>
+          </div>
+          <div class="row">
+          <div class="col-lg-12">
+            <form action="{{path('platform_admin_ajouter_appartment')}}" method="post" role="form">
+                
+               <div class="form-group">
+                    <label for="location">{{ form_label(form.location) }}</label>
+                    <select class="form-control" id="housing_location" type="text" required="required" name="housing[location]">
+                      <option>Villers-centre</option>
+                      <option>Villers-bas</option>
+                      <option>Clairlieu</option>
+                      <option>Autre</option>
+                    </select>
+                    <p class="help-block">{{ form_errors(form.location) }}</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="bailleur">{{ form_label(form.bailleur) }}</label>
+                    <select class="form-control" id="housing_bailleur" type="text" required="required" name="housing[bailleur]">
+                      <option>BATIGERE</option>
+                      <option>3F - EST HABITAT CONSTRUCTION</option>
+                      <option>MEURTHE ET MOSELLE HABITAT</option>
+                      <option>OFFICE PUBLIC DE L HABITAT</option>
+                      <option>SOCIETE LORRAINE D HABITAT</option>
+                      <option>Autre</option>
+                    </select>
+                    <p class="help-block">{{ form_errors(form.bailleur) }}</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="adress">{{ form_label(form.adress) }}</label>
+                    <input class="form-control" id="housing_adress" type="text" required="required" name="housing[adress]"></input>
+                    <p class="help-block">{{ form_errors(form.adress) }}</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="residence">{{ form_label(form.residence) }}</label>
+                    <input class="form-control" id="housing_residence" type="text" required="required" name="housing[residence]"></input>
+                    <p class="help-block">{{ form_errors(form.residence) }}</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="type">{{ form_label(form.type) }}</label>
+                    <select class="form-control" id="housing_type" type="text" required="required" name="housing[type]">
+                      <option>F1</option>
+                      <option>F1 bis</option>
+                      <option>F2</option>
+                      <option>F3</option>
+                      <option>F4</option>
+                      <option>F5</option>
+                      <option>F6</option>
+                    </select>
+                    <p class="help-block">{{ form_errors(form.type) }}</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="floor">{{ form_label(form.floor) }}</label>
+                    <input class="form-control" id="housing_floor" type="number" required="required" name="housing[floor]"></input>
+                    <p class="help-block">{{ form_errors(form.floor) }}</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="rent">{{ form_label(form.rent) }}</label>
+                    <input class="form-control" id="housing_rent" type="number" required="required" name="housing[rent]"></input>
+                    <p class="help-block">{{ form_errors(form.rent) }}</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="numero">{{ form_label(form.numero) }}</label>
+                    <input class="form-control" id="housing_numero" type="number" required="required" name="housing[numero]"></input>
+                    <p class="help-block">{{ form_errors(form.numero) }}</p>
+                </div>
+
+                <div class="form-group">
+                <label>{{ form_label(form.contingent) }}</label>
+                  <select class="form-control" id="housing_contingent" type="text" required="required" name="housing[contingent]">
+                    <option>Non</option>
+                    <option>Oui</option>
+                  </select>
+                  <p class="help-block">{{ form_errors(form.contingent) }}</p> 
+                </label>
+                </div>
+
+                <div class="form-group">
+                <label>Notes: </label>
+                    <textarea id="housing_note" name="housing[note]"maxlength="200" class="form-control" rows="3"></textarea>
+                    <p class="help-block">Maximum 200 caractères. Non communiqué au demandeur.</p>
+                </div>
+
+                {{ form_widget(form._token) }}
+                <input type="submit" class="btn btn-success" value="Valider" style="margin-bottom: 50px; margin-top: 20px" />
+
+            </form>
+          </div>
+        </div>
+    </div>
+
+</body>
+</html>
