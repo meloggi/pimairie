@@ -342,7 +342,6 @@ class AdminController extends Controller
 
     public function delete_demand($id){
         $em = $this->getDoctrine()->getManager();
-        echo $is;
         $demand = $em->getRepository('PIBundle:Demand')->find($id);
         $em->remove($demand);
         $em->flush();

@@ -28,7 +28,7 @@ class DefaultController extends Controller
     public function accueilAction()
     {
 
-        return $this->render('PIBundle:Default:accueil2.html.twig');
+    return $this->render('PIBundle:Default:accueil2.html.twig');
     }
 
     public function form1Action()
@@ -63,7 +63,7 @@ class DefaultController extends Controller
                 ->setDateCreation(new \DateTime());
             $em->persist($demand);
             $em->flush();
-            
+              $this->envoiMail();
             return $this->render('PIBundle:Default:form3.html.twig', array('form' => $form->createView(), 'demand' => $demand));
         }
         return $this->render('PIBundle:Default:form2.html.twig', array('form' => $form->createView(), 'demand' => $demand));
@@ -89,7 +89,7 @@ class DefaultController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($demand[$taille-1]);
                 $em->flush();
-
+                  $this->envoiMail();
                 return $this->render('PIBundle:Default:form2_modifier.html.twig', array('form' => $form->createView(), 'demand' => $demand[$taille-1]));
             }
 
@@ -187,6 +187,10 @@ public function form3Action(Request $request)
             $em->persist($demand1[$taille-1]);
             $em->flush();
             
+            $this->envoiMail();
+
+
+
             return $this->render('PIBundle:Default:form3.html.twig', array('form' => $form->createView(), 'demand' => $demand1[$taille-1]));
         }
         return $this->render('PIBundle:Default:form3.html.twig', array('form' => $form->createView(), 'demand' => $demand1[$taille-1]));
@@ -197,6 +201,25 @@ public function form3Action(Request $request)
 
 }
 
+public function envoiMail()
+{
+            //envoie d'un mail pour prévenir de la maj de la demande
+    $message = \Swift_Message::newInstance()
+        ->setSubject('Nouvelle demande de logement social')
+        ->setFrom('demandelogementvillers@gmail.com')
+        ->setTo('demandelogementvillers@gmail.com')
+        ->setBody(
+            $this->renderView(
+                // app/Resources/views/Emails/registration.html.twig
+                'PIBundle:Emails:registration.html.twig'
+            ),
+            'text/html'
+        )
+      
+    ;
+    $this->get('mailer')->send($message);
 
+
+}
 
 }

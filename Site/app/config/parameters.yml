@@ -5,8 +5,8 @@ parameters:
     database_name: PIDB
     mailer_transport: smtp
     mailer_host: 127.0.0.1
-    mailer_user: null
-    mailer_password: null
+    mailer_user: demandelogementvillers@gmail.com
+    mailer_password: PI2016mairie
     secret: 42af53db8766d372f5fb46c12e68c1f74b9f9ca1
     database_user: root
     database_password: PI2016mairie
