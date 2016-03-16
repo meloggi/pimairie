@@ -1,0 +1,41 @@
+{% trans_default_domain 'PIBundle' %}
+
+ <form name="formAdmin" action="{{path('platform_ajouter_admin_action')}}" method="post">     
+
+      <!--  ici pour modifier le CSS du formulaire de registration Mr Brian-->
+
+      <div class="form-group" id="fos_user_registration_form">
+      <div>
+        {{ form_widget(formAdmin.email, { 'attr': {'class': 'form-control', 'placeholder': 'formAdmin.email'|trans } }) }}
+        {{ form_errors(formAdmin.email) }}
+</div>
+
+     <div>
+        {{ form_widget(formAdmin.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'formAdmin.password'|trans } }) }}
+        {{ form_errors(formAdmin.plainPassword.first) }}
+</div>
+
+        <div>
+        {{ form_widget(formAdmin.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'formAdmin.password_confirmation'|trans } }) }}
+        {{ form_errors(formAdmin.plainPassword.second) }}
+</div>
+
+        <div>
+     {{ form_widget(formAdmin.firstname, { 'attr': {'class': 'form-control', 'placeholder': 'prénom' } }) }}
+        {{ form_errors(formAdmin.firstname) }}
+
+          {{ form_widget(formAdmin.lastname, { 'attr': {'class': 'form-control', 'placeholder': 'nom' } }) }}
+        {{ form_errors(formAdmin.lastname) }}
+</div>
+
+
+     
+     
+      
+
+    </div>
+    <div>
+        <input type="submit" value="{{ 'Valider' }}" />
+      
+    </div>
+</form>
