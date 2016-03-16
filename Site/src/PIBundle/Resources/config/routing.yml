@@ -2,146 +2,137 @@ homepage:
     path:     /
     defaults: { _controller: PIBundle:Default:accueil }
 
-
-admin_homepage:
-    path:     /accueil
-    defaults: { _controller: PIBundle:Admin:index }
-
 form1:
-    path:     /form1
+    path:     /user/form1
     defaults: { _controller: PIBundle:Default:form1 }
-
-ajouter:
-    path:     /ajouter
-    defaults: { _controller: PIBundle:Default:ajouter}
 
 
 platform_admin_dashboard:
-    path:     /dashboard
+    path:     /admin/dashboard
     defaults: { _controller: PIBundle:Admin:dashboard }
 
 platform_admin_statistiques:
-    path:     /statistiques
+    path:     /admin/statistiques
     defaults: { _controller: PIBundle:Admin:statistiques }
 
 platform_admin_appartment:
-    path:     /appartment
+    path:     /admin/appartment
     defaults: { _controller: PIBundle:Admin:appartment }
 
 platform_admin_ajouter_appartment:
-    path:     /ajouter_appartment
+    path:     /admin/ajouter_appartment
     defaults: { _controller: PIBundle:Admin:ajouter_appartment }
 
 platform_admin_modifier_appartment:
-    path:     /modifier_appartment/{id}
+    path:     /admin/modifier_appartment/{id}
     defaults: { _controller: PIBundle:Admin:modifier_appartment }
 
 platform_admin_demandeur:
-    path:     /demandeur
+    path:     /admin/demandeur
     defaults: { _controller: PIBundle:Admin:demandeur }
 
 platform_admin_ajouter_demandeur:
-    path:     /ajouter_demandeur
+    path:     /admin/ajouter_demandeur
     defaults: { _controller: PIBundle:Admin:ajouter_demandeur }
 
 platform_admin_modifier_demandeur:
-    path:     /modifier_demandeur/{id}
+    path:     /admin/modifier_demandeur/{id}
     defaults: { _controller: PIBundle:Admin:modifier_demandeur }
 
 platform_admin_modifier_demande:
-    path:     /modifier_demande/{id}
+    path:     /admin/modifier_demande/{id}
     defaults: { _controller: PIBundle:Admin:modifier_demande }
 
 platform_admin_ajouter_demande:
-    path:     /ajouter_demande/{id}
+    path:     /admin/ajouter_demande/{id}
     defaults: { _controller: PIBundle:Admin:ajouter_demande }
 
 platform_admin_etat_demande:
-    path:     /etat_demande/{id}
+    path:     /admin/etat_demande/{id}
     defaults: { _controller: PIBundle:Admin:etat_demande }
 
 platform_admin_affichage_demande:
-    path:     /affichage_demande/{id}
+    path:     /admin/affichage_demande/{id}
     defaults: { _controller: PIBundle:Admin:affichage_demande }
 
 platform_admin_modifier_demande:
-    path:     /modifier_demande/{id}
+    path:     /admin/modifier_demande/{id}
     defaults: { _controller: PIBundle:Admin:modifier_demande }
 
 platform_admin_valider_demande:
-    path:     /valider_demande
+    path:     /admin/valider_demande
     defaults: { _controller: PIBundle:Admin:valider_demande }
 
 platform_admin_confirmer_demande:
-    path:     /confirmer_demande/{id}
+    path:     /admin/confirmer_demande/{id}
     defaults: { _controller: PIBundle:Admin:confirmer_demande }
 
 platform_admin_refuser_demande:
-    path:     /refuser_demande/{id}
+    path:     /admin/refuser_demande/{id}
     defaults: { _controller: PIBundle:Admin:refuser_demande }
 
 platform_admin_archiver_demande:
-    path:     /archiver_demande/{id}
+    path:     /admin/archiver_demande/{id}
     defaults: { _controller: PIBundle:Admin:archiver_demande }
 
 platform_admin_attribution_demande:
-    path:     /attribution_demande/{id}
+    path:     /admin/attribution_demande/{id}
     defaults: { _controller: PIBundle:Admin:attribution_demande }
 
 platform_admin_attribuer_demande:
-    path:     /attribuer_demande/{id}/{idappart}
+    path:     /admin/attribuer_demande/{id}/{idappart}
     defaults: { _controller: PIBundle:Admin:attribuer_demande }
 
 platform_admin_valider_attribution_demande:
-    path:     /valider_attribution_demande/{id}/{idappart}
+    path:     /admin/valider_attribution_demande/{id}/{idappart}
     defaults: { _controller: PIBundle:Admin:valider_attribution_demande }
 
 platform_admin_attribution_logement:
-    path:     /attribution_logement/{id}
+    path:     /admin/attribution_logement/{id}
     defaults: { _controller: PIBundle:Admin:attribution_logement }
 
 platform_admin_attribuer_logement:
-    path:     /attribuer_logement/{id}/{iddemand}
+    path:     /admin/attribuer_logement/{id}/{iddemand}
     defaults: { _controller: PIBundle:Admin:attribuer_logement }
 
 platform_admin_valider_attribution_logement:
-    path:     /valider_attribution_logement/{id}/{iddemand}
+    path:     /admin/valider_attribution_logement/{id}/{iddemand}
     defaults: { _controller: PIBundle:Admin:valider_attribution_logement }
 
 platform_admin_archive:
-    path:     /archive
+    path:     /admin/archive
     defaults: { _controller: PIBundle:Admin:archive }
 
 platform_admin_liberer_logement:
-    path:     /liberer_logment/{id}
+    path:     /admin/liberer_logment/{id}
     defaults: { _controller: PIBundle:Admin:liberer_logement }
 
 platform_admin_affichage_archive:
-    path:     /affichage_archive/{id}
+    path:     /admin/affichage_archive/{id}
     defaults: { _controller: PIBundle:Admin:affichage_archive }
 
 platform_admin_affichage_logement_archive:
-    path:     /affichage_logement_archive/{id}
+    path:     /admin/affichage_logement_archive/{id}
     defaults: { _controller: PIBundle:Admin:affichage_logement_archive }
 
 platform_admin_liberer_demande:
-    path:     /liberer_demande/{id}
+    path:     /admin/liberer_demande/{id}
     defaults: { _controller: PIBundle:Admin:liberer_demande }
 
 platform_admin_afficher_locataire:
-    path:     /afficher_locataire/{id}
+    path:     /admin/afficher_locataire/{id}
     defaults: { _controller: PIBundle:Admin:afficher_locataire }
 
 platform_admin_delete_demand:
-    path:     /affichage_archive/{iduser}/{id}
+    path:     /admin/affichage_archive/{iduser}/{id}
     defaults: { _controller: PIBundle:Admin:delete_demand }
 
 platform_admin_delete_appartment:
-    path:     /appartment/{id}
+    path:     /admin/appartment/{id}
     defaults: { _controller: PIBundle:Admin:delete_appartment }
 
 platform_admin_delete_user:
-    path:     /demandeur/{id}
+    path:     /admin/demandeur/{id}
     defaults: { _controller: PIBundle:Admin:delete_user }
 
 # platform_admin_delete_demand:
@@ -149,35 +140,31 @@ platform_admin_delete_user:
 #     defaults: { _controller: PIBundle:Admin:delete_demand }
 
 form3:
-    path:     /form3
+    path:     /user/form3
     defaults: { _controller: PIBundle:Default:form3 } 
 contact:
     path:     /contact
     defaults: { _controller: PIBundle:Default:contact }
 form2:
-     path:     /form2
+     path:     /user/form2
      defaults: { _controller: PIBundle:Default:form2 }
  
 form2_modifier:
-     path:     /form2_modifier
+     path:     /user/form2_modifier
      defaults: { _controller: PIBundle:Default:form2_modifier }
  
  
  
-form_pro:
-     path:     /form_pro
-     defaults: { _controller: PIBundle:Default:form_pro }
- 
 form_logement:
-     path:     /form_logement
+     path:     /user/form_logement
      defaults: { _controller: PIBundle:Default:form_logement }
  
 form_motif:
-     path:     /form_motif
+     path:     /user/form_motif
      defaults: { _controller: PIBundle:Default:form_motif }
  
 form_ressource:
-     path:     /form_ressource
+     path:     /user/form_ressource
      defaults: { _controller: PIBundle:Default:form_ressource}
  
 form_justificatif:
@@ -188,6 +175,3 @@ telecharger:
      path:     /telecharger
      defaults: { _controller: PIBundle:Default:telecharger }
   
-ajouter:
-     path:     /ajouter
-     defaults: { _controller: PIBundle:Default:ajouter}

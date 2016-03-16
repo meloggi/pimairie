@@ -75,7 +75,7 @@
                            <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
                            <li><a href="#"><i class="fa fa-gear"></i> Réglages</a></li>
                            <li class="divider"></li>
-                           <li><a href="#"><i class="fa fa-power-off"></i> Déconnection</a></li>
+                           <li><a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-power-off"></i> Déconnection</a></li>
                        </ul>
                    </li>
                 </ul>
@@ -151,7 +151,7 @@
                                     </td>
                                     <td>
                                       <a type="button" class="btn btn-warning btn-xs" href="{{ path('platform_admin_modifier_demandeur', { 'id': demandeur.id }) }}"><i class="fa fa-pencil"></i> Editer</a>
-                                      <a type="button" class="btn btn-danger btn-xs" href="{{ path('platform_admin_delete_user', { 'id': demandeur.id }) }}"><i class="fa fa-trash-o"></i> Supprimer</a>
+                                      <a type="button" class="btn btn-danger btn-xs" href="{{ path('platform_admin_delete_user', { 'id': demandeur.id }) }}" OnClick="return confirm('Voulez-vous vraiment refuser la demande ?');"><i class="fa fa-trash-o"></i> Supprimer</a>
                                     </td>
                                   </tr>
                                   {%endfor%}

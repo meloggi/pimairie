@@ -28,6 +28,30 @@ class DefaultController extends Controller
     public function accueilAction()
     {
 
+       $token=$this->get('security.token_storage')->getToken();
+
+       $roles = $token->getRoles();
+        // On transforme le tableau d'instance en tableau simple
+        $rolesTab = array_map(function($role){ 
+          return $role->getRole(); 
+        }, $roles);
+        // S'il s'agit d'un admin ou d'un super admin on le redirige vers le backoffice
+        if (in_array('ROLE_ADMIN', $rolesTab, true) || in_array('ROLE_SUPER_ADMIN', $rolesTab, true)){
+         $em = $this->getDoctrine()->getManager();
+        $list_demand_new = $em->getRepository('PIBundle:Demand')->findBy(array('confirmed' => "Non", 'wrong' => "Non", 'archived' =>"Non"));
+        $list_demand_wrong = $em->getRepository('PIBundle:Demand')->findBy(array('wrong' => "Oui", 'archived' => "Non"));
+        $list_demand_expired = $em->getRepository('PIBundle:Demand')->findBy(array('archived' => "Non"));
+        $list_demand_free = $em->getRepository('PIBundle:Demand')->findBy(array('confirmed' => "Oui", 'archived' =>"Non"));
+        $date = new \DateTime();
+        $interval = new \DateInterval('P11M');
+        $date->sub($interval);
+        return $this->render('PIBundle:Admin:dashboard.html.twig', array('list_demand_new' => $list_demand_new, 'list_demand_free' => $list_demand_free, 'list_demand_wrong' => $list_demand_wrong, 'list_demand_expired' => $list_demand_expired, 'date' => $date));
+ }
+         // sinon il s'agit d'un membre
+        else
+           return $this->render('PIBundle:Default:accueil2.html.twig');
+       
+
         return $this->render('PIBundle:Default:accueil2.html.twig');
     }
 
