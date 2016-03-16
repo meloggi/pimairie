@@ -67,8 +67,8 @@
     </div>
     <ul class="main_menu">
       <li class="main_menu"><a href="{{ path('homepage') }}">Home</a></li>
-   <!--    <li class="main_menu"><a href="{{ path('form1') }}">Créer une demande</a>
-        <li class="main_menu"><a href="#">Accéder à ma demande</a> -->
+   <!--    <li class="main_menu"><a href="{{ path('form1') }}">Créer une demande</a> -->
+        <li class="main_menu"><a {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %} href="{{ path('form3') }}" {% else %} href="{{ path('fos_user_security_login') }}" {% endif %} >Accéder à ma demande</a>
           <li class="main_menu"><a>Contact</a></li>
         </li>
       </ul> 
@@ -88,31 +88,41 @@
             <form action="{{path('form2_modifier')}}" method="post" role="form">
 
               <div class="info page1">
-                <h1>Coordonnées</h1>
-                
-                <p>  
-                  <label class="labelnom">Nom</label>
-                  <input class="input-xlarge" id="demand_nom" type="text" required="required" name="demand[lastName]"  value={{ app.user.firstName}}   ></input>
-                </p>
-                
+            <h1>Coordonnées</h1>
+
+             <p>
+              <label class="labelgenre">Civilité<span class="obligatoire"> *</span></label>
+              <select class="input-xlarge" id="search_housing_bailleur" type="text"   name="demand[genre]" value={{demand.genre}} >
+                                  <option>Monsieur</option>
+                                  <option>Madame</option>
+                                  <option>Mademoiselle</option>
+              </select>
+              </p>
+
+            <p>  
+              <label class="labelnom">Nom<span class="obligatoire"> *</span></label>
+              <input class="input-xlarge" id="demand_lastName" type="text"  name="demand[lastName]"  value={{ app.user.lastName}}   ></input>
+            </p>
+
+
+            <p>
+              <label class="labelprenom">Prénom<span class="obligatoire"> *</span></label>
+              <input class="input-xlarge" id="demand_firstName  " type="text"  name="demand[firstName]" value={{ app.user.firstName}} ></input>
+            </p>
 
                 <p>
-                  <label class="labelprenom">Prénom</label>
-                  <input class="input-xlarge" id="demand_prenom" type="text"  name="demand[firstName]" value={{ app.user.lastName}}></input>
-                </p>
-                <p>
-                  <label class="labeldate">Date de naissance</label>
-                  <input class="input-xlarge" id="demand_date" type="text"  name="demand[date]" value={{ demand.date}} ></input>
+                  <label class="labeldate">Date de naissance<span class="obligatoire"> *</span></label>
+                  <input class="input-xlarge" id="demand_date" type="text"  name="demand[date]" value={{demand.date}} ></input>
                 </p>
 
                 <p>
                   <label class="labeltel">Telephone</label>
-                  <input class="input-xlarge" id="demand_telephone" type="text"  name="demand[telephone]" value={{ demand.telephone}}></input>
+                  <input class="input-xlarge" id="demand_telephone" type="text"  name="demand[telephone]" value={{ demand.telephone}} ></input>
                 </p>
 
                 <p>
-                  <label class="labelmail">Mail</label>
-                  <input class="input-xlarge" id="demand_mail" type="text"  name="demand[email]" value={{ app.user.username}}></input>
+                  <label class="labelmail">Mail : {{ app.user.username }}</label>
+                  
                 </p>
 
               </div>
@@ -123,24 +133,24 @@
                   <input class="input-xlarge" id="demand_numero" type="text"  name="demand[numero]" value={{ demand.numero}}></input>
                 </p>
                 <p>
-                  <label class="labelvoie">Voie</label>
-                  <input class="input-xlarge" id="demand_voie" type="text"  name="demand[voie]" value={{ demand.voie}}></input>
+                  <label class="labelvoie">Voie<span class="obligatoire"> *</span></label>
+                  <input class="input-xlarge" id="demand_voie" type="text"  name="demand[voie]" value={{ demand.voie}} ></input>
                 </p>
                 <p>
                   <label class="labelcomplement">Complément adresse</label>
-                  <input class="input-xlarge" id="demand_complementadresse" type="text"  name="demand[complementadresse]" value={{ demand.complementadresse }}></input>
+                  <input class="input-xlarge" id="demand_complementadresse" type="text" required="required" name="demand[complementadresse]" value={{ demand.complementadresse }}></input>
                 </p>
                 <p>
                   <label class="labellieu">Lieu-dit</label>
                   <input class="input-xlarge" id="demand_lieudit" type="text"  name="demand[lieudit]" value={{ demand.lieudit}}></input>
                 </p>
                 <p>
-                  <label class="labelcode">Code postal</label>
-                  <input class="input-xlarge" id="demand_codepostal" type="text"  name="demand[codepostal]" value={{ demand.codepostal}}></input>
+                  <label class="labelcode">Code postal<span class="obligatoire"> *</span></label>
+                  <input class="input-xlarge" id="demand_codepostal"  type="text"  name="demand[codepostal]" value={{ demand.codepostal}} ></input>
                 </p>
                 <p>
-                  <label class="labelcommune">Commune</label>
-                  <input class="input-xlarge" id="demand_commune" type="text"  name="demand[commune]" value={{ demand.commune}}></input>
+                  <label class="labelcommune">Commune<span class="obligatoire"> *</span></label>
+                  <input class="input-xlarge" id="demand_commune" type="text"  name="demand[commune]" value={{ demand.commune}} ></input>
                 </p>
 
               </div>
@@ -148,113 +158,250 @@
               <div class="info page1">
                 <h1>Personne fiscalement à charges</h1>
                 <p>
-                  <label class="labelpersonne">Personne à charges</label>
-                  <input class="input-xlarge" id="demand_personnecharge" type="text"  name="demand[personnecharge]" value={{ demand.personnecharge}}></input>
+              <label class="labelquestionpersonne">Avez-vous des personnes<br> à charges ? </br></label>
+              <INPUT type="radio" class="input-xlarge" name="demand[personnecharge]" value={{demand.personnecharge}}>Oui
+                <INPUT type="radio" class="input-xlarge" name="demand[personnecharge]" value="Non" checkbox="checkbox"> Non
+                  </input>
+
                 </p>
                 <p>
-                  <label class="labelnbpersonne">Si oui combien ?</label>
-                  <input class="input-xlarge" id="demand_nombrepersonnecharge" type="text"  name="demand[nombrepersonnecharge]" value={{ demand.nombrepersonnecharge}}></input>
+                  <label class="labelnbpersonne">Si oui, combien ?</label>
+                  <input class="input-xlarge small" id="demand_nombrepersonnecharge" type="text"  name="demand[nombrepersonnecharge]" value={{ demand.nombrepersonnecharge}}></input>
                 </p>
 
               </div>
 
-
               <div class="info page2">
-                <h1>Coordonnées</h1>    
+                <h1>Le demandeur</h1>    
+                
+                <p>
+                  <label class="labelprofession">Profession</label>
+                  <input class="input-xlarge" id="demand_profession" type="text"  name="demand[profession]" value={{demand.profession}} ></input> 
+                </p>
+
+                <p>
+              <label class="labelstatu">Statut <span class="obligatoire"> *</span></label>
+              <INPUT type="radio" class="input-xlarge" name="demand[status]"  value={{demand.status}} checkbox="checkbox" >CDI (ou fonctionnaire)
+                <INPUT type="radio" class="input-xlarge" name="demand[status]" value="CDD, stage, intérim">CDD, stage, intérim
+                  <INPUT type="radio" class="input-xlarge" name="demand[status]" value="Artisan, commerçant, profession libérale">Artisan, commerçant, profession libérale
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                      <INPUT type="radio" class="input-xlarge" name="demand[status]" value="Chômage">Chômage
+                     <INPUT type="radio" class="input-xlarge" name="demand[status]" value="Etudiant">Etudiant
+                     <INPUT type="radio" class="input-xlarge" name="demand[status]" value="Retraité">Retraité
+                     <INPUT type="radio" class="input-xlarge" name="demand[status]" value="Autre">Autre
+                     </br>
+                  </input>
+                </p>
+
+                <p>
+                  <label class="labelnomemployeur">Nom de votre employeur<span class="obligatoire"> *</span></label>
+                  <input class="input-xlarge" id="demand_nomemployeur" type="text"  name="demand[nomemployeur]" value={{demand.nomemployeur}} ></input>
+                  
+                </p>
+
+                <p>
+                  <label class="labelcode">Code postal<span class="obligatoire"> *</span></label>
+                  <input class="input-xlarge" id="demand_codeemployeur" type="text"  name="demand[codepostalemployeur]" value={{demand.codepostalemployeur}} ></input>
+                </p>
+
+                <p>
+                  <label class="labelcommuneemployeur">Commune du lieu de travail<span class="obligatoire"> *</span></label>
+                  <input class="input-xlarge" id="demand_communeemployeur" type="text"  name="demand[communeemployeur]" value={{demand.communeemployeur}} ></input>
+                </p>
+                                <h1>Le conjoint ou le futur co-titulaire du bail</h1>    
                 
 
                 <p>
                   <label class="labelprofession">Profession</label>
-                  <input class="input-xlarge" id="demand_profession" type="text"  name="demand[profession]"  ></input>
-                  
+                  <input class="input-xlarge" id="demand_profession" type="text"  name="demand[professionconjoint]"  value={{demand.professionconjoint}}></input> 
                 </p>
 
                 <p>
+              <label class="labelstatu">Statut </label>
+              <INPUT type="radio" class="input-xlarge" name="demand[statusconjoint]" value={{demand.statusconjoint}} >CDI (ou fonctionnaire)
+                <INPUT type="radio" class="input-xlarge" name="demand[statusconjoint]" value="CDD, stage, intérim">CDD, stage, intérim
+                  <INPUT type="radio" class="input-xlarge" name="demand[statusconjoint]" value="Artisan, commerçant, profession libérale">Artisan, commerçant, profession libérale
+                    <br>
+                      <INPUT type="radio" class="input-xlarge" name="demand[statusconjoint]" value="Chômage">Chômage
+                     <INPUT type="radio" class="input-xlarge" name="demand[statusconjoint]" value="Etudiant">Etudiant
+                     <INPUT type="radio" class="input-xlarge" name="demand[statusconjoint]" value="Retraité">Retraité
+                     <INPUT type="radio" class="input-xlarge" name="demand[statusconjoint]" value="Autre">Autre
+                     </br>
+                  </input>
+                </p>
+                 <p>
                   <label class="labelnomemployeur">Nom de votre employeur</label>
-                  <input class="input-xlarge" id="demand_nomemployeur" type="text"  name="demand[nomemployeur]"></input>
+                  <input class="input-xlarge" id="demand_nomemployeur" type="text"  name="demand[nomemployeurconjoint]" value={{demand.nomemployeurconjoint}}></input>
                   
                 </p>
 
                 <p>
-                  <label class="labelcode">Code postal</label>
-                  <input class="input-xlarge" id="demand_codeemployeur" type="text"  name="demand[codepostalemployeur]"></input>
+                  <label class="labelcode">Code postal </label>
+
+                  <input class="input-xlarge" id="demand_codeemployeur" type="text"  name="demand[codepostalemployeurconjoint]" value={{demand.codepostalemployeurconjoint}}></input>
                 </p>
 
                 <p>
                   <label class="labelcommuneemployeur">Commune du lieu de travail</label>
-                  <input class="input-xlarge" id="demand_communeemployeur" type="text"  name="demand[communeemployeur]"></input>
+                  <input class="input-xlarge" id="demand_communeemployeur" type="text"  name="demand[communeemployeurconjoint]" value={{demand.communeemployeurconjoint}}></input>
                 </p>
-
               </div>
 
               <div class="info page3">
+
+                <h1>Revenu fiscal de référence</h1>
+
+                <p>
+                  <label class="labelsalaire">Montant de l'avis d'imposition sur l'année en cours moins 2</label>
+                  <input class="input-xlarge" id="demand_salary" type="text"  name="demand[salary]"     ></input>
+                </p>
+                <p>
+                  <label class="labelretraite">Montant de l'avis d'imposition sur l'année en cours moins 1</label>
+                  <input class="input-xlarge" id="demand_retraitechomage" type="text"  name="demand[retraite]"     ></input>
+                </p>
+
                 <h1>Ressources Mensuelles</h1>
                 <p>
                   <label class="labelsalaire">Salaire</label>
-                  <input class="input-xlarge" id="demand_salaire" type="text"  name="demand[salary]"     ></input>
+                  <input class="input-xlarge" id="demand_salary" type="text"  name="demand[salary]" value={{demand.salary}}    ></input>
                 </p>
                 <p>
                   <label class="labelretraite">Retraite</label>
-                  <input class="input-xlarge" id="demand_retraitechomage" type="text"  name="demand[retraite]"     ></input>
+                  <input class="input-xlarge" id="demand_retraitechomage" type="text"  name="demand[retraite]"   value={{demand.retraite}}  ></input>
                 </p>
                 <p>
                   <label class="labelalloc">Allocation chômage</label>
-                  <input class="input-xlarge" id="demand_allocationchomage" type="text"  name="demand[allocationchomage]"     ></input>
+                  <input class="input-xlarge" id="demand_allocationchomage" type="text"  name="demand[allocationchomage]"  value={{demand.allocationchomage}}   ></input>
                 </p>
                 <p>
                   <label class="labelpensionalim">Pension alimentaire</label>
-                  <input class="input-xlarge" id="demand_pensionalimentaire" type="text"  name="demand[pensionalimentaire]"     ></input>
+                  <input class="input-xlarge" id="demand_pensionalimentaire" type="text"  name="demand[pensionalimentaire]"  value={{demand.pensionalimentaire}}   ></input>
                 </p>
                 <p>
                   <label class="labelpensioninval">Pension d'invaidité</label>
-                  <input class="input-xlarge" id="demand_pensioninvalidite" type="text"  name="demand[pensioninvalidite]"     ></input>
+                  <input class="input-xlarge" id="demand_pensioninvalidite" type="text"  name="demand[pensioninvalidite]"  value={{demand.pensioninvalidite}}   ></input>
                 </p>
                 <p>
                   <label class="labelallocfamilial">Allocation familiale</label>
-                  <input class="input-xlarge" id="demand_allocationfamilial" type="text"  name="demand[allocationfamilial]"     ></input>
+                  <input class="input-xlarge" id="demand_allocationfamilial" type="text"  name="demand[allocationfamilial]"  value={{demand.allocationfamilial}}   ></input>
                 </p>
                 <p>
                   <label class="labelrsa">Revenu de soldarité active (RSA)</label>
-                  <input class="input-xlarge" id="demand_rsa" type="text"  name="demand[rsa]"     ></input>
+                  <input class="input-xlarge" id="demand_rsa" type="text"  name="demand[rsa]"  value={{demand.rsa}}   ></input>
                 </p>
                 <p>
                   <label class="labelautres">Autres</label>
-                  <input class="input-xlarge" id="demand_autres" type="text"  name="demand[autres]"     ></input>
+                  <input class="input-xlarge" id="demand_autres" type="text"  name="demand[autres]"  value={{demand.autres}}   ></input>
                 </p>
 
               </div>
 
-              <!-- <div class="info page4">
-                <h1>Caractéristiques du logement recherché</h1>
+              <div class="info page4">
+                <h1>Logement Actuel</h1>
+                
+
                 <p>
-                  <label class="labelsituation">Situation de logement</label>
-                  <input class="input-xlarge" id="demand_situation" type="text"  name="demand[situation]" ></input>
-                </p>
-                <p>
-                  <label class="labelparking">Parking</label>
-                  <input class="input-xlarge" id="demand_parking" type="text"  name="demand[parking]" ></input>
-                </p>
-                <p>
-                  <label class="labeltype">Type de logement</label>
-                  <input class="input-xlarge" id="demand_typelogement" type="text"  name="demand[typelogement]" ></input>
-                </p>
-                <p>
-                  <label class="labelrdc">Rez-de-chaussée accepté</label>
-                  <input class="input-xlarge" id="demand_rdc" type="text"  name="demand[rdc]" ></input>
-                </p>
-                <p>
-                  <label class="labelascenseur">Logement sans ascenseur accepté</label>
-                  <input class="input-xlarge" id="demand_ascenseur" type="text"  name="demand[ascenseur]" ></input>
+              <label class="labelsituation">Situation du logement</label>
+              <select class="input-xlarge" id="search_housing_bailleur" type="text"  name="demand[situation]" value={{demand.situation}}>
+                                  <option>Location HLM</option>
+                                  <option>Location parc privé</option>
+                                  <option>Autres</option>
+                                </select>
                 </p>
 
                 <p>
-                  <label class='labelmontantmaxi'>Montant maximum de la dépense (charge+loyer)</label>
-                  <input class="input-xlarge" id="demand_montantmaxi" type="text"  name="demand[montantmaxi]"></input>
+                  <label class="labelparking">Si vous payez un loyer <br>ou une redevance, montant mensuel</br></label>
+                  <input class="input-xlarge" id="demand_parking" type="text"  name="demand[loyerlogementactuel]" value={{demand.loyerlogementactuel}}></input>
+                </p>
+                
+                <p>
+                  <label class="labelrdc">Nombre de personne <br>occupant le logement actuel</br></label>
+                  <input class="input-xlarge" id="demand_rdc" type="text"  name="demand[nbpersonnelogementactuel]" value={{demand.nbpersonnelogementactuel}}></input>
+                </p>
+                <p>
+                  <label class="labelascenseur">Catégorie</label>
+                  <input class="input-xlarge" id="demand_ascenseur" type="text"  name="demand[categorielogementactuel]" value={{demand.categorielogementactuel}}></input>
+                </p>
+                <p>
+                  <label class="labeltyperecherche">Type de logement</label>
+                  <input class="input-xlarge" id="demand_typelogement" type="text"  name="demand[typelogementactuel]" value={{demand.typelogementactuel}} ></input>
+                </p>
+                
+
+                <p>
+                  <label class='labelsurface'>Surface</label>
+                  <input class="input-xlarge" id="demand_montantmaxi" type="text"  name="demand[surfacelogementactuel]" value={{demand.surfacelogementactuel}}></input>
+                  <label >m&sup2</label>
                 </p>
 
                 
 
-              </div> -->
+              </div> 
+
+              <div class="info page5">
+                <h1>Logement recherché</h1>
+
+                <p>
+              <label class="labellocationcentre">Location à Villers-centre</label>
+              <select class="input-xlarge" id="search_housing_bailleur" type="text" selected="Oui"  name="demand[locationVillersCentre]" value={{demand.locationVillersCentre}}>
+                                  <option>Oui</option>
+                                  <option>Non</option>
+              </select>
+              </p>
+
+              <p>
+              <label class="labellocationbas">Location à Villers-bas</label>
+              <select class="input-xlarge" id="search_housing_bailleur" type="text" selected="Oui"  name="demand[locationVillersBas]" value={{demand.LocationVillersBas}}>
+                                  <option>Oui</option>
+                                  <option>Non</option>
+              </select>
+              </p>
+
+              <p>
+              <label class="labellocationbas">Location à Clarlieu</label>
+              <select class="input-xlarge" id="search_housing_bailleur" type="text" selected="Oui"  name="demand[locationClairlieu]" value={{demand.locationClairlieu}}>
+                                  <option>Oui</option>
+                                  <option>Non</option>
+              </select>
+              </p>
+
+                <p>
+                  <label class="labelcategorierecherche">Catégorie d'appartement</label>
+                  <input class="input-xlarge" id="demand_parking" type="text"  name="demand[categorielogementrecherche]" value={{demand.categorielogementrecherche}}></input>
+                </p>
+
+                <p>
+                  <label class="labelparking1">Souhaitez-vous un parking ? </label>
+                  <input class="input-xlarge" id="demand_parking" type="text"  name="demand[parking]" value={{demand.parking}} ></input>
+                </p>
+                
+                <p>
+                  <label class="labelnombrechambre">Typologie d'appartement : </label>
+                  
+                  <select class="input-xlarge" id="search_housing_bailleur" type="text"   name="demand[typelogementrecherche]" value={{demand.typelogementrecherche}} >
+                                  <option>1</option>
+                                  <option>2</option>
+                                  <option>3</option>
+                                  <option>4</option>
+                                  <option>5</option>
+                                  <option>6 et plus</option>
+              </select>
+                </p>
+                <p>
+                  <label class="labelrdc1">Logement rez-de-chaussée</label>
+                  <input class="input-xlarge" id="demand_ascenseur" type="text"  name="demand[rdc]" value={{demand.rdc}} ></input>
+                </p>
+                <p>
+                  <label class="labeltypelogementrecherche">Type de logement</label>
+                  <input class="input-xlarge" id="demand_typelogement" type="text"  name="demand[ascenseur]" value={{demand.ascenseur}}></input>
+                </p>
+                <p>
+                  <label class="labelmontantmaxi">Montant maximum de la dépense de logement<br> (loyer + charge)</br></label>
+                  <input class="input-xlarge" id="demand_typelogement" type="text"  name="demand[montantmaxi]" value={{demand.montantmaxi}}></input>
+                </p>
+
+              </div> 
+
 
               
 
@@ -266,36 +413,34 @@
 
             {{ form_widget(form._token) }}
 
-            <div class="placement">
-           <!--   <a href="{{ path('homepage') }}" class="btn btn-danger btn-outline"/>Annuler</a> -->
-               <button class="btn btn-danger btn-outline" type="button" id="bouton_js2" style="margin-bottom: -0.25cm; margin-top: 0.5cm margin-left: 5cm">Précédent</button>
-              
-              <button class="btn btn-success btn-outline" type="button" id="bouton_js" style="margin-bottom: 0.5cm; margin-top: 0.5cm margin-left: 15cm">Suivant</button>
-          
-              <input type="submit" class="btn btn-success btn-outline" id="vrai_submit" value="Valider" style="margin-bottom: 50px; margin-top: 20px">
+             <div class="placement">
+             <!--   <a href="{{ path('homepage') }}" class="btn btn-danger btn-outline"/>Annuler</a> -->
+             <button class="btn btn-danger btn-outline" type="button" id="bouton_js2" style="margin-bottom: -0.3cm; margin-top: 0.5cm margin-left: 5cm">Précédent</button>
 
-            </div>
-          </form>
+             <button class="btn btn-success btn-outline" type="button" id="bouton_js" style="margin-bottom: 0.5cm; margin-top: 0.5cm margin-left: 15cm">Suivant</button>
 
-        </div> 
-      </div> 
-    </div>
-    
-    
-  </div>
+             <input type="submit" class="btn btn-success btn-outline" id="vrai_submit" value="Suivant" style="margin-bottom: 39px; margin-top: 20px" ></input>
+
+           </div>
+         </form>
+
+       </div> 
+     </div> 
+   </div>
 
 
-  <script>
+ </div>
 
+ <script>
+ $(document).ready(function(){
 
-  $(document).ready(function(){
-
-    var page_active=1;
+  var page_active=1;
 
   // init : cacher les formulaire a ne pas afficher + le vrai button submit
   $(".page2").hide();
   $(".page3").hide();
   $(".page4").hide();
+  $(".page5").hide(200);
   $("#vrai_submit").hide();
 
   //bind button suivant
@@ -306,6 +451,7 @@
       $(".page2").show(200);
       $(".page3").hide(200);
       $(".page4").hide(200);
+      $(".page5").hide(200);
       page_active=2;
       return;
     }
@@ -315,9 +461,11 @@
       $(".page2").hide(200);
       $(".page3").show(200);      
       $(".page4").hide(200);
+      $(".page5").hide(200);
         //derniere page ??
         $("#bouton_js2").show();
-
+        $("#vrai_submit").hide(200);
+        $("#bouton_js").show();
         page_active=3;
         return;
       }
@@ -328,46 +476,76 @@
     //   $(".page3").hide(200);      
     //   $(".page4").show(200);
     //     //derniere page ??
-        
+
 
     //     page_active=4;
     //     return;
     //   }
 
     if(page_active==3){
-        $(".page1").hide(200);
-        $(".page2").hide(200);
-        $(".page3").hide(200);
-        $(".page4").hide(200);
+       $(".page1").hide(200);
+      $(".page2").hide(200);
+      $(".page3").hide(200);      
+      $(".page4").show(200);
+       $(".page5").show(200);
         //derniere page ??
+       $("#bouton_js2").show();
         $("#vrai_submit").show(200);
         $("#bouton_js").hide();
 
         page_active=4;
         return;
       }
+
+      if(page_active==4){
+       $(".page1").hide(200);
+      $(".page2").hide(200);
+      $(".page3").hide(200);      
+      $(".page4").hide(200);
+      $(".page5").show(200);
+        //derniere page ??
+       $("#bouton_js2").show();
+        $("#vrai_submit").hide(200);
+        $("#bouton_js").show();
+
+        page_active=5;
+        return;
+      }
+
+      if(page_active==5){
+      $(".page1").hide(200);
+      $(".page2").hide(200);
+      $(".page3").hide(200);
+      $(".page4").hide(200);
+        //derniere page ??
+        $("#vrai_submit").show(200);
+        $("#bouton_js").hide();
+
+        page_active=6;
+        return;
+      }
       
     });
 
 
- $("#bouton_js2").on('click',function(){
+$("#bouton_js2").on('click',function(){
 
-    if(page_active==1){
+  if(page_active==1){
     document.location.href = "form1";
-      return;
-    }
+    return;
+  }
 
-    if(page_active==2){
-      $(".page1").show(200);
-      $(".page2").hide(200);
-      $(".page3").hide(200);      
-      $(".page4").hide(200);
-         
-        
+  if(page_active==2){
+    $(".page1").show(200);
+    $(".page2").hide(200);
+    $(".page3").hide(200);      
+    $(".page4").hide(200);
 
-        page_active=1;
-        return;
-      }
+
+
+    page_active=1;
+    return;
+  }
 
 
  //   if(page_active==4){
@@ -376,38 +554,39 @@
     //   $(".page3").hide(200);      
     //   $(".page4").show(200);
     //     //derniere page ??
-        
+
 
     //     page_active=4;
     //     return;
     //   }
 
-       if(page_active==3){
-         $(".page1").hide(200);
-      $(".page2").show(200);
-      $(".page3").hide(200);
-      $(".page4").hide(200);
-      page_active=2;
-        return;
-      }
+    if(page_active==3){
+     $(".page1").hide(200);
+     $(".page2").show(200);
+     $(".page3").hide(200);
+     $(".page4").hide(200);
+     $("#bouton_js").hide();
+     $("#vrai_submit").show();
+     page_active=2;
+     return;
+   }
 
-  if(page_active==4){
-         $(".page1").hide(200);
-      $(".page2").hide(200);
-      $(".page3").show(200);
-      $(".page4").hide(200);
-       $("#bouton_js").show();
-      $("#vrai_submit").hide();
-      page_active=3;
-        return;
-      }
+  // if(page_active==4){
+  //        $(".page1").hide(200);
+  //     $(".page2").hide(200);
+  //     $(".page3").show(200);
+  //     $(".page4").hide(200);
+  //      $("#bouton_js").hide();
+  //     $("#vrai_submit").show();
+  //     page_active=3;
+  //       return;
+  //     }
 
-    });
+});
 });
 
 
-  </script>
-
+</script>
 
 </body>
 </html>

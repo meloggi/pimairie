@@ -67,6 +67,7 @@
     </div>
     <ul class="main_menu">
       <li class="main_menu"><a href="{{ path('homepage') }}">Home</a></li>
+      <li class="main_menu"><a {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %} href="{{ path('form3') }}" {% else %} href="{{ path('fos_user_security_login') }}" {% endif %} >Accéder à ma demande</a>
       <li class="main_menu"><a href="{{ path('contact') }}">Contact</a></li>
     </li>
   </ul> 
@@ -90,15 +91,15 @@
 
              <p>
               <label class="labelgenre">Genre</label>
-              <INPUT type="radio" class="input-xlarge" name="demand[genre]" value="Monsieur" checked="checked">Monsieur
-                <INPUT type="radio" class="input-xlarge" name="demand[genre]" value="Madame"> Madame
-                  <INPUT type="radio" class="input-xlarge" name="demand[genre]" value="Mademoiselle"> Mademoiselle
-                  </input>
-                </p>
-
+              <select class="input-xlarge" id="search_housing_bailleur" type="text"  name="demand[genre]">
+                                  <option>Monsieur</option>
+                                  <option>Madame</option>
+                                  <option>Mademoiselle</option>
+              </select>
+              </p>
             <p>  
               <label class="labelnom">Nom</label>
-              <input class="input-xlarge" id="demand_lastName" type="text"  name="demand[lastName]"  value={{ app.user.lastName}}   ></input>
+              <input class="input-xlarge" id="demand_lastName" type="text"  name="demand[lastName]"  value={{ app.user.lastName}} ></input>
             </p>
 
 
@@ -299,7 +300,7 @@
 
                 <p>
               <label class="labelsituation">Situation du logement</label>
-              <select class="input-xlarge" id="search_housing_bailleur" type="text"  name="search_housing[bailleur]">
+              <select class="input-xlarge" id="search_housing_bailleur" type="text"  name="demande[situation]">
                                   <option>Location HLM</option>
                                   <option>Location parc privé</option>
                                   <option>Autres</option>
@@ -328,7 +329,7 @@
                 <p>
                   <label class='labelsurface'>Surface</label>
                   <input class="input-xlarge" id="demand_montantmaxi" type="text"  name="demand[surfacelogementactuel]"></input>
-                  <label >m&sup2</label>
+                  <label>m&sup2</label>
                 </p>
 
                 
@@ -337,6 +338,30 @@
 
               <div class="info page5">
                 <h1>Logement recherché</h1>
+
+                <p>
+              <label class="labellocationcentre">Location à Villers-centre</label>
+              <select class="input-xlarge" id="search_housing_bailleur" type="text" selected="Oui"  name="demand[locationVillersCentre]">
+                                  <option>Oui</option>
+                                  <option>Non</option>
+              </select>
+              </p>
+
+              <p>
+              <label class="labellocationbas">Location à Villers-bas</label>
+              <select class="input-xlarge" id="search_housing_bailleur" type="text" selected="Oui"  name="demand[locationVillersBas]">
+                                  <option>Oui</option>
+                                  <option>Non</option>
+              </select>
+              </p>
+
+              <p>
+              <label class="labellocationbas">Location à Clarlieu</label>
+              <select class="input-xlarge" id="search_housing_bailleur" type="text" selected="Oui"  name="demand[locationClairlieu]">
+                                  <option>Oui</option>
+                                  <option>Non</option>
+              </select>
+              </p>
 
                 <p>
                   <label class="labelcategorierecherche">Catégorie d'appartement</label>
@@ -350,7 +375,7 @@
                 
                 <p>
                   <label class="labelnombrechambre">Nombre de chambre : </label>
-                  <INPUT type="radio" class="input-xlarge" name="demand[typelogementrecherche]" value="1">1
+                  <INPUT type="radio" class="input-xlarge" name="demand[typelogementrecherche]" value="1">
                   <INPUT type="radio" class="input-xlarge" name="demand[typelogementrecherche]" value="2">2
                   
                       <INPUT type="radio" class="input-xlarge" name="demand[typelogementrecherche]" value="3">3

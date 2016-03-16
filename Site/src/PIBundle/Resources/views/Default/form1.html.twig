@@ -66,8 +66,7 @@
       
        <ul class="main_menu">
         <li class="main_menu"><a href="{{ path('homepage') }}">Home</a></li>
-        <!-- <li class="main_menu"><a href="{{ path('form1') }}">Créer une demande</a>
-          <li class="main_menu"><a href="{{ path('form2_modifier') }}">Accéder à ma demande</a> -->
+        <li class="main_menu"><a {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %} href="{{ path('form3') }}" {% else %} href="{{ path('fos_user_security_login') }}" {% endif %} >Accéder à ma demande</a>
             <li class="main_menu"><a>Contact</a></li>
           </li>
         </ul> 
@@ -79,39 +78,13 @@
           <div class="info">
             <h1>Introduction</h1>
             <p>
-              Vous allez cr&eacute;er une demande de logement social par l'interm&eacute;diaire de ce site.
-              Cette demande de logement aura la m&ecirc;me validit&eacute; qu'une demande de logement social remplie sur le formulaire papier et d&eacute;pos&eacute;e
-              dans un service enregistreur (bailleur social, mairie).
-            </p>
-          </div>
-          <div class="info">
-            <h1>Les territoires non g&eacute;r&eacute;s par ce site</h1>
-            <p>
-              Tous les d&eacute;partements ne sont pas g&eacute;r&eacute;s actuellement sur ce site internet. 
-              En fonction du lieu sur lequel vous recherchez un logement, 
-              il se peut que ce site vous redirige vers un autre site ou vers des guichets enregistreurs.
+              Vous allez informer la ville de Viller-Lès-Nancy de votre recherche de logement social par l'interm&eacute;diaire de ce site.
             </p>
           </div>
           <div class="info">
             <h1>Les &eacute;tapes de cr&eacute;ation</h1>
             <p>
-              Pour cr&eacute;er votre demande de logement social, les &eacute;tapes suivantes vont s'encha&icirc;ner :
-            </p>
-          </div>
-          <div class="info">
-            <h1>Les documents dont vous allez avoir besoin pour renseigner la demande</h1>
-            <p>
-              Pour renseigner les informations de votre demande de logement, vous aurez besoin des documents d&eacute;crits ci-dessous. 
-              Munissez-vous de ces documents avant de d&eacute;buter votre saisie.
-            </p>
-            
-          </div>
-
-          <div class="info">
-            <h1>L'&eacute;ligibilit&eacute; de votre demande de logement</h1>
-            <p>
-              L'acc&egrave;s &agrave; un logement social est d&eacute;pendant de votre revenu fiscal et de la composition de votre foyer. 
-              Avant de vous engager dans la saisie des informations, ce site vous indiquera si vous &ecirc;tes &eacute;ligible ou non &agrave; l'obtention d'un logement social au regard de vos revenus.
+              Pour cr&eacute;er votre informatin de recherche, munissez-vous de vos justificatifs de ressources.
             </p>
           </div>
 
@@ -127,7 +100,7 @@
             <h1>La r&eacute;ception de votre code de t&eacute;l&eacute;demandeur</h1>
             <p>
               Suite &agrave; l'activation de votre adresse &eacute;lectronique, vous recevrez votre code de t&eacute;l&eacute;demandeur par message &eacute;lectronique.
-              Ce code vous sera utile pour modifier a posteriori votre demande de logement ou pour la renouveler.
+              Ce code vous sera utile pour modifier a posteriori votre information de recherche ou pour la renouveler.
               Conservez-le pr&eacute;cieusement pendant toute la dur&eacute;e de vie de votre demande de logement
             </p>
           </div>
@@ -135,37 +108,16 @@
           <div class="info">
             <h1>La saisie des informations</h1>
             <p>
-              Lors de la saisie des informations de votre demande de logement, laissez-vous guider par les diff&eacute;rentes questions qui vous seront pos&eacute;es.
+              Lors de la saisie des informations, laissez-vous guider par les diff&eacute;rentes questions qui vous seront pos&eacute;es.
               S'il vous manque des &eacute;l&eacute;ments, vous avez la possibilit&eacute; d'arr&ecirc;ter votre saisie &agrave; tout moment pour la reprendre plus tard.
             </p>
           </div>
 
           <div class="info">
-            <h1>Le justificatif &agrave; fournir pour l'enregistrement de la demande</h1>
             <p>
-              &Agrave; la fin de votre saisie, vous aurez la possibilit&eacute; de joindre une copie num&eacute;ris&eacute;e 
-              d'une pi&egrave;ce d'identit&eacute; (carte nationale d'identit&eacute;, passeport) ou de votre titre de s&eacute;jour. 
-              Ce justificatif est obligatoire pour que la demande soit enregistr&eacute;e. Si vous ne pouvez pas 
-              le joindre, vous devrez vous d&eacute;placer aupr&egrave;s d'un guichet enregistreur pour le d&eacute;poser et 
-              valider votre demande de logement social.
+              Vous recevrez par e-mail la confirmation que cette confirmation a bien été enregistrée que cette information a bien été enregistrée par le service de la vie.
             </p>
-          </div>
-
-          <div class="info">
-            <h1>La soumission de votre demande de logement</h1>
-            <p>
-              Une fois votre saisie termin&eacute;e, vous devrez la soumettre.
-              Cette soumission indique qu'elle peut alors &ecirc;tre valid&eacute;e par un guichet enregistreur.
-              Tant que la demande n'est pas soumise, vous avez la possibilit&eacute; de venir la modifier &agrave; tout moment.
-            </p>
-          </div>
-
-          <div class="info">
-            <h1>La validation de votre demande de logement</h1>
-            <p>
-              Pour &ecirc;tre effective, votre demande de logement doit &ecirc;tre valid&eacute;e par un guichet enregistreur.
-            </p>
-            
+              
           </div>
           <div class="placement">
            <a href="{{ path('homepage') }}" class="btn btn-danger btn-outline"/>Annuler</a>

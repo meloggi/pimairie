@@ -26,9 +26,7 @@ class DefaultController extends Controller
 
 
     public function accueilAction()
-    {
-
-       $token=$this->get('security.token_storage')->getToken();
+    { $token=$this->get('security.token_storage')->getToken();
 
        $roles = $token->getRoles();
         // On transforme le tableau d'instance en tableau simple
@@ -52,7 +50,6 @@ class DefaultController extends Controller
            return $this->render('PIBundle:Default:accueil2.html.twig');
        
 
-        return $this->render('PIBundle:Default:accueil2.html.twig');
     }
 
     public function form1Action()
@@ -117,7 +114,7 @@ class DefaultController extends Controller
             $user = $em->getRepository('PIBundle:User')->find($id);
 
             $demand = $em->getRepository('PIBundle:Demand')->findOneBy(array('idUser' => $id, 'archived' => "Non"));
-echo $demand;
+
             
             
             $form = $this->createForm(DemandType::class,$demand); 
@@ -127,14 +124,13 @@ echo $demand;
                     $em->persist($demand);
                     $em->flush();
                     $this->envoiMail();
-                    return $this->render('PIBundle:Default:form2_modifier.html.twig', array('form' => $form->createView(), 'demand' => $demand));
+                    return $this->render('PIBundle:Default:form3.html.twig', array('form' => $form->createView(), 'demand' => $demand));
             
                 }
                return $this->render('PIBundle:Default:form2_modifier.html.twig', array('form' => $form->createView(), 'demand' => $demand));
            }
            
            return $this->render('PIBundle:Default:contact.html.twig');
-
 }
 
             
