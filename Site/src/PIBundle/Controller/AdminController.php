@@ -29,10 +29,11 @@ class AdminController extends Controller
         $list_demand_wrong = $em->getRepository('PIBundle:Demand')->findBy(array('wrong' => "Oui", 'archived' => "Non"));
         $list_demand_expired = $em->getRepository('PIBundle:Demand')->findBy(array('archived' => "Non"));
         $list_demand_free = $em->getRepository('PIBundle:Demand')->findBy(array('confirmed' => "Oui", 'archived' =>"Non"));
+        $list_demand_not_viewed = $em->getRepository('PIBundle:Demand')->findBy(array('viewed' => "Non"));
         $date = new \DateTime();
         $interval = new \DateInterval('P11M');
         $date->sub($interval);
-        return $this->render('PIBundle:Admin:dashboard.html.twig', array('list_demand_new' => $list_demand_new, 'list_demand_free' => $list_demand_free, 'list_demand_wrong' => $list_demand_wrong, 'list_demand_expired' => $list_demand_expired, 'date' => $date));
+        return $this->render('PIBundle:Admin:dashboard.html.twig', array('list_demand_new' => $list_demand_new, 'list_demand_not_viewed' => $list_demand_not_viewed, 'list_demand_free' => $list_demand_free, 'list_demand_wrong' => $list_demand_wrong, 'list_demand_expired' => $list_demand_expired, 'date' => $date));
     }
 
     public function appartmentAction(Request $request)
@@ -469,9 +470,37 @@ class AdminController extends Controller
         $list_appartment_f4 = $em->getRepository('PIBundle:Housing')->findBy(array('type' => "F4"));
         $list_appartment_f5 = $em->getRepository('PIBundle:Housing')->findBy(array('type' => "F5"));
         $list_appartment_f6 = $em->getRepository('PIBundle:Housing')->findBy(array('type' => "F6"));
+        $list_appartment_f1_free = $em->getRepository('PIBundle:Housing')->findBy(array('type' => "F1", 'attribution' => "Non"));
+        $list_appartment_f1bis_free = $em->getRepository('PIBundle:Housing')->findBy(array('type' => "F1 bis", 'attribution' => "Non"));
+        $list_appartment_f2_free = $em->getRepository('PIBundle:Housing')->findBy(array('type' => "F2", 'attribution' => "Non"));
+        $list_appartment_f3_free = $em->getRepository('PIBundle:Housing')->findBy(array('type' => "F3", 'attribution' => "Non"));
+        $list_appartment_f4_free = $em->getRepository('PIBundle:Housing')->findBy(array('type' => "F4", 'attribution' => "Non"));
+        $list_appartment_f5_free = $em->getRepository('PIBundle:Housing')->findBy(array('type' => "F5", 'attribution' => "Non"));
+        $list_appartment_f6_free = $em->getRepository('PIBundle:Housing')->findBy(array('type' => "F6", 'attribution' => "Non"));
+        $list_appartment_f1_taken = $em->getRepository('PIBundle:Housing')->findBy(array('type' => "F1", 'attribution' => "Oui"));
+        $list_appartment_f1bis_taken = $em->getRepository('PIBundle:Housing')->findBy(array('type' => "F1 bis", 'attribution' => "Oui"));
+        $list_appartment_f2_taken = $em->getRepository('PIBundle:Housing')->findBy(array('type' => "F2", 'attribution' => "Oui"));
+        $list_appartment_f3_taken = $em->getRepository('PIBundle:Housing')->findBy(array('type' => "F3", 'attribution' => "Oui"));
+        $list_appartment_f4_taken = $em->getRepository('PIBundle:Housing')->findBy(array('type' => "F4", 'attribution' => "Oui"));
+        $list_appartment_f5_taken = $em->getRepository('PIBundle:Housing')->findBy(array('type' => "F5", 'attribution' => "Oui"));
+        $list_appartment_f6_taken = $em->getRepository('PIBundle:Housing')->findBy(array('type' => "F6", 'attribution' => "Oui"));
         $list_appartment_contingent = $em->getRepository('PIBundle:Housing')->findBy(array('contingent' => "Oui"));
         $list_appartment_noncontingent = $em->getRepository('PIBundle:Housing')->findBy(array('contingent' => "Non"));
-        return $this->render('PIBundle:Admin:statistiques.html.twig', array('list_appartment_free' => $list_appartment_free, 'list_appartment_contingent' => $list_appartment_contingent, 'list_appartment_noncontingent' => $list_appartment_noncontingent, 'list_appartment_occuped' => $list_appartment_occuped, 'list_appartment_total' => $list_appartment_total, 'list_appartment_f1' => $list_appartment_f1, 'list_appartment_f1bis' => $list_appartment_f1bis, 'list_appartment_f2' => $list_appartment_f2, 'list_appartment_f3' => $list_appartment_f3, 'list_appartment_f4' => $list_appartment_f4, 'list_appartment_f5' => $list_appartment_f5, 'list_appartment_f6' => $list_appartment_f6 ));
+        $list_demand_f1_type1 = $em->getRepository('PIBundle:Demand')->findBy(array('type1' => "F1", 'idAppartment' => "0"));
+        $list_demand_f1_type2 = $em->getRepository('PIBundle:Demand')->findBy(array('type2' => "F1", 'idAppartment' => "0"));
+        $list_demand_f1bis_type1 = $em->getRepository('PIBundle:Demand')->findBy(array('type1' => "F1 bis", 'idAppartment' => "0"));
+        $list_demand_f1bis_type2 = $em->getRepository('PIBundle:Demand')->findBy(array('type2' => "F1 bis", 'idAppartment' => "0"));
+        $list_demand_f2_type1 = $em->getRepository('PIBundle:Demand')->findBy(array('type1' => "F2", 'idAppartment' => "0"));
+        $list_demand_f2_type2 = $em->getRepository('PIBundle:Demand')->findBy(array('type2' => "F2", 'idAppartment' => "0"));
+        $list_demand_f3_type1 = $em->getRepository('PIBundle:Demand')->findBy(array('type1' => "F3", 'idAppartment' => "0"));
+        $list_demand_f3_type2 = $em->getRepository('PIBundle:Demand')->findBy(array('type2' => "F3", 'idAppartment' => "0"));
+        $list_demand_f4_type1 = $em->getRepository('PIBundle:Demand')->findBy(array('type1' => "F4", 'idAppartment' => "0"));
+        $list_demand_f4_type2 = $em->getRepository('PIBundle:Demand')->findBy(array('type2' => "F4", 'idAppartment' => "0"));
+        $list_demand_f5_type1 = $em->getRepository('PIBundle:Demand')->findBy(array('type1' => "F5", 'idAppartment' => "0"));
+        $list_demand_f5_type2 = $em->getRepository('PIBundle:Demand')->findBy(array('type2' => "F5", 'idAppartment' => "0"));
+        $list_demand_f6_type1 = $em->getRepository('PIBundle:Demand')->findBy(array('type1' => "F6", 'idAppartment' => "0"));
+        $list_demand_f6_type2 = $em->getRepository('PIBundle:Demand')->findBy(array('type2' => "F6", 'idAppartment' => "0"));
+        return $this->render('PIBundle:Admin:statistiques.html.twig', array('list_appartment_free' => $list_appartment_free, 'list_demand_f1_type1' => $list_demand_f1_type1, 'list_demand_f1_type2' => $list_demand_f1_type2, 'list_demand_f1bis_type1' => $list_demand_f1bis_type1, 'list_demand_f1bis_type2' => $list_demand_f1bis_type2, 'list_demand_f2_type1' => $list_demand_f2_type1, 'list_demand_f2_type2' => $list_demand_f2_type2, 'list_demand_f3_type1' => $list_demand_f3_type1, 'list_demand_f3_type2' => $list_demand_f3_type2, 'list_demand_f4_type1' => $list_demand_f4_type1, 'list_demand_f4_type2' => $list_demand_f4_type2,  'list_demand_f5_type1' => $list_demand_f5_type1, 'list_demand_f5_type2' => $list_demand_f5_type2, 'list_demand_f6_type1' => $list_demand_f6_type1, 'list_demand_f6_type2' => $list_demand_f6_type2,'list_appartment_contingent' => $list_appartment_contingent, 'list_appartment_noncontingent' => $list_appartment_noncontingent, 'list_appartment_occuped' => $list_appartment_occuped, 'list_appartment_total' => $list_appartment_total, 'list_appartment_f1' => $list_appartment_f1, 'list_appartment_f1bis' => $list_appartment_f1bis, 'list_appartment_f2' => $list_appartment_f2, 'list_appartment_f3' => $list_appartment_f3, 'list_appartment_f4' => $list_appartment_f4, 'list_appartment_f5' => $list_appartment_f5, 'list_appartment_f6' => $list_appartment_f6, 'list_appartment_f1_free' => $list_appartment_f1_free, 'list_appartment_f1bis_free' => $list_appartment_f1bis_free, 'list_appartment_f2_free' => $list_appartment_f2_free, 'list_appartment_f3_free' => $list_appartment_f3_free, 'list_appartment_f4_free' => $list_appartment_f4_free, 'list_appartment_f5_free' => $list_appartment_f5_free, 'list_appartment_f6_free' => $list_appartment_f6_free, 'list_appartment_f1_taken' => $list_appartment_f1_taken, 'list_appartment_f1bis_taken' => $list_appartment_f1bis_taken, 'list_appartment_f2_taken' => $list_appartment_f2_taken, 'list_appartment_f3_taken' => $list_appartment_f3_taken, 'list_appartment_f4_taken' => $list_appartment_f4_taken, 'list_appartment_f5_taken' => $list_appartment_f5_taken, 'list_appartment_f6_taken' => $list_appartment_f6_taken ));
     }
 
 

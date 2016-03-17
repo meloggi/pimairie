@@ -17,7 +17,7 @@
     {% block javascripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="text/javascript" src="{{ asset('css/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/jquery-1.10.2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/jquery-1.10.2.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('css/d3/d3.min.js') }}" charset="utf-8"></script>
     <script type="text/javascript" src="{{ asset('css/c3/c3.min.js') }}"></script>
     {% endblock %}
@@ -44,41 +44,13 @@
                     <li><a href="{{ path('platform_admin_archive') }}"><i class="fa fa-archive"></i> Archives</a></li>                    
                 </ul>
                 <ul class="nav navbar-nav navbar-right navbar-user">
-                    <li class="dropdown messages-dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-triangle"></i> Notifications <span class="badge">6</span> <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-header">2 Nouvelles demandes</li>
-                            <li class="message-preview">
-                                <a href="#">
-                                    <span class="avatar"><i class="fa fa-user-plus"></i></span>
-                                    <span class="message">Alain DUPONT</span>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li class="dropdown-header">2 Demandes erronées</li>
-                            <li class="message-preview">
-                                <a href="#">
-                                    <span class="avatar"><i class="fa fa-user-times"></i></span>
-                                    <span class="message">Eric BOMPART</span>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li class="dropdown-header">2 Demandes expirées</li>
-                            <li class="message-preview">
-                                <a href="#">
-                                    <span class="avatar"><i class="fa fa-clock-o"></i></span>
-                                    <span class="message">Antoine BIBOTEUR</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
                     <li class="dropdown user-dropdown">
                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Admin Mairie<b class="caret"></b></a>
                        <ul class="dropdown-menu">
                            <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
                            <li><a href="#"><i class="fa fa-gear"></i> Réglages</a></li>
                            <li class="divider"></li>
-                           <li><a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-power-off"></i> Déconnection</a></li>
+                           <li><a href="#"><i class="fa fa-power-off"></i> Déconnection</a></li>
                        </ul>
                    </li>
                 </ul>
@@ -137,16 +109,128 @@
                     </div>
                 </div>
             </div>
-                <div class="col-lg-12">
+
+
+            <div class="row" style="margin-top: 20px">
+                <div class="col-lg-4">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Estimation du trafic ces 30 derniers jours</h3>
+                            <h3 class="panel-title"><i class="fa fa-building-o"></i> Logements F1</h3>
                         </div>
-                        <div class="panel-body">
-                            <div id="shieldui-chart1"></div>
+                        <div class="panel-body" style="height: 450px; overflow-y: auto;">
+                            <div id="chart_f1"></div>
+                            <p style="margin-top: 10px">Nombre de logements F1 libres: <b>{{list_appartment_f1_free|length}}</b></p>
+                            <p>Nombre de logements F1 occupés: <b>{{list_appartment_f1_taken|length}}</b></p>
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-building-o"></i> Logements F1 bis</h3>
+                        </div>
+                        <div class="panel-body" style="height: 450px; overflow-y: auto;">
+                            <div id="chart_f1bis"></div>
+                            <p style="margin-top: 10px">Nombre de logements F1 bis libres: <b>{{list_appartment_f1bis_free|length}}</b></p>
+                            <p>Nombre de logements F1 bis occupés: <b>{{list_appartment_f1bis_taken|length}}</b></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-building-o"></i> Logements F2</h3>
+                        </div>
+                        <div class="panel-body" style="height: 450px;">
+                            <div id="chart_f2"></div>
+                            <p style="margin-top: 10px">Nombre de logements F2 libres: <b>{{list_appartment_f2_free|length}}</b></p>
+                            <p>Nombre de logements F2 occupés: <b>{{list_appartment_f2_taken|length}}</b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /#début de ligne de statistiques -->
+            <div class="row" style="margin-top: 20px">
+                <div class="col-lg-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-building-o"></i> Logements F3</h3>
+                        </div>
+                        <div class="panel-body" style="height: 450px; overflow-y: auto;">
+                            <div id="chart_f3"></div>
+                            <p style="margin-top: 10px">Nombre de logements F3 libres: <b>{{list_appartment_f3_free|length}}</b></p>
+                            <p>Nombre de logements F3 occupés: <b>{{list_appartment_f3_taken|length}}</b></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-building-o"></i> Logements F4</h3>
+                        </div>
+                        <div class="panel-body" style="height: 450px; overflow-y: auto;">
+                            <div id="chart_f4"></div>
+                            <p style="margin-top: 10px">Nombre de logements F4 libres: <b>{{list_appartment_f4_free|length}}</b></p>
+                            <p>Nombre de logements F4 occupés: <b>{{list_appartment_f4_taken|length}}</b></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-building-o"></i> Logements F5</h3>
+                        </div>
+                        <div class="panel-body" style="height: 450px;">
+                            <div id="chart_f5"></div>
+                            <p style="margin-top: 10px">Nombre de logements F5 libres: <b>{{list_appartment_f5_free|length}}</b></p>
+                            <p>Nombre de logements F5 occupés: <b>{{list_appartment_f5_taken|length}}</b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /#fin ligne de statistiques -->
+
+            <!-- /#début de ligne de statistiques -->
+            <div class="row" style="margin-top: 20px">
+                <div class="col-lg-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-building-o"></i> Logements F6</h3>
+                        </div>
+                        <div class="panel-body" style="height: 450px; overflow-y: auto;">
+                            <div id="chart_f6"></div>
+                            <p style="margin-top: 10px">Nombre de logements F6 libres: <b>{{list_appartment_f6_free|length}}</b></p>
+                            <p>Nombre de logements F6 occupés: <b>{{list_appartment_f6_taken|length}}</b></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-users"></i> Types de demandes non attribuées</h3>
+                        </div>
+                        <div class="panel-body" style="height: 450px; overflow-y: auto;">
+                            <div id="chart_demand_type"></div>
+                            {% set f1_free = list_demand_f1_type1|length + list_demand_f1_type2|length %}
+                            {% set f1bis_free = list_demand_f1bis_type1|length + list_demand_f1bis_type2|length %}
+                            {% set f2_free = list_demand_f2_type1|length + list_demand_f2_type2|length %}
+                            {% set f3_free = list_demand_f3_type1|length + list_demand_f3_type2|length %}
+                            {% set f4_free = list_demand_f4_type1|length + list_demand_f4_type2|length %}
+                            {% set f5_free = list_demand_f5_type1|length + list_demand_f5_type2|length %}
+                            {% set f6_free = list_demand_f6_type1|length + list_demand_f6_type2|length %}
+                            <p style="margin-top: 10px">Nombre de demandes F1 non attribués: <b>{{ f1_free }}</b></p>
+                            <p>Nombre de demandes F1 bis non attribués: <b>{{ f1bis_free }}</b></p>
+                            <p>Nombre de demandes F2 non attribués: <b>{{ f2_free }}</b></p>
+                            <p>Nombre de demandes F3 non attribués: <b>{{ f3_free }}</b></p>
+                            <p>Nombre de demandes F4 non attribués: <b>{{ f4_free }}</b></p>
+                            <p>Nombre de demandes F5 non attribués: <b>{{ f5_free }}</b></p>
+                            <p>Nombre de demandes F6 non attribués: <b>{{ f6_free }}</b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /#fin ligne de statistiques -->    
+                
             </div>
         </div>
         <!-- /#page-wrapper -->
@@ -203,6 +287,126 @@
             },bindto: '#chart_contingent'
         });
 
+        var chart = c3.generate({
+            data: {
+                // iris data from R
+                columns: [
+                    ["Logements F1 libres", {{list_appartment_f1_free|length}}],
+                    ["Logements F1 occupés", {{list_appartment_f1_taken|length}}],
+                ],
+                type : 'pie',
+                onclick: function (d, i) { console.log("onclick", d, i); },
+                onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+                onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+            },bindto: '#chart_f1'
+        });
+
+        var chart = c3.generate({
+            data: {
+                // iris data from R
+                columns: [
+                    ["Logements F1 bis libres", {{list_appartment_f1bis_free|length}}],
+                    ["Logements F1 bis occupés", {{list_appartment_f1bis_taken|length}}],
+                ],
+                type : 'pie',
+                onclick: function (d, i) { console.log("onclick", d, i); },
+                onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+                onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+            },bindto: '#chart_f1bis'
+        });
+
+        var chart = c3.generate({
+            data: {
+                // iris data from R
+                columns: [
+                    ["Logements F2 libres", {{list_appartment_f2_free|length}}],
+                    ["Logements F2 occupés", {{list_appartment_f2_taken|length}}],
+                ],
+                type : 'pie',
+                onclick: function (d, i) { console.log("onclick", d, i); },
+                onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+                onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+            },bindto: '#chart_f2'
+        });
+
+
+        var chart = c3.generate({
+            data: {
+                // iris data from R
+                columns: [
+                    ["Logements F3 libres", {{list_appartment_f3_free|length}}],
+                    ["Logements F3 occupés", {{list_appartment_f3_taken|length}}],
+                ],
+                type : 'pie',
+                onclick: function (d, i) { console.log("onclick", d, i); },
+                onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+                onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+            },bindto: '#chart_f3'
+        });
+
+
+        var chart = c3.generate({
+            data: {
+                // iris data from R
+                columns: [
+                    ["Logements F4 libres", {{list_appartment_f4_free|length}}],
+                    ["Logements F4 occupés", {{list_appartment_f4_taken|length}}],
+                ],
+                type : 'pie',
+                onclick: function (d, i) { console.log("onclick", d, i); },
+                onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+                onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+            },bindto: '#chart_f4'
+        });
+
+
+        var chart = c3.generate({
+            data: {
+                // iris data from R
+                columns: [
+                    ["Logements F5 libres", {{list_appartment_f5_free|length}}],
+                    ["Logements F5 occupés", {{list_appartment_f5_taken|length}}],
+                ],
+                type : 'pie',
+                onclick: function (d, i) { console.log("onclick", d, i); },
+                onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+                onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+            },bindto: '#chart_f5'
+        });
+
+
+        var chart = c3.generate({
+            data: {
+                // iris data from R
+                columns: [
+                    ["Logements F6 libres", {{list_appartment_f6_free|length}}],
+                    ["Logements F6 occupés", {{list_appartment_f6_taken|length}}],
+                ],
+                type : 'pie',
+                onclick: function (d, i) { console.log("onclick", d, i); },
+                onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+                onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+            },bindto: '#chart_f6'
+        });
+
+        var chart = c3.generate({
+            data: {
+                // iris data from R
+                columns: [
+                    ["Demandes F1 non attribués", {{ f1_free }}],
+                    ["Demandes F1 bis non attribués", {{ f1bis_free }}],
+                    ["Demandes F2 non attribués", {{ f2_free }}],
+                    ["Demandes F3 non attribués", {{ f3_free }}],
+                    ["Demandes F4 non attribués", {{ f4_free }}],
+                    ["Demandes F5 non attribués", {{ f5_free }}],
+                    ["Demandes F6 non attribués", {{ f6_free }}],
+                ],
+                type : 'donut',
+                onclick: function (d, i) { console.log("onclick", d, i); },
+                onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+                onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+            },bindto: '#chart_demand_type'
+        });
 
 
 

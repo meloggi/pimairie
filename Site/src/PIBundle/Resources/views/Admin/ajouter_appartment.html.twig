@@ -16,7 +16,7 @@
     {% block javascripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="text/javascript" src="{{ asset('css/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/jquery-1.10.2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/jquery-1.10.2.min.js') }}"></script>
     {% endblock %}
 
 </head>
@@ -41,41 +41,13 @@
                     <li><a href="{{ path('platform_admin_archive') }}"><i class="fa fa-archive"></i> Archives</a></li>                    
                 </ul>
                 <ul class="nav navbar-nav navbar-right navbar-user">
-                    <li class="dropdown messages-dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-triangle"></i> Notifications <span class="badge">6</span> <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-header">2 Nouvelles demandes</li>
-                            <li class="message-preview">
-                                <a href="#">
-                                    <span class="avatar"><i class="fa fa-user-plus"></i></span>
-                                    <span class="message">Alain DUPONT</span>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li class="dropdown-header">2 Demandes erronées</li>
-                            <li class="message-preview">
-                                <a href="#">
-                                    <span class="avatar"><i class="fa fa-user-times"></i></span>
-                                    <span class="message">Eric BOMPART</span>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li class="dropdown-header">2 Demandes expirées</li>
-                            <li class="message-preview">
-                                <a href="#">
-                                    <span class="avatar"><i class="fa fa-clock-o"></i></span>
-                                    <span class="message">Antoine BIBOTEUR</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
                     <li class="dropdown user-dropdown">
                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Admin Mairie<b class="caret"></b></a>
                        <ul class="dropdown-menu">
                            <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
                            <li><a href="#"><i class="fa fa-gear"></i> Réglages</a></li>
                            <li class="divider"></li>
-                           <li><a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-power-off"></i> Déconnection</a></li>
+                           <li><a href="#"><i class="fa fa-power-off"></i> Déconnection</a></li>
                        </ul>
                    </li>
                 </ul>
@@ -109,6 +81,9 @@
                       <option>MEURTHE ET MOSELLE HABITAT</option>
                       <option>OFFICE PUBLIC DE L HABITAT</option>
                       <option>SOCIETE LORRAINE D HABITAT</option>
+                      <option>PRESENCE HABITAT</option>
+                      <option>NOUVEAU LOGIS DE L EST</option>
+                      <option>ICF NORD EST</option>
                       <option>Autre</option>
                     </select>
                     <p class="help-block">{{ form_errors(form.bailleur) }}</p>

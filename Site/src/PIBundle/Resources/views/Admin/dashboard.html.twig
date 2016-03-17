@@ -16,7 +16,7 @@
     {% block javascripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="text/javascript" src="{{ asset('css/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/jquery-1.10.2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/jquery-1.10.2.min.js') }}"></script>
     {% endblock %}
 
 </head>
@@ -42,31 +42,18 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right navbar-user">
                     <li class="dropdown messages-dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-triangle"></i> Notifications <span class="badge">6</span> <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-triangle"></i> Notifications <span class="badge">{{list_demand_not_viewed|length}}</span> <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li class="dropdown-header">2 Nouvelles demandes</li>
+                            <li class="dropdown-header">{{list_demand_not_viewed|length}} Nouvelles demandes</li>
                             <li class="message-preview">
-                                <a href="#">
+                                {% for demand in list_demand_not_viewed %}
+                                <a href="{{ path('platform_admin_affichage_demande', { 'id': demand.idUser }) }}">
                                     <span class="avatar"><i class="fa fa-user-plus"></i></span>
-                                    <span class="message">Alain DUPONT</span>
+                                    <span class="message">{{demand.lastName}} {{demand.firstName}}</span>
                                 </a>
+                                {%endfor%}
                             </li>
-                            <li class="divider"></li>
-                            <li class="dropdown-header">2 Demandes erronées</li>
-                            <li class="message-preview">
-                                <a href="#">
-                                    <span class="avatar"><i class="fa fa-user-times"></i></span>
-                                    <span class="message">Eric BOMPART</span>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li class="dropdown-header">2 Demandes expirées</li>
-                            <li class="message-preview">
-                                <a href="#">
-                                    <span class="avatar"><i class="fa fa-clock-o"></i></span>
-                                    <span class="message">Antoine BIBOTEUR</span>
-                                </a>
-                            </li>
+                           
                         </ul>
                     </li>
                     <li class="dropdown user-dropdown">
@@ -75,7 +62,7 @@
                            <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
                            <li><a href="#"><i class="fa fa-gear"></i> Réglages</a></li>
                            <li class="divider"></li>
-                           <li><a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-power-off"></i> Déconnection</a></li>
+                           <li><a href="{{ path('fos_user_security_logout') }}""><i class="fa fa-power-off"></i> Déconnection</a></li>
                        </ul>
                    </li>
                 </ul>
@@ -90,7 +77,7 @@
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         Bienvenue sur la partie administrateur de la platforme de demande de logement sociaux de la Mairie de Villers-lès-Nancy.
                         <br />
-                        Vous avez actuellement <span class="badge">6</span> nouvelles notifications.
+                        Vous avez actuellement <span class="badge">{{list_demand_not_viewed|length}}</span> nouvelles notifications.
                     </div>
                 </div>
             </div>
