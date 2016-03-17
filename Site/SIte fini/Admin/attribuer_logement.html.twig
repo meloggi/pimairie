@@ -1,0 +1,111 @@
+{# app/Resources/views/Admin/appartment.html.twig #}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin_Appartements</title>
+
+    {% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    {% endblock %}
+
+    {% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ asset('css/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery-1.10.2.min.js') }}"></script>
+    {% endblock %}
+
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">            
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ path('platform_admin_dashboard') }}">Mairie Villers-lès-Nancy Administrateur</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li><a href="{{ path('platform_admin_dashboard') }}"><i class="fa fa-tachometer"></i> Tableau de bord</a></li>
+                    <li class="active"><a href="{{ path('platform_admin_appartment') }}"><i class="fa fa-building-o "></i> Appartements</a></li>  
+                    <li><a href="{{ path('platform_admin_demandeur') }}"><i class="fa fa-users"></i> Demandeurs</a></li>
+                    <li><a href="{{ path('platform_admin_statistiques') }}"><i class="fa fa-bar-chart "></i> Statistiques</a></li>
+                    <li><a href="{{ path('platform_admin_archive') }}"><i class="fa fa-archive"></i> Archives</a></li>                    
+                </ul>
+                <ul class="nav navbar-nav navbar-right navbar-user">
+                    <li class="dropdown user-dropdown">
+                       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Admin Mairie<b class="caret"></b></a>
+                       <ul class="dropdown-menu">
+                           <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
+                           <li><a href="#"><i class="fa fa-gear"></i> Réglages</a></li>
+                           <li class="divider"></li>
+                           <li><a href="#"><i class="fa fa-power-off"></i> Déconnection</a></li>
+                       </ul>
+                   </li>
+                </ul>
+            </div>
+        </nav>
+
+         <div class="container">
+          <div class="row">
+            <a type="button" class="btn btn-success" href="{{ path('platform_admin_attribution_logement', { 'id': appartment.id }) }}"><i class="fa fa-chevron-left"></i> Retour</a>
+              <h1>Attribution d'une demande à un logement</h1>
+          </div>
+                      <div class="row" style="margin-top: 20px">
+                          <div class="col-lg-6 col-md-6">
+                              {% if appartment %}
+                                <h3>Appartement</h3>
+                                <p style="margin-top: 20px"><b>Type: </b>{{appartment.type}}</p>
+                                <p><b>Localisation: </b>{{appartment.location}}</p>
+                                <p><b>Bailleur: </b>{{appartment.bailleur}}</p>
+                                <p><b>Résidence: </b>{{appartment.residence}}</p>
+                                <p><b>Adresse: </b>{{appartment.adress}}</p>
+                                <p><b>Etage: </b>{{appartment.floor}}</p>
+                                <p><b>Numéro: </b>{{appartment.numero}}</p>
+                                <p><b>Contingent: </b>{{appartment.contingent}}</p>
+                                <p><b>Loyer: </b>{{appartment.rent}}</p>
+                                <label>Notes: </label>
+                                <textarea maxlength="200" class="form-control" rows="3">{{appartment.note}}
+                                </textarea>
+                                <p class="help-block">La modification dans ce cadre n'est pas enregistré.</p>
+                              {%endif%}
+                          </div>
+                          <div class="col-lg-6 col-md-6">
+                              {% if demand %}
+                                <h3>Demandeur</h3>
+                                <p style="margin-top: 20px"><b>Nom: </b>{{demand.lastName}}</p>
+                                <p><b>Prénom: </b>{{demand.firstName}}</p>
+                                <p><b>Email: </b>{{demand.email}}</p>
+                                <p><b>Salaire: </b>{{demand.salary}}</p>
+                                <p><b>Localisation à Villers-centre: </b>{{demand.locationVillersCentre}}</p>
+                                <p><b>Localisation à Villers-bas: </b>{{demand.locationVillersBas}}</p>
+                                <p><b>Localisation à Clairlieu: </b>{{demand.locationClairlieu}}</p>
+                                <p><b>Type: </b>{{demand.type1}}</p>
+                                <p><b>Autre type: </b>{{demand.type2}}</p>
+                                <p><b>Confirmé: </b>{{demand.confirmed}}</p>
+                                <p><b>Demande créée le: </b>{{ demand.dateCreation.format('j M Y à h:m a')}}</p>
+                                <label for="demand_note">Notes: </label>
+                                <textarea maxlength="200" class="form-control" rows="3">{{demand.note}}
+                                </textarea>
+                                <p class="help-block">La modification dans ce cadre n'est pas enregistré.</p>
+                              {%endif%}
+                          </div>
+                      </div>   
+                      <a type="button" class="btn btn-success" 
+                      href="{{ path('platform_admin_valider_attribution_logement', {'id':appartment.id, 'iddemand':demand.id}) }}" 
+                      style="margin-top: 20px; margin-bottom: 20px">
+                      <i class="fa fa-link"></i> Valider l'attribution</a>  
+    </div>
+
+
+
+</body>
+</html>
