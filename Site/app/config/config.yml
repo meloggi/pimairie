@@ -101,9 +101,7 @@ fos_user:
             from_email:
                 address:              noreply@exemple.com
                 sender_name:          noreply
-        form:
-            type:                 fos_user_resetting
-            name:                 fos_user_resetting_form
+
 
     service:
         mailer:               fos_user.mailer.default

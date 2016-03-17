@@ -67,7 +67,8 @@
     </div>
     <ul class="main_menu">
       <li class="main_menu"><a href="{{ path('homepage') }}">Home</a></li>
-          <li class="main_menu"><a>Contact</a></li>
+      <li class="main_menu"><a {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %} href="{{ path('form3') }}" {% else %} href="{{ path('fos_user_security_login') }}" {% endif %} >Accéder à ma demande</a>
+          <li class="main_menu"><a href="{{ path('homepage') }}">Contact</a></li>
         </li>
       </ul> 
 
@@ -188,10 +189,9 @@
                   <label class="labelStatu">Statut: {{ demand.statusconjoint}}</label>
                 </p>
                 {%endif%}
-                {% if demand.nomemployeur != null %}
+                {% if demand.nomemployeurconjoint != null %}
                 <p> 
-                  <label class="labelnomemployeur">Nom de votre employeur : {{ demand.nomemployeur}}</label>
-                  conjoint
+                  <label class="labelnomemployeur">Nom de votre employeur : {{ demand.nomemployeurconjoint}}</label>
                 </p>
                 {%endif%}
                 {% if demand.codepostalemployeurconjoint != null %}
@@ -280,6 +280,24 @@
 
                 <p>
                   <label class="labelautres">Autres : {{ demand.surfacelogementactuel}}</label>
+                </p>
+                {%endif%}
+                {% if demand.locationVillersCentre != null %}
+
+                <p>
+                  <label class="labelautres">Location à Villers-centre : {{ demand.locationVillersCentre}}</label>
+                </p>
+                {%endif%}
+                {% if demand.locationVillersBas != null %}
+
+                <p>
+                  <label class="labelautres">Location à Villers-bas : {{ demand.locationVillersBas}}</label>
+                </p>
+                {%endif%}
+                {% if demand.locationClairlieu != null %}
+
+                <p>
+                  <label class="labelautres">Location à Clairlieu : {{ demand.locationClairlieu}}</label>
                 </p>
                 {%endif%}
                
@@ -445,7 +463,7 @@
               <a href="{{ path('form2_modifier') }}" class="btn btn-danger btn-outline"/>Modifier</a>
               <a href="{{ path('homepage') }}" class="btn btn-success btn-outline " style="margin-bottom: 30px;"/>Valider</a>
 
-              <a href="/images/cerfa.pdf" class="btn btn-lg btn-primary " target="_blank" style="margin-bottom: 60px; margin-left: 550px;" role="button" >Télécharger document cerfa</a>
+             <!-- <a href="/images/cerfa.pdf" class="btn btn-lg btn-primary " target="_blank" style="margin-bottom: 60px; margin-left: 550px;" role="button" >Télécharger document cerfa</a> -->
               
               
 

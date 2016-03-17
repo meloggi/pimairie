@@ -36,11 +36,7 @@ class Demand
      * @ORM\Column(name="firstName", type="string", length=255)
      */
     private $firstName;
-
-   
-
-
-   
+    
     /**
      * @var string
      *
