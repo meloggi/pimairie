@@ -174,4 +174,11 @@ form_justificatif:
 telecharger:
      path:     /telecharger
      defaults: { _controller: PIBundle:Default:telecharger }
-  
+ 
+redirection_acces:
+    path:     /redirection_acces
+    defaults: { _controller: PIBundle:Default:redirection_access }
+
+redirection_creer:
+    path:     /redirection_creer
+    defaults: { _controller: PIBundle:Default:redirection_creer }  

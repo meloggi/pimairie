@@ -1,10 +1,4 @@
-ul.main_menu {
-    list-style-type:none;
-    margin:0;
-    padding:0;
-    position: absolute;
-    left: 430px;
-}
+
 
 .well {
   margin-top: 150px;
@@ -67,7 +61,7 @@ h1
   font-family:Arial, Helvetica, sans-serif;
   color: #393C3C;
   font-weight: bold;
-  padding:10px;
+  padding:15px;
   font-size: medium;
 
   -moz-border-radius: 10px;
@@ -84,11 +78,9 @@ h1
 
 p
 {
- margin:16px;
+ vertical-align: middle;
  padding-top: 0.2cm;
  padding-bottom: 0.2cm;
- font-size: small;
- font-weight: normal;
 }
 
 .info{
@@ -132,186 +124,45 @@ p
   margin-top:0cm;
 }
 
-.labelnom{
-  margin-left: 2.2cm;
+.labelform{
+    display: block;
+    width: 200px;
+    float: left;
+    font-size: small;
+    font-weight: normal;
+    font-style: normal;
+    font-family: Helvetica, Arial, sans-serif;
+    text-align:right;
+    margin-right: 20px;
 }
 
-.labelprenom{
-  margin-left: 1.7cm;
-}
-
-.labeldate{
-  margin-left: 0.05cm;
-}
-
-.labeltel{
-  margin-left: 1.3cm;
-}
-
-.labelmail{
-  margin-left: 2.3cm;
-}
-
-.labelnumero{
-  margin-left: 1.7cm;
-}
-
-.labelvoie{
-  margin-left: 2.2cm;
-}
-
-.labelcomplement{
-  margin-left: -0.5cm;
-}
-
-.labellieu{
-  margin-left: 1.7cm;
-}
-
-.labelcode{
-  margin-left: 1cm;
-}
-
-.labelcommune{
-  margin-left: 1.2cm;
-}
-
-.labelpersonne{
-  margin-left: -0.4cm;
-}
-
-.labelnbpersonne{
-  margin-left: 0cm;
+.labelform3{
+  display: block;
+    width: 180px;
+    float: left;
+    font-size: small;
+    font-weight: normal;
+    font-style: normal;
+    font-family: Helvetica, Arial, sans-serif;
+    text-align:justify;
 }
 
 .input-xlarge{
-  margin-left: 0.4cm;
+  vertical-align: middle;
 }
 
-.labelavis{
-  margin-left: -1cm;
+.obligatoire{
+  color:red;
 }
 
-.labelsalaire{
-  margin-left: 0.8cm;
+.option{
+  font-size: small;
+  font-size: small;
+    font-weight: normal;
+    font-style: normal;
+    font-family: Helvetica, Arial, sans-serif;
+    text-align:right;
 }
-
-.labelretraite{
-  margin-left: 0.7cm;
-}
-
-.labelalloc{
-  margin-left: -1.3cm;
-}
-
-.labelpensionalim{
-  margin-left: -1.3cm;
-}
-
-.labelpensioninval{
-  margin-left: -1.15cm;
-}
-
-.labelallocfamilial{
-  margin-left: -1.2cm;
-}
-
-.labelrsa{
-  margin-left: -3.4cm;
-}
-
-.labelautres{
-  margin-left: 0.9cm;
-}
-
-.labelprofession{
-  margin-left: 1cm;
-}
-
-.labelnomemployeur{
-  margin-left: -1.3cm;
-}
-
-.labelcode{
-  margin-left: 0.9cm;
-}
-
-.labelcommuneemployeur{
-  margin-left: -1.8cm;
-}
-
-.labelgenre{
-  margin-left: 2cm;
-}
-
-.labelnompersonnecharge{
-  margin-left: 2cm;
-}
-
-.labelquestionpersonne{
-  margin-left: -1.1cm;
-}
-
-.labelstatu{
-  margin-left: 2cm;
-}
-
-.allo{
-  margin-left:0.5cm;
-}
-
-.labelsituation{
-  margin-left: -1cm;
-}
-
-.labelparking{
-  margin-left: -3.3cm;
-}
-
-.labelrdc{
-  margin-left: -1.9cm;
-}
-
-.labelascenseur{
-  margin-left: 1.2cm;
-}
-
-.labeltype{
-  margin-left: -0.2cm;
-}
-
-.labelcategorierecherche{
-  margin-left: -1.1cm;
-}
-
-.labelparking1{
-  margin-left: -1.7cm;
-}
-
-.labelnombrechambre{
-  margin-left: 0cm;
-}
-
-.labelrdc1{
-  margin-left: -1.18cm;
-}
-
-.labeltyperecherche{
-  margin-left: -0.1cm;
-}
-
-.labelmontantmaxi{
-  margin-left: -4.4cm;
-}
-
-.labeltypelogementrecherche{
-  margin-left: 0.3cm;
-}
-
-.labelsurface{
-  margin-left: 1.6cm;
-}
-
 
 
 

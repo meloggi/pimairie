@@ -66,7 +66,7 @@ class DefaultController extends Controller
         if($demand == null){
         return $this->render('PIBundle:Default:form1.html.twig');
     }
-        return $this->render('PIBundle:Default:contact.html.twig');
+        return $this->render('PIBundle:Default:redirection_creer.html.twig');
     }
 
     public function form2Action(Request $request)
@@ -197,6 +197,16 @@ class DefaultController extends Controller
         return $this->render('PIBundle:Default:contact.html.twig');
     }
 
+     public function redirection_accessAction()
+    {
+        return $this->render('PIBundle:Default:redirection_access.html.twig');
+    }
+
+     public function redirection_creerAction()
+    {
+        return $this->render('PIBundle:Default:redirection_creer.html.twig');
+    }
+
 
     public function form3Action(Request $request)
     {
@@ -219,7 +229,7 @@ class DefaultController extends Controller
         }
         return $this->render('PIBundle:Default:form3.html.twig', array('form' => $form->createView(), 'demand' => $demand1));
         }
-        return $this->render('PIBundle:Default:contact.html.twig');
+        return $this->render('PIBundle:Default:redirection_access.html.twig');
     }
 
     public function envoiMail()

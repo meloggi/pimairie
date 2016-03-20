@@ -83,7 +83,7 @@ li.main_menu:hover ul.main_menu a:hover {
     margin-top: 110px;
     margin-left: 50px;
     margin-right: 50px;
-    font-family:Arial, Helvetica, sans-serif;
+    
     font-size:small;
   }
 
@@ -107,6 +107,7 @@ h1
   font-weight: small;
 
   display:inline;
+  font-family:Arial, Helvetica, sans-serif;
 
   
 }
@@ -117,6 +118,8 @@ p
     padding-top: 0.5cm;
     padding-bottom: 0.5cm;
     font-size: small;
+    font-family:Arial, Helvetica, sans-serif;
+    text-align: justify;
 }
 
 
