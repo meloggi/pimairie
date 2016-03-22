@@ -140,7 +140,7 @@
                 </p>
 
                 <p>
-                  <label class="labelform">Telephone:</label>
+                  <label class="labelform">Téléphone:</label>
                   <input class="input-xlarge" id="demand_telephone" type="text"  name="demand[telephone]" value={{ demand.telephone}} ></input>
                 </p>
 
@@ -180,7 +180,7 @@
               </div>
 
               <div class="info page1">
-                <h1>Personne fiscalement à charges</h1>
+                <h1>Personnes fiscalement à charges</h1>
                 <p>
               <label class="labelform">Avez-vous des personnes à charges?</label>
 
@@ -307,7 +307,7 @@
                   <input class="input-xlarge" id="demand_pensionalimentaire" type="text"  name="demand[pensionalimentaire]"  value={{demand.pensionalimentaire}}   ></input>
                 </p>
                 <p>
-                  <label class="labelform">Pension d'invaidité:</label>
+                  <label class="labelform">Pension d'invalidité:</label>
                   <input class="input-xlarge" id="demand_pensioninvalidite" type="text"  name="demand[pensioninvalidite]"  value={{demand.pensioninvalidite}}   ></input>
                 </p>
                 <p>
@@ -344,7 +344,7 @@
                 </p>
                 
                 <p>
-                  <label class="labelform">Nombre de personne occupant le logement actuel:</label>
+                  <label class="labelform">Nombre de personnes occupant le logement actuel:</label>
                   <input class="input-xlarge" id="demand_rdc" type="text"  name="demand[nbpersonnelogementactuel]" value={{demand.nbpersonnelogementactuel}}></input>
                 </p>
                 <p>
@@ -492,24 +492,13 @@
       $(".page4").hide(200);
       $(".page5").hide(200);
         //derniere page ??
-        $("#bouton_js2").show();
+        $("#bouton_js2").show(200);
         $("#vrai_submit").hide(200);
         $("#bouton_js").show();
         page_active=3;
         return;
       }
 
-    //   if(page_active==4){
-    //   $(".page1").hide(200);
-    //   $(".page2").hide(200);
-    //   $(".page3").hide(200);      
-    //   $(".page4").show(200);
-    //     //derniere page ??
-
-
-    //     page_active=4;
-    //     return;
-    //   }
 
     if(page_active==3){
        $(".page1").hide(200);
@@ -518,42 +507,14 @@
       $(".page4").show(200);
        $(".page5").show(200);
         //derniere page ??
-       $("#bouton_js2").show();
         $("#vrai_submit").show(200);
+         $("#bouton_js2").show(200);
         $("#bouton_js").hide();
 
         page_active=4;
         return;
       }
-
-      if(page_active==4){
-       $(".page1").hide(200);
-      $(".page2").hide(200);
-      $(".page3").hide(200);      
-      $(".page4").hide(200);
-      $(".page5").show(200);
-        //derniere page ??
-       $("#bouton_js2").show();
-        $("#vrai_submit").hide(200);
-        $("#bouton_js").show();
-
-        page_active=5;
-        return;
-      }
-
-      if(page_active==5){
-      $(".page1").hide(200);
-      $(".page2").hide(200);
-      $(".page3").hide(200);
-      $(".page4").hide(200);
-        //derniere page ??
-        $("#vrai_submit").show(200);
-        $("#bouton_js").hide();
-
-        page_active=6;
-        return;
-      }
-      
+ 
     });
 
 
@@ -569,7 +530,7 @@ $("#bouton_js2").on('click',function(){
     $(".page2").hide(200);
     $(".page3").hide(200);      
     $(".page4").hide(200);
-
+$("#vrai_submit").hide(200);
 
 
     page_active=1;
@@ -577,39 +538,30 @@ $("#bouton_js2").on('click',function(){
   }
 
 
- //   if(page_active==4){
-    //   $(".page1").hide(200);
-    //   $(".page2").hide(200);
-    //   $(".page3").hide(200);      
-    //   $(".page4").show(200);
-    //     //derniere page ??
-
-
-    //     page_active=4;
-    //     return;
-    //   }
 
     if(page_active==3){
      $(".page1").hide(200);
      $(".page2").show(200);
      $(".page3").hide(200);
      $(".page4").hide(200);
-     $("#bouton_js").hide();
-     $("#vrai_submit").show();
+$("#vrai_submit").hide(200);
+ //    $("#vrai_submit").hide();
      page_active=2;
      return;
    }
 
-  // if(page_active==4){
-  //        $(".page1").hide(200);
-  //     $(".page2").hide(200);
-  //     $(".page3").show(200);
-  //     $(".page4").hide(200);
-  //      $("#bouton_js").hide();
-  //     $("#vrai_submit").show();
-  //     page_active=3;
-  //       return;
-  //     }
+   if(page_active==4){
+          $(".page1").hide(200);
+       $(".page2").hide(200);
+       $(".page3").show(200);
+       $(".page4").hide(200);
+       $(".page5").hide(200);
+        $("#bouton_js").show();
+    //    $("#bouton_js2").show();
+      $("#vrai_submit").hide();
+       page_active=3;
+         return;
+       }
 
 });
 });
