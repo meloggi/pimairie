@@ -54,7 +54,7 @@ class Demand
     /**
      * @var string
      *
-     * @ORM\Column(name="mail", type="string", length=255, nullable=true)
+     * @ORM\Column(name="email", type="string", length=255, nullable=true)
      */
     private $email;
 

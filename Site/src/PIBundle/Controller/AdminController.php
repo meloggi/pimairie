@@ -253,30 +253,31 @@ class AdminController extends Controller
         $em = $this->getDoctrine()->getManager();
         $appartment = $em->getRepository('PIBundle:Housing')->find($id);
         $type = $appartment ->getType();
-        $type_inf = "F1";
-        $type_sup = "F1";
-        if ($type == "F1"){
-            $type_inf = "F1 bis";
-            $type_sup = "F2";
-        }elseif ($type == "F2"){
-            $type_inf = "F1";
-            $type_sup = "F3";
-        }elseif ($type == "F3"){
-            $type_inf = "F2";
-            $type_sup = "F4";
-        }elseif ($type == "F4"){
-            $type_inf = "F3";
-            $type_sup = "F5";
-        }elseif ($type == "F5"){
-            $type_inf = "F4";
-            $type_sup = "F6";
-        }elseif ($type == "F6"){
-            $type_inf = "F5";
-            $type_sup = "F5";
-        }elseif ($type == "F1 bis"){
-            $type_inf = "F1";
-            $type_sup = "F2";
+        $type_inf = "T1";
+        $type_sup = "T1";
+        if ($type == "T1"){
+            $type_inf = "T1 bis";
+            $type_sup = "T2";
+        }elseif ($type == "T2"){
+            $type_inf = "T1";
+            $type_sup = "T3";
+        }elseif ($type == "T3"){
+            $type_inf = "T2";
+            $type_sup = "T4";
+        }elseif ($type == "T4"){
+            $type_inf = "T3";
+            $type_sup = "T5";
+        }elseif ($type == "T5"){
+            $type_inf = "T4";
+            $type_sup = "T6";
+        }elseif ($type == "T6"){
+            $type_inf = "T5";
+            $type_sup = "T5";
+        }elseif ($type == "T1 bis"){
+            $type_inf = "T1";
+            $type_sup = "T2";
         }
+        
         $list_demand = $em->getRepository('PIBundle:Demand')->findBy(array('archived' => "Non", 'confirmed' => "Oui"));
         return $this->render('PIBundle:Admin:attribution_logement.html.twig', array('appartment' => $appartment, 'list_demand' => $list_demand, 'type_inf' => $type_inf, 'type_sup' => $type_sup));
     }
