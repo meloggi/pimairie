@@ -474,14 +474,14 @@ class Demand
     /**
      * @var string
      *
-     * @ORM\Column(name="categorielogementrecherche", type="decimal", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="categorielogementrecherche", type="string", precision=10, scale=0, nullable=true)
      */
     private $categorielogementrecherche;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="loyerlogementrecherche", type="decimal", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="loyerlogementrecherche", type="string", precision=10, scale=0, nullable=true)
      */
     private $loyerlogementrecherche;
 

@@ -363,7 +363,9 @@ class AdminController extends Controller
         $em = $this->getDoctrine()->getManager();
         $appartment = $em->getRepository('PIBundle:Housing')->find($id);
         $iddemand = $appartment ->getIdDemand();
+
         $demand = $em->getRepository('PIBundle:Demand')->find($iddemand);
+         print_r($demand, true);
         return $this->render('PIBundle:Admin:afficher_locataire.html.twig', array('demand' => $demand, 'id' => $id));
     }
 

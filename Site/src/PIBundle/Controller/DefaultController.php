@@ -62,7 +62,7 @@ class DefaultController extends Controller
         $user = $em->getRepository('PIBundle:User')->find($id);
 
         $demand = $em->getRepository('PIBundle:Demand')->findOneBy(array('idUser' => $id, 'archived' => "Non"));
-        
+        print_r($demand, true);
         if($demand == null){
         return $this->render('PIBundle:Default:form1.html.twig');
     }

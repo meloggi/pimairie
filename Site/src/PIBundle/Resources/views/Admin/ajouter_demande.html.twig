@@ -64,89 +64,328 @@
             <form action="{{ path('platform_admin_ajouter_demande', { 'id': user.id }) }}" method="post" role="form">
                 <div class="form-group">
 
-                    <div class="form-group">
-                    <label for="demand_lastName">Nom: </label>
-                    <input class="form-control" id="demand_lastName" type="text" required="required" name="demand[lastName]" 
-                    value={{user.lastName}}></input>
-                    <p class="help-block">{{ form_errors(form.lastName) }}</p>
-                    </div>
+                    <h2>Coordonnées</h2>
+  <p>
+    <label >Civilité:</label>
+    <select class="form-control" id="search_housing_bailleur" type="text"   name="demand[genre]" value={{demand.genre}} >
+      <option>Monsieur</option>
+      <option>Madame</option>
+      <option>Mademoiselle</option>
+    </select>
+  </p>
 
-                    <div class="form-group">
-                    <label for="demand_firstName">Prénom: </label>
-                    <input class="form-control" id="demand_firstName" type="text" required="required" name="demand[firstName]" 
-                    value={{user.firstname}}></input>
-                    <p class="help-block">{{ form_errors(form.firstName) }}</p>
-                    </div>
+  <p>  
+    <label >Nom:</label>
+    <input class="form-control" id="demand_lastName" type="text"  name="demand[lastName]"  value={{ app.user.lastName}}   ></input>
+  </p>
 
-                    <div class="form-group">
-                    <label for="demand_email">Email: </label>
-                    <input class="form-control" id="demand_email" type="email" required="required" name="demand[email]" 
-                    value={{user.email}}></input>
-                    <p class="help-block">{{ form_errors(form.email) }}</p>
-                    </div>
 
-                    <div class="form-group">
-                    <label for="demand_salary">Salaire: </label>
-                    <input class="form-control" id="demand_salary" type="text" required="required" name="demand[salary]" ></input>
-                    <p class="help-block">{{ form_errors(form.salary) }}</p>
-                    </div>
+  <p>
+    <label >Prénom:</label>
+    <input class="form-control" id="demand_firstName  " type="text"  name="demand[firstName]" value={{ app.user.firstName}} ></input>
+  </p>
 
-                    <div class="form-group">
-                    <label for="demand_locationVillersCentre">Localisation à Villers-centre: </label>
-                    <select class="form-control" id="demand_locationVillersCentre" type="text" required="required" name="demand[locationVillersCentre]">
-                        <option>Oui</option>
-                        <option>Non</option>
-                    </select>
-                    <p class="help-block">{{ form_errors(form.locationVillersCentre) }}</p>
-                    </div>
+  <p>
+    <label >Date de naissance::</label>
+    <input class="form-control" id="demand_date" type="text"  name="demand[date]" value={{demand.date}} ></input>
+  </p>
 
-                    <div class="form-group">
-                    <label for="demand_locationVillersBas">Localisation à Villers-bas: </label>
-                    <select class="form-control" id="demand_locationVillersBas" type="text" required="required" name="demand[locationVillersBas]">
-                        <option>Oui</option>
-                        <option>Non</option>
-                    </select>
-                    <p class="help-block">{{ form_errors(form.locationVillersBas) }}</p>
-                    </div>
+  <p>
+    <label >Téléphone:</label>
+    <input class="form-control" id="demand_telephone" type="text"  name="demand[telephone]" value={{ demand.telephone}} ></input>
+  </p>
 
-                    <div class="form-group">
-                    <label for="demand_locationClairlieu">Localisation à Clairlieu: </label>
-                    <select class="form-control" id="demand_locationClairlieu" type="text" required="required" name="demand[locationClairlieu]">
-                        <option>Oui</option>
-                        <option>Non</option>
-                    </select>
-                    <p class="help-block">{{ form_errors(form.locationClairlieu) }}</p>
-                    </div>
+  <p>
+    <label >Mail:</label>
+    <label class="form-control">{{ app.user.username }}</label>
+  </p>
 
-                    <div class="form-group">
-                    <label for="demand_type1">Type: </label>
-                    <select class="form-control" id="demand_type1" type="text" required="required" name="demand[type1]">
-                        <option>F1</option>
-                        <option>F1 bis</option>
-                        <option>F2</option>
-                        <option>F3</option>
-                        <option>F4</option>
-                        <option>F5</option>
-                        <option>F6</option>
-                    </select>
-                    <p class="help-block">{{ form_errors(form.type1) }}</p>
-                    </div>
+</div>
+<h2>Adresse pour l'envoie du courrier</h2>
+<p>
+  <label >Numéro:</label>
+  <input class="form-control" id="demand_numero" type="text"  name="demand[numero]" value={{ demand.numero}}></input>
+</p>
+<p>
+  <label >Voie:</label>
+  <input class="form-control" id="demand_voie" type="text"  name="demand[voie]" value={{ demand.voie}} ></input>
+</p>
+<p>
+  <label >Complément adresse:</label>
+  <input class="form-control" id="demand_complementadresse" type="text"  name="demand[complementadresse]" value={{ demand.complementadresse }}></input>
+</p>
+<p>
+  <label >Lieu-dit:</label>
+  <input class="form-control" id="demand_lieudit" type="text"  name="demand[lieudit]" value={{ demand.lieudit}}></input>
+</p>
+<p>
+  <label >Code postal:</label>
+  <input class="form-control" id="demand_codepostal"  type="text"  name="demand[codepostal]" value={{ demand.codepostal}} ></input>
+</p>
+<p>
+  <label >Commune:</label>
+  <input class="form-control" id="demand_commune" type="text"  name="demand[commune]" value={{ demand.commune}} ></input>
+</p>
 
-                    <div class="form-group">
-                    <label for="demand_type2">Autre type: </label>
-                    <select class="form-control" id="demand_type2" type="text" required="required" name="demand[type2]">
-                        <option>Non</option>
-                        <option>F1</option>
-                        <option>F1 bis</option>
-                        <option>F2</option>
-                        <option>F3</option>
-                        <option>F4</option>
-                        <option>F5</option>
-                        <option>F6</option>
-                    </select>
-                    <p class="help-block">{{ form_errors(form.type2) }}</p>
-                    </div>
 
+
+<h2>Personnes fiscalement à charges</h2>
+<p>
+  <label >Avez-vous des personnes à charges?</label>
+
+  <select class="form-control" id="demand_personnecharge" type="text"   name="demand[personnecharge]" value={{demand.personnecharge}} >
+    <option>Oui</option>
+    <option>Non</option>
+  </select>
+  <p>
+    <label >Si oui, combien?</label>
+    <input class="form-control" id="demand_nombrepersonnecharge" type="text" name="demand[nombrepersonnecharge]" value={{ demand.nombrepersonnecharge}}></input>
+  </p>
+</p>
+
+
+
+
+
+
+<h2>Le demandeur</h2>    
+
+<p>
+  <label >Profession:</label>
+  <input class="form-control" id="demand_profession" type="text"  name="demand[profession]" value={{demand.profession}} ></input> 
+</p>
+
+<p>
+  <label >Statut:</label>
+
+  <select class="form-control" id="demand_statusdemandeur" type="text"   name="demand[status]" value={{demand.status}} >
+
+    <option>CDI (ou fonctionnaire)</option>
+    <option>CDD, stage, intérim</option>
+    <option>Artisan, commerçant, profession libérale</option>
+    <option>Chômage</option>
+    <option>Etudiant</option>
+    <option>Retraité</option>
+    <option>Autre</option>
+  </select>
+</p>
+
+<p>
+  <label >Nom de votre employeur:</label>
+  <input class="form-control" id="demand_nomemployeur" type="text"  name="demand[nomemployeur]" value={{demand.nomemployeur}} ></input>
+
+</p>
+
+<p>
+  <label >Code postal:</label>
+  <input class="form-control" id="demand_codeemployeur" type="text"  name="demand[codepostalemployeur]" value={{demand.codepostalemployeur}} ></input>
+</p>
+
+<p>
+  <label >Commune du lieu de travail:</label>
+  <input class="form-control" id="demand_communeemployeur" type="text"  name="demand[communeemployeur]" value={{demand.communeemployeur}} ></input>
+</p>
+<h2>Le conjoint ou le futur co-titulaire du bail</h2>    
+
+
+<p>
+  <label >Profession:</label>
+  <input class="form-control" id="demand_profession" type="text"  name="demand[professionconjoint]"  value={{demand.professionconjoint}}></input> 
+</p>
+
+<p>
+  <label >Statut:</label>
+  <select class="form-control" id="demand_statusconjoint" type="text"   name="demand[genre]" value={{demand.genre}} >
+    <option>CDI (ou fonctionnaire)</option>
+    <option>CDD, stage, intérim</option>
+    <option>Artisan, commerçant, profession libérale</option>
+    <option>Chômage</option>
+    <option>Etudiant</option>
+    <option>Retraité</option>
+    <option>Autre</option>
+  </select>
+</p>
+<p>
+  <label >Nom de votre employeur:</label>
+  <input class="form-control" id="demand_nomemployeur" type="text"  name="demand[nomemployeurconjoint]" value={{demand.nomemployeurconjoint}}></input>
+
+</p>
+
+<p>
+  <label >Code postal:</label>
+
+  <input class="form-control" id="demand_codeemployeur" type="text"  name="demand[codepostalemployeurconjoint]" value={{demand.codepostalemployeurconjoint}}></input>
+</p>
+
+<p>
+  <label >Commune du lieu de travail:</label>
+  <input class="form-control" id="demand_communeemployeur" type="text"  name="demand[communeemployeurconjoint]" value={{demand.communeemployeurconjoint}}></input>
+</p>
+
+
+<h2>Revenu fiscal de référence</h2>
+
+<p>
+  <label >Avis d'imposition sur<br> les revenus de l'année <script>document.write(new Date().getFullYear()-1)</script>:</label>
+  <input class="form-control" id="demand_salary" type="text"  name="demand[avisimposition2]" value={{demand.avisimposition2}} ></input>
+</p>
+
+
+<p>
+  <label >Avis d'imposition sur les revenus de l'année <script>document.write(new Date().getFullYear()-2)</script>:</label>
+  <input class="form-control" id="demand_retraitechomage" type="text"  name="demand[avisimposition1]" value={{demand.avisimposition1}} ></input>
+</p>
+
+<h2>Ressources Mensuelles</h2>
+<p>
+  <label >Salaire:</label>
+  <input class="form-control" id="demand_salary" type="text"  name="demand[salary]" value={{demand.salary}}    ></input>
+</p>
+<p>
+  <label >Retraite:</label>
+  <input class="form-control" id="demand_retraitechomage" type="text"  name="demand[retraite]"   value={{demand.retraite}}  ></input>
+</p>
+<p>
+  <label >Allocation chômage:</label>
+  <input class="form-control" id="demand_allocationchomage" type="text"  name="demand[allocationchomage]"  value={{demand.allocationchomage}}   ></input>
+</p>
+<p>
+  <label >Pension alimentaire:</label>
+  <input class="form-control" id="demand_pensionalimentaire" type="text"  name="demand[pensionalimentaire]"  value={{demand.pensionalimentaire}}   ></input>
+</p>
+<p>
+  <label >Pension d'invalidité:</label>
+  <input class="form-control" id="demand_pensioninvalidite" type="text"  name="demand[pensioninvalidite]"  value={{demand.pensioninvalidite}}   ></input>
+</p>
+<p>
+  <label >Allocation familiale:</label>
+  <input class="form-control" id="demand_allocationfamilial" type="text"  name="demand[allocationfamilial]"  value={{demand.allocationfamilial}}   ></input>
+</p>
+<p>
+  <label >Revenu de soldarité active (RSA):</label>
+  <input class="form-control" id="demand_rsa" type="text"  name="demand[rsa]"  value={{demand.rsa}}   ></input>
+</p>
+<p>
+  <label >Autres:</label>
+  <input class="form-control" id="demand_autres" type="text"  name="demand[autres]"  value={{demand.autres}}   ></input>
+</p>
+
+<h2>Logement Actuel</h2>
+
+
+<p>
+  <label >Situation du logement:</label>
+  <select class="form-control" id="search_housing_bailleur" type="text"  name="demand[situation]" value={{demand.situation}}>
+    <option>Location HLM</option>
+    <option>Location parc privé</option>
+    <option>Autres</option>
+  </select>
+</p>
+
+<p>
+  <label >Si vous payez un loyer ou une redevance, montant mensuel:</label>
+  <input class="form-control" id="demand_parking" type="text"  name="demand[loyerlogementactuel]" value={{demand.loyerlogementactuel}}></input>
+</p>
+
+<p>
+  <label >Nombre de personnes occupant le logement actuel:</label>
+  <input class="form-control" id="demand_rdc" type="text"  name="demand[nbpersonnelogementactuel]" value={{demand.nbpersonnelogementactuel}}></input>
+</p>
+<p>
+  <label >Catégorie:</label>
+  <select class="form-control" id="search_housing_bailleur" type="text"  name="demand[categorielogementactuel]" value={{demand.categorielogementactuel}}>
+    <option>Appartement</option>
+    <option>Maison</option>
+  </select>
+</p>
+
+<p>
+  <label >Type de logement:</label>
+  <select class="form-control" id="search_housing_bailleur" type="text"   name="demand[typelogementactuel]" value={{demand.typelogementactuel}} >
+    <option>T1</option>
+    <option>T2</option>
+    <option>T3</option>
+    <option>T4</option>
+    <option>T5</option>
+    <option>T6 et plus</option>
+  </select>
+</p>
+
+
+<p>
+  <label class='labelform'>Surface:</label>
+  <input class="form-control" id="demand_montantmaxi" type="text"  name="demand[surfacelogementactuel]" value={{demand.surfacelogementactuel}}></input>
+  <label>m&sup2</label>
+</p>
+
+
+
+<h2>Logement recherché</h2>
+
+<p>
+  <label >Location à Villers-centre:</label>
+  <select class="form-control" id="search_housing_bailleur" type="text" selected="Oui"  name="demand[locationVillersCentre]" value={{demand.locationVillersCentre}}>
+    <option>Oui</option>
+    <option>Non</option>
+  </select>
+</p>
+
+<p>
+  <label >Location à Villers-bas:</label>
+  <select class="form-control" id="search_housing_bailleur" type="text" selected="Oui"  name="demand[locationVillersBas]" value={{demand.LocationVillersBas}}>
+    <option>Oui</option>
+    <option>Non</option>
+  </select>
+</p>
+
+<p>
+  <label >Location à Clarlieu:</label>
+  <select class="form-control" id="search_housing_bailleur" type="text" selected="Oui"  name="demand[locationClairlieu]" value={{demand.locationClairlieu}}>
+    <option>Oui</option>
+    <option>Non</option>
+  </select>
+</p>
+
+<p>
+  <label >Catégorie:</label>
+  <select class="form-control" id="search_housing_bailleur" type="text"  name="demand[categorielogementrecherche]" value={{demand.categorielogementrecherche}}>
+    <option>Appartement</option>
+    <option>Maison</option>
+  </select>
+</p>
+
+<p>
+  <label >Souhaitez-vous un parking?</label>
+  <select class="form-control" id="demand_parking" type="text"   name="demand[parking]" value={{demand.parking}} >
+    <option>Oui</option>
+    <option>Non</option>
+  </select>
+</p>
+
+<p>
+  <label >Typologie d'appartement:</label>
+
+  <select class="form-control" id="search_housing_bailleur" type="text"   name="demand[type1]" value={{demand.type1}} >
+    <option>T1</option>
+    <option>T2</option>
+    <option>T3</option>
+    <option>T4</option>
+    <option>T5</option>
+    <option>T6 et plus</option>
+  </select>
+</p>
+<p>
+  <label >Logement rez-de-chaussée:</label>
+  <select class="form-control" id="demand_ascenseur" type="text"   name="demand[rdc]" value={{demand.rdc}} >
+    <option>Oui</option>
+    <option>Non</option>
+  </select>
+</p>
+
+<p>
+  <label >Montant maximum de la dépense de logement (loyer + charge):</label>
+  <input class="form-control" id="demand_typelogement" type="text"  name="demand[montantmaxi]" value={{demand.montantmaxi}}></input>
+</p>
                     <div class="form-group">
                     <label for="demand_note">Notes: </label>
                         <textarea id="demand_note" name="demand[note]"maxlength="200" class="form-control" rows="3"></textarea>

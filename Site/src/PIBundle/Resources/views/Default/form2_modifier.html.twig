@@ -11,7 +11,9 @@
   <meta name="author" content="">
   <link rel="icon" href="../../favicon.ico">
 
-  <script src="/jquery2.2.1.min.js"></script>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+   <script src="/script.js"></script>
 
   <title>Demande de logement social-Mairie de Villers-lès-Nancy</title>
 
@@ -29,9 +31,6 @@
   <div class="container">
     <div id="logo">
       <img class="col-xs-2 col-sm-2 col-md-2 col-lg-2 "  src="{{ asset('images/logo-villers.png') }}" >
-
-
-
 
       <div class="connexion">
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -65,22 +64,22 @@
     <div id="chateau">
       <img class="col-xs-12 col-sm-9 col-md-15 col-lg-10 col-lg-offset-1"  src="{{ asset('images/chateau.jpg') }}" >
     </div>
-    <ul class="main_menu">
-      <li class="main_menu"><a href="{{ path('homepage') }}">Accueil</a></li>
-   <!--    <li class="main_menu"><a href="{{ path('form1') }}">Créer une demande</a> -->
-        <li class="main_menu"><a {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %} href="{{ path('form3') }}" {% else %} href="{{ path('fos_user_security_login') }}" {% endif %} >Accéder à ma demande</a>
-          <li class="main_menu"><a>Contact</a></li>
-        </li>
-      </ul> 
+    <div id='cssmenu'>
+    
+
+    <ul class="list-group" >
+
+      <li class="main_menu" style="margin-left:7%"><a href="{{ path('homepage') }}">Accueil</a></li>
+
+      <li class="main_menu"><a {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %} href="{{ path('form1') }}" {% else %} href="{{ path('fos_user_security_login') }}" {% endif %}>Créer une demande</a></li>
+
+        <li class="main_menu"><a {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %} href="{{ path('form3') }}" {% else %} href="{{ path('fos_user_security_login') }}" {% endif %} >Accéder à ma demande</a></li>
+
+          <li class="main_menu"><a href="{{ path('contact') }}">Contact</a></li>
+        
+    </ul>
 
       <div class="well">
-        <!-- <ul class="nav nav-tabs">
-          <li><a id="actif" class="onglet-actif" href="{{ path('form2') }}" data-toggle="tab">Demande</a></li>
-          <li><a id="nonactif" class="onglet"  data-toggle="tab" >Situation Professionnelle</a></li>
-          <li><a id="nonactif" class="onglet"  data-toggle="tab">Ressources actuelles</a></li>
-          <li><a id="nonactif" class="onglet"  data-toggle="tab">Motif et logement recherché</a></li>
-          <li><a id="nonactif" class="onglet"  data-toggle="tab">Téléchargement</a></li>
-        </ul> -->
         <div id="myTabContent" class="tab-content">
           <div class="tab-pane active in" id="home">
 
@@ -138,7 +137,7 @@
                 </p>
                 <p>
                   <label class="labelform">Complément adresse:</label>
-                  <input class="input-xlarge" id="demand_complementadresse" type="text" name="demand[complementadresse]" value={{ demand.complementadresse }}></input>
+                  <input class="input-xlarge" id="demand_complementadresse" type="text"  name="demand[complementadresse]" value={{ demand.complementadresse }}></input>
                 </p>
                 <p>
                   <label class="labelform">Lieu-dit:</label>
@@ -254,15 +253,15 @@
 
                 <h1>Revenu fiscal de référence</h1>
 
-                <p>
-                  <label class="labelform">Avis d'imposition sur<br> les revenus de l'année <script>document.write(new Date().getFullYear())</script>:</label>
-                  <input class="input-xlarge" id="demand_salary" type="text"  name="demand[salary]"></input>
+               <p>
+                  <label class="labelform">Avis d'imposition sur<br> les revenus de l'année <script>document.write(new Date().getFullYear()-1)</script>:</label>
+                  <input class="input-xlarge" id="demand_salary" type="text"  name="demand[avisimposition2]" value={{demand.avisimposition2}} ></input>
                 </p>
 
 
                 <p>
-                  <label class="labelform">Avis d'imposition sur les revenus de l'année <script>document.write(new Date().getFullYear())</script>:</label>
-                  <input class="input-xlarge" id="demand_retraitechomage" type="text"  name="demand[retraite]"></input>
+                  <label class="labelform">Avis d'imposition sur les revenus de l'année <script>document.write(new Date().getFullYear()-2)</script>:</label>
+                  <input class="input-xlarge" id="demand_retraitechomage" type="text"  name="demand[avisimposition1]" value={{demand.avisimposition1}} ></input>
                 </p>
 
                 <h1>Ressources Mensuelles</h1>
@@ -325,18 +324,29 @@
                 </p>
                 <p>
                   <label class="labelform">Catégorie:</label>
-                  <input class="input-xlarge" id="demand_ascenseur" type="text"  name="demand[categorielogementactuel]" value={{demand.categorielogementactuel}}></input>
+                  <select class="input-xlarge" id="search_housing_bailleur" type="text"  name="demand[categorielogementactuel]" value={{demand.categorielogementactuel}}>
+                                  <option>Appartement</option>
+                                  <option>Maison</option>
+                  </select>
                 </p>
+               
                 <p>
                   <label class="labelform">Type de logement:</label>
-                  <input class="input-xlarge" id="demand_typelogement" type="text"  name="demand[typelogementactuel]" value={{demand.typelogementactuel}} ></input>
+                  <select class="input-xlarge" id="search_housing_bailleur" type="text"   name="demand[typelogementactuel]" value={{demand.typelogementactuel}} >
+                                  <option>T1</option>
+                                  <option>T2</option>
+                                  <option>T3</option>
+                                  <option>T4</option>
+                                  <option>T5</option>
+                                  <option>T6 et plus</option>
+              </select>
                 </p>
                 
 
                 <p>
                   <label class='labelform'>Surface:</label>
                   <input class="input-xlarge" id="demand_montantmaxi" type="text"  name="demand[surfacelogementactuel]" value={{demand.surfacelogementactuel}}></input>
-                  <label >m&sup2</label>
+                  <label>m&sup2</label>
                 </p>
 
                 
@@ -371,39 +381,46 @@
               </p>
 
                 <p>
-                  <label class="labelform">Catégorie d'appartement:</label>
-                  <input class="input-xlarge" id="demand_parking" type="text"  name="demand[categorielogementrecherche]" value={{demand.categorielogementrecherche}}></input>
+                  <label class="labelform">Catégorie:</label>
+                  <select class="input-xlarge" id="search_housing_bailleur" type="text"  name="demand[categorielogementrecherche]" value={{demand.categorielogementrecherche}}>
+                                  <option>Appartement</option>
+                                  <option>Maison</option>
+                  </select>
                 </p>
 
                 <p>
                   <label class="labelform">Souhaitez-vous un parking?</label>
-                  <input class="input-xlarge" id="demand_parking" type="text"  name="demand[parking]" value={{demand.parking}} ></input>
+                  <select class="input-xlarge" id="demand_parking" type="text"   name="demand[parking]" value={{demand.parking}} >
+                                  <option>Oui</option>
+                                  <option>Non</option>
+              </select>
                 </p>
                 
                 <p>
                   <label class="labelform">Typologie d'appartement:</label>
                   
-                  <select class="input-xlarge" id="search_housing_bailleur" type="text"   name="demand[typelogementrecherche]" value={{demand.typelogementrecherche}} >
-                                  <option>1</option>
-                                  <option>2</option>
-                                  <option>3</option>
-                                  <option>4</option>
-                                  <option>5</option>
-                                  <option>6 et plus</option>
+                  <select class="input-xlarge" id="search_housing_bailleur" type="text"   name="demand[type1]" value={{demand.type1}} >
+                                  <option>T1</option>
+                                  <option>T2</option>
+                                  <option>T3</option>
+                                  <option>T4</option>
+                                  <option>T5</option>
+                                  <option>T6 et plus</option>
               </select>
                 </p>
                 <p>
                   <label class="labelform">Logement rez-de-chaussée:</label>
-                  <input class="input-xlarge" id="demand_ascenseur" type="text"  name="demand[rdc]" value={{demand.rdc}} ></input>
+                  <select class="input-xlarge" id="demand_ascenseur" type="text"   name="demand[rdc]" value={{demand.rdc}} >
+                                  <option>Oui</option>
+                                  <option>Non</option>
+              </select>
                 </p>
-                <p>
-                  <label class="labelform">Type de logement:</label>
-                  <input class="input-xlarge" id="demand_typelogement" type="text"  name="demand[ascenseur]" value={{demand.ascenseur}}></input>
-                </p>
+                
                 <p>
                   <label class="labelform">Montant maximum de la dépense de logement (loyer + charge):</label>
                   <input class="input-xlarge" id="demand_typelogement" type="text"  name="demand[montantmaxi]" value={{demand.montantmaxi}}></input>
                 </p>
+
 
               </div> 
 

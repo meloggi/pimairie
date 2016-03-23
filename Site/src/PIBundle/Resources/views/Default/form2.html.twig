@@ -279,14 +279,14 @@
                 <h1>Revenu fiscal de référence</h1>
 
                 <p>
-                  <label class="labelform">Avis d'imposition sur<br> les revenus de l'année <script>document.write(new Date().getFullYear())</script>:</label>
-                  <input class="input-xlarge" id="demand_salary" type="text"  name="demand[salary]"></input>
+                  <label class="labelform">Avis d'imposition sur<br> les revenus de l'année <script>document.write(new Date().getFullYear()-1)</script>:</label>
+                  <input class="input-xlarge" id="demand_salary" type="text"  name="demand[avisimposition2]" value={{demand.avisimposition2}} ></input>
                 </p>
 
 
                 <p>
-                  <label class="labelform">Avis d'imposition sur les revenus de l'année <script>document.write(new Date().getFullYear())</script>:</label>
-                  <input class="input-xlarge" id="demand_retraitechomage" type="text"  name="demand[retraite]"></input>
+                  <label class="labelform">Avis d'imposition sur les revenus de l'année <script>document.write(new Date().getFullYear()-2)</script>:</label>
+                  <input class="input-xlarge" id="demand_retraitechomage" type="text"  name="demand[avisimposition1]" value={{demand.avisimposition1}} ></input>
                 </p>
 
                 <h1>Ressources Mensuelles</h1>
@@ -349,18 +349,29 @@
                 </p>
                 <p>
                   <label class="labelform">Catégorie:</label>
-                  <input class="input-xlarge" id="demand_ascenseur" type="text"  name="demand[categorielogementactuel]" value={{demand.categorielogementactuel}}></input>
+                  <select class="input-xlarge" id="search_housing_bailleur" type="text"  name="demand[categorielogementactuel]" value={{demand.categorielogementactuel}}>
+                                  <option>Appartement</option>
+                                  <option>Maison</option>
+                  </select>
                 </p>
+               
                 <p>
                   <label class="labelform">Type de logement:</label>
-                  <input class="input-xlarge" id="demand_typelogement" type="text"  name="demand[typelogementactuel]" value={{demand.typelogementactuel}} ></input>
+                  <select class="input-xlarge" id="search_housing_bailleur" type="text"   name="demand[typelogementactuel]" value={{demand.typelogementactuel}} >
+                                  <option>T1</option>
+                                  <option>T2</option>
+                                  <option>T3</option>
+                                  <option>T4</option>
+                                  <option>T5</option>
+                                  <option>T6 et plus</option>
+              </select>
                 </p>
                 
 
                 <p>
                   <label class='labelform'>Surface:</label>
                   <input class="input-xlarge" id="demand_montantmaxi" type="text"  name="demand[surfacelogementactuel]" value={{demand.surfacelogementactuel}}></input>
-                  <label >m&sup2</label>
+                  <label>m&sup2</label>
                 </p>
 
                 
@@ -395,35 +406,41 @@
               </p>
 
                 <p>
-                  <label class="labelform">Catégorie d'appartement:</label>
-                  <input class="input-xlarge" id="demand_parking" type="text"  name="demand[categorielogementrecherche]" value={{demand.categorielogementrecherche}}></input>
+                  <label class="labelform">Catégorie:</label>
+                  <select class="input-xlarge" id="search_housing_bailleur" type="text"  name="demand[categorielogementrecherche]" value={{demand.categorielogementrecherche}}>
+                                  <option>Appartement</option>
+                                  <option>Maison</option>
+                  </select>
                 </p>
 
                 <p>
                   <label class="labelform">Souhaitez-vous un parking?</label>
-                  <input class="input-xlarge" id="demand_parking" type="text"  name="demand[parking]" value={{demand.parking}} ></input>
+                  <select class="input-xlarge" id="demand_parking" type="text"   name="demand[parking]" value={{demand.parking}} >
+                                  <option>Oui</option>
+                                  <option>Non</option>
+              </select>
                 </p>
                 
                 <p>
                   <label class="labelform">Typologie d'appartement:</label>
                   
-                  <select class="input-xlarge" id="search_housing_bailleur" type="text"   name="demand[typelogementrecherche]" value={{demand.typelogementrecherche}} >
-                                  <option>1</option>
-                                  <option>2</option>
-                                  <option>3</option>
-                                  <option>4</option>
-                                  <option>5</option>
-                                  <option>6 et plus</option>
+                  <select class="input-xlarge" id="search_housing_bailleur" type="text"   name="demand[type1]" value={{demand.type1}} >
+                                  <option>T1</option>
+                                  <option>T2</option>
+                                  <option>T3</option>
+                                  <option>T4</option>
+                                  <option>T5</option>
+                                  <option>T6 et plus</option>
               </select>
                 </p>
                 <p>
                   <label class="labelform">Logement rez-de-chaussée:</label>
-                  <input class="input-xlarge" id="demand_ascenseur" type="text"  name="demand[rdc]" value={{demand.rdc}} ></input>
+                  <select class="input-xlarge" id="demand_ascenseur" type="text"   name="demand[rdc]" value={{demand.rdc}} >
+                                  <option>Oui</option>
+                                  <option>Non</option>
+              </select>
                 </p>
-                <p>
-                  <label class="labelform">Type de logement:</label>
-                  <input class="input-xlarge" id="demand_typelogement" type="text"  name="demand[ascenseur]" value={{demand.ascenseur}}></input>
-                </p>
+                
                 <p>
                   <label class="labelform">Montant maximum de la dépense de logement (loyer + charge):</label>
                   <input class="input-xlarge" id="demand_typelogement" type="text"  name="demand[montantmaxi]" value={{demand.montantmaxi}}></input>
