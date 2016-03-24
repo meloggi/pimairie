@@ -15,6 +15,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\DateTime;
 
+/*
+*@Auteurs: Paul Le Noac'h, Komel Jamal, Brian Blessou
+*@Mail: brian.blessou@telecomnancy.net
+*@Version: PHP5
+*Cette classe permet de rediriger les bonnes pages Html/Twig en fonction de l'URL
+*/
 class AdminController extends Controller
 {
     public function indexAction()
@@ -22,7 +28,12 @@ class AdminController extends Controller
         return $this->render('PIBundle:Admin:index.html.twig');
     }
 
-    public function dashboardAction()
+    /*
+    *La fonction dashboardAction permet de renvoyer la page dashboard.html.twig avec la liste des 
+    *demandes éronnées, nouvelles, expirées et non attribuées.
+    *Les demandes sont classées en fonction de la date de saisie du formulaire
+    */
+    h function dashboardAction()
     {
         $em = $this->getDoctrine()->getManager();
         $list_demand_new = $em->getRepository('PIBundle:Demand')->findBy(array('confirmed' => "Non", 'wrong' => "Non", 'archived' =>"Non"));
@@ -36,6 +47,9 @@ class AdminController extends Controller
         return $this->render('PIBundle:Admin:dashboard.html.twig', array('list_demand_new' => $list_demand_new, 'list_demand_not_viewed' => $list_demand_not_viewed, 'list_demand_free' => $list_demand_free, 'list_demand_wrong' => $list_demand_wrong, 'list_demand_expired' => $list_demand_expired, 'date' => $date));
     }
 
+    /*
+    *La fonction appartmentAction permet de récupérer les champs du filtre afin de rechercher la bonne liste d'appartement
+    */
     public function appartmentAction(Request $request)
     {
         $search = new SearchHousing();
@@ -61,6 +75,10 @@ class AdminController extends Controller
         return $this->render('PIBundle:Admin:appartment.html.twig', array('form' => $form->createView(), 'liste_appartment' => $liste_appartment ));
     }
 
+    /*
+    *La fonction ajouter_appartmentAction permet d'ajouter un nouvel appartement
+    *Cette fonction envoie les attributs de l'entité "Housing" à la page ajouter_appartment.html.twig
+    */
     public function ajouter_appartmentAction(Request $request)
     {   
         $housing= new Housing();
@@ -76,6 +94,10 @@ class AdminController extends Controller
         return $this->render('PIBundle:Admin:ajouter_appartment.html.twig', array('form' => $form->createView()));
     }
 
+    /*
+    *La fonction modifier_appartmentAction permet de modifier un appartement
+    *Cette fonction envoie les attributs de l'appartement à modifier à la page ajouter_appartment.html.twig
+    */
     public function modifier_appartmentAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
@@ -90,6 +112,9 @@ class AdminController extends Controller
         return $this->render('PIBundle:Admin:modifier_appartment.html.twig', array('form' => $form->createView(), 'housing' => $housing));
     }
 
+    /*
+    *La fonction demandeurAction permet de récupérer les champs du filtre afin de rechercher la bonne liste de demandeurs
+    */
     public function demandeurAction(Request $request)
     {
         $user = new User();
@@ -107,6 +132,10 @@ class AdminController extends Controller
         return $this->render('PIBundle:Admin:demandeur.html.twig', array('form' => $form->createView(), 'liste_demandeur' => $liste_demandeur ));
     }
 
+    /*
+    *La fonction ajouter_demandeurAction permet d'ajouter un nouvel demandeur
+    *Cette fonction envoie les attributs de l'entité "User" à la page ajouter_demandeur.html.twig
+    */
     public function ajouter_demandeurAction(Request $request){
         $user= new User();
         $form = $this->createForm(RegistrationType::class,$user); 
@@ -120,6 +149,10 @@ class AdminController extends Controller
         return $this->render('PIBundle:Admin:ajouter_demandeur.html.twig', array('form' => $form->createView()));
     }
 
+    /*
+    *La fonction modifier_demandeurAction permet de modifier un demandeur
+    *Cette fonction envoie les attributs du demandeur à modifier à la page modifier_demandeur.html.twig
+    */
     public function modifier_demandeurAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('PIBundle:User')->find($id);
@@ -133,6 +166,10 @@ class AdminController extends Controller
         return $this->render('PIBundle:Admin:modifier_demandeur.html.twig', array('form' => $form->createView(), 'user' => $user));
     }
 
+    /*
+    *Cette fonction renvoie l'état de la demande, c'est à dire si la demande est confirmée, éronnée, expirée
+    *non attribuée
+    */
     public function etat_demandeAction($id){
         $em = $this->getDoctrine()->getManager();
         $list_demand_current = $em->getRepository('PIBundle:Demand')->findBy(array('idUser' => $id, 'archived' => "Non"));
@@ -141,6 +178,10 @@ class AdminController extends Controller
         return $this->render('PIBundle:Admin:etat_demande.html.twig', array('list_demand_current' => $list_demand_current, 'list_demand' => $list_demand, 'id' => $id, 'date_zero' => $date_zero));
     }
 
+    /*
+    *Cette fonction permet d'afficher les informations de la demande saisie par un demandeur
+    *A partir de ces informations l'administrateur pourra confirmer, modifier, supprimer la demande
+    */
     public function affichage_demandeAction($id){
         $em = $this->getDoctrine()->getManager();
         $demand_current = $em->getRepository('PIBundle:Demand')->findOneBy(array('idUser' => $id, 'archived' => "Non"));
@@ -150,6 +191,9 @@ class AdminController extends Controller
         return $this->render('PIBundle:Admin:affichage_demande.html.twig', array('demand_current' => $demand_current, 'id' => $id));
     }
 
+    /*
+    *Cette fonction permet d'ajouter une demande à un demandeur
+    */
     public function ajouter_demandeAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('PIBundle:User')->find($id);
@@ -172,10 +216,17 @@ class AdminController extends Controller
         return $this->render('PIBundle:Admin:ajouter_demande.html.twig', array('form' => $form->createView(), 'user' => $user, 'demand' => $demand));
     }
 
+    /*
+    *Cette fonction permet de valider la demande lorsuqe vous cliquez sur le bouton valider des demandes en cours
+    */
     public function valider_demandeAction(){
         return $this->render('PIBundle:Admin:valider_demande.html.twig');
     }
 
+    /*
+    *Cette fonction permet de confirmer la demande lorsuqe vous la consultez
+    *Une demande doit être confirmé avant d'être attribuée
+    */
     public function confirmer_demandeAction($id){
         $em = $this->getDoctrine()->getManager();
         $demand_current = $em->getRepository('PIBundle:Demand')->findOneBy(array('idUser' => $id, 'archived' => "Non"));
@@ -186,6 +237,9 @@ class AdminController extends Controller
         return $this->render('PIBundle:Admin:confirmer_demande.html.twig');
     }
 
+    /*
+    *Cette fonction va vous permettre d'archiver la demande depuis l'onglet Demandeur
+    */
     public function archiver_demandeAction($id){
     $em = $this->getDoctrine()->getManager();
     $demand_current = $em->getRepository('PIBundle:Demand')->findOneBy(array('idUser' => $id, 'archived' => "Non"));
@@ -196,7 +250,9 @@ class AdminController extends Controller
     $em->flush();
     return $this->render('PIBundle:Admin:archiver_demande.html.twig');
     }
-
+    /*
+    *Cette fonction va vous permettre de refuser la demande depuis l'onglet Demandeur
+    */
     public function refuser_demandeAction($id){
     $em = $this->getDoctrine()->getManager();
     $demand_current = $em->getRepository('PIBundle:Demand')->findOneBy(array('idUser' => $id, 'archived' => "Non"));
@@ -207,6 +263,9 @@ class AdminController extends Controller
     return $this->render('PIBundle:Admin:refuser_demande.html.twig');
     }
 
+    /*
+    *Cette fonction va vous permettre de modifier la demande depuis l'onglet Demandeur
+    */
     public function modifier_demandeAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
         $demand = $em->getRepository('PIBundle:Demand')->find($id);
@@ -221,6 +280,9 @@ class AdminController extends Controller
         return $this->render('PIBundle:Admin:modifier_demande.html.twig', array('form' => $form->createView(), 'demand' => $demand));
     }
 
+    /*
+    *Cette fonction va vous permettre de consulter l'attribution depuis l'onglet Demandeur
+    */
     public function attribution_demandeAction($id){
         $em = $this->getDoctrine()->getManager();
         $demand = $em->getRepository('PIBundle:Demand')->find($id);
@@ -228,6 +290,9 @@ class AdminController extends Controller
         return $this->render('PIBundle:Admin:attribution_demande.html.twig', array('demand' => $demand, 'list_appartment_free' => $list_appartment_free));
     }
 
+    /*
+    *Cette fonction va vous permettre d'attribuer la demande depuis l'onglet Demandeur
+    */
     public function attribuer_demandeAction($id, $idappart){
         $em = $this->getDoctrine()->getManager();
         $demand = $em->getRepository('PIBundle:Demand')->find($id);
@@ -235,6 +300,9 @@ class AdminController extends Controller
         return $this->render('PIBundle:Admin:attribuer_demande.html.twig', array('demand' => $demand, 'appartment' => $appartment));
     }
 
+    /*
+    *Cette fonction va vous permettre de valider l'attribution depuis l'onglet Demandeur
+    */
     public function valider_attribution_demandeAction($id, $idappart){
         $em = $this->getDoctrine()->getManager();
         $demand = $em->getRepository('PIBundle:Demand')->find($id);
@@ -249,6 +317,12 @@ class AdminController extends Controller
         return $this->render('PIBundle:Admin:valider_attribution_demande.html.twig', array('demand' => $demand, 'appartment' => $appartment));
     }
 
+    /*
+    *Cette fonction va vous permettre de comparer un appartement à plusiurs demandeurs
+    *Les demandeurs sont sélectionné en fonction du type d'appartement qu'il souhaite.
+    *En effet seul les demandeurs qui coorrspondront à la typologie de l'appartement, ou
+    *à la typologie de l'appartement + 1 ou à la typologie de l'appartement -1 seront sélectionnés
+    */
     public function attribution_logementAction($id){
         $em = $this->getDoctrine()->getManager();
         $appartment = $em->getRepository('PIBundle:Housing')->find($id);
@@ -282,6 +356,9 @@ class AdminController extends Controller
         return $this->render('PIBundle:Admin:attribution_logement.html.twig', array('appartment' => $appartment, 'list_demand' => $list_demand, 'type_inf' => $type_inf, 'type_sup' => $type_sup));
     }
 
+    /*
+    *Cette fonction permet d'attribuer un demandeur à un appartement précédemment sélectionné pour l'onglet appartement
+    */
     public function attribuer_logementAction($id, $iddemand){
         $em = $this->getDoctrine()->getManager();
         $demand = $em->getRepository('PIBundle:Demand')->find($iddemand);
@@ -289,6 +366,9 @@ class AdminController extends Controller
         return $this->render('PIBundle:Admin:attribuer_logement.html.twig', array('demand' => $demand, 'appartment' => $appartment));
     }
 
+    /*
+    *Cette fonction permet de valider l'attribution d'un demandeur à un appartement pour l'onglet Appartement
+    */
     public function valider_attribution_logementAction($id, $iddemand){
         $em = $this->getDoctrine()->getManager();
         $demand = $em->getRepository('PIBundle:Demand')->find($iddemand);
@@ -303,6 +383,9 @@ class AdminController extends Controller
         return $this->render('PIBundle:Admin:valider_attribution_logement.html.twig', array('demand' => $demand, 'appartment' => $appartment));
     }
 
+    /*
+    *Cette fonction permet d'archiver une demande d'un demandeur
+    */
     public function archiveAction(Request $request){
         $user = new User();
         $em = $this->getDoctrine()->getManager();
@@ -319,12 +402,18 @@ class AdminController extends Controller
         return $this->render('PIBundle:Admin:archive.html.twig', array('form' => $form->createView(), 'liste_demandeur' => $liste_demandeur ));
     }
 
+    /*
+    *Cette fonction permet d'afficher la liste des demandes archivées en fonctiond d'un filtre précédemment rempli
+    */
     public function affichage_archiveAction($id){
         $em = $this->getDoctrine()->getManager();
         $list_demand_archived = $em->getRepository('PIBundle:Demand')->findBy(array('idUser' => $id, 'archived' => "Oui"));
         return $this->render('PIBundle:Admin:affichage_archive.html.twig', array('list_demand_archived' => $list_demand_archived ));
     }
 
+    /*
+    *Cette fonction permet d'afficher le logement attribué à un demandeur lorsque la demande a été archivée
+    */
     public function affichage_logement_archiveAction($id){
         $em = $this->getDoctrine()->getManager();
         $demand = $em->getRepository('PIBundle:Demand')->find($id);
@@ -334,6 +423,9 @@ class AdminController extends Controller
         return $this->render('PIBundle:Admin:affichage_logement_archive.html.twig', array('appartment' => $appartment, 'demand' => $demand, 'date_zero' => $date_zero));
     }
 
+    /*
+    *Cette fonction permet de libérer un appartement à une demande depuis l'onglet Demandeur
+    */
     public function liberer_demandeAction($id){
         $em = $this->getDoctrine()->getManager();
         $demand = $em->getRepository('PIBundle:Demand')->find($id);
@@ -347,6 +439,9 @@ class AdminController extends Controller
         return $this->render('PIBundle:Admin:liberer_demande.html.twig', array('demand' => $demand));
     }
 
+    /*
+    *Cette fonction permet de libérer un appartement à une demande depuis l'onglet Appartement
+    */
     public function liberer_logementAction($id){
         $em = $this->getDoctrine()->getManager();
         $appartment = $em->getRepository('PIBundle:Housing')->find($id);
@@ -360,6 +455,10 @@ class AdminController extends Controller
         return $this->render('PIBundle:Admin:liberer_logement.html.twig', array('appartment' => $appartment));
     }
 
+    /*
+    *Cette fonction permet d'afficher les informations d'un locataire lorsque celu-ci a été attribué
+    *à un appartement
+    */
     public function afficher_locataireAction($id){
         $em = $this->getDoctrine()->getManager();
         $appartment = $em->getRepository('PIBundle:Housing')->find($id);
@@ -370,6 +469,9 @@ class AdminController extends Controller
         return $this->render('PIBundle:Admin:afficher_locataire.html.twig', array('demand' => $demand, 'id' => $id));
     }
 
+    /*
+    *Lorsque la demande est archivée celle-ci peut être supprimer, cette fonction permet de réaliser cette action
+    */
     public function delete_demandAction($id, $iduser){
         $em = $this->getDoctrine()->getManager();
         $demand = $em->getRepository('PIBundle:Demand')->find($id);  
@@ -385,6 +487,9 @@ class AdminController extends Controller
         return $this->render('PIBundle:Admin:affichage_archive.html.twig', array('list_demand_archived' => $list_demand_archived ));
     }
 
+    /*
+    *Cette fonction permet de supprimer un appartement 
+    */
     public function delete_appartmentAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
         $appartment = $em->getRepository('PIBundle:Housing')->find($id);
@@ -423,6 +528,9 @@ class AdminController extends Controller
 
     }
 
+    /*
+    *Cettefonction permet de supprimer un utilisateur
+    */
     public function delete_userAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('PIBundle:User')->find($id);
@@ -461,6 +569,9 @@ class AdminController extends Controller
         return $this->render('PIBundle:Admin:demandeur.html.twig', array('form' => $form->createView(), 'liste_demandeur' => $liste_demandeur ));
     }
 
+    /*
+    *Cette fonction permet de consulter les statistiques présentes sur l'onglet Statistique
+    */
     public function statistiquesAction(){
         $em = $this->getDoctrine()->getManager();
         $list_appartment_free = $em->getRepository('PIBundle:Housing')->findBy(array('attribution' => "Non"));

@@ -1,40 +1,48 @@
-  {# src/PIBundle/Ressource/views/Formulaire/contact.html.twig #}
+{# src/PIBundle/Ressource/views/Formulaire/contact.html.twig #}
 
-  {% extends "PIBundle:Formulaire:layout_formulaire.html.twig" %}
+<!-- 
+  @Auteurs: Paul Le Noac'h, Komel Jamal, Brian Blessou
+  @Mail: brian.blessou@telecomnancy.net
+  @Version: HTML5 & Twig
 
-  {% block Accueil %}Contact{% endblock %}
+  Cette page permet d'afficher les informations permettant de contacter la mairie de Villers-Lès-Nancy.
+-->
 
-  {% block stylesheets %}
-  <link rel="stylesheet" href="{{ asset('css/bootstrap/css/bootstrap.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/bootstrap/css/accueil.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/bootstrap/css/form1.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/bootstrap/css/form2.css') }}">
-  {% endblock %}
+{% extends "PIBundle:Formulaire:layout_formulaire.html.twig" %}
 
-  {% block body %}
-  <div class="coin" width="530" >
-    <p></p>
-    <div class="info">
-      <h1><span class="glyphicon glyphicon-home " aria-hidden="true"> Adresse</span></h1>
-      <p style="white-space:pre">
-       Mairie de Villers-lès-Nancy
-       Boulevard des Aiguillettes
-       BP 8002854601
-       Villers-lès-Nancy  
-     </p>
-   </div>
-   <div class="info">
-    <h1><span class="glyphicon glyphicon-earphone " aria-hidden="true"> Téléphone</span></h1>
-    <p style="white-space:pre">  
-      <span class="glyphicon glyphicon-earphone" aria-hidden="true">  03 83 92 12 18</span>
-    </p>
-  </div>
+{% block Accueil %}Contact{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/bootstrap/css/bootstrap.css') }}">
+<link rel="stylesheet" href="{{ asset('css/bootstrap/css/accueil.css') }}">
+<link rel="stylesheet" href="{{ asset('css/bootstrap/css/form1.css') }}">
+<link rel="stylesheet" href="{{ asset('css/bootstrap/css/form2.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="coin" width="530" >
+  <p></p>
   <div class="info">
-    <h1><span class="glyphicon glyphicon-envelope " aria-hidden="true"> Email</span></h1>
+    <h1><span class="glyphicon glyphicon-home " aria-hidden="true"> Adresse</span></h1>
     <p style="white-space:pre">
-      <span class="glyphicon glyphicon-envelope" aria-hidden="true">  ff@villerslesnancy.fr</span>
-      <span class="glyphicon glyphicon-envelope" aria-hidden="true">  solidarite@villerslesnancy.fr</span>
-    </p>
-  </div>
+     Mairie de Villers-lès-Nancy
+     Boulevard des Aiguillettes
+     BP 8002854601
+     Villers-lès-Nancy  
+   </p>
+ </div>
+ <div class="info">
+  <h1><span class="glyphicon glyphicon-earphone " aria-hidden="true"> Téléphone</span></h1>
+  <p style="white-space:pre">  
+    <span class="glyphicon glyphicon-earphone" aria-hidden="true">  03 83 92 12 18</span>
+  </p>
 </div>
-  {% endblock %}
+<div class="info">
+  <h1><span class="glyphicon glyphicon-envelope " aria-hidden="true"> Email</span></h1>
+  <p style="white-space:pre">
+    <span class="glyphicon glyphicon-envelope" aria-hidden="true">  ff@villerslesnancy.fr</span>
+    <span class="glyphicon glyphicon-envelope" aria-hidden="true">  solidarite@villerslesnancy.fr</span>
+  </p>
+</div>
+</div>
+{% endblock %}
