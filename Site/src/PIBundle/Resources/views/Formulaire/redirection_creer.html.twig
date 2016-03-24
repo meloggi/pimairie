@@ -1,0 +1,25 @@
+  {# src/PIBundle/Ressource/views/Formulaire/redirection_creer.html.twig #}
+
+  {% extends "PIBundle:Formulaire:layout_formulaire.html.twig" %}
+
+  {% block Accueil %}Redirection{% endblock %}
+
+  {% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/bootstrap/css/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/bootstrap/css/accueil.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/bootstrap/css/form1.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/bootstrap/css/form2.css') }}">
+  {% endblock %}
+
+
+  {% block body %}
+  <div class="coin" width="530" >
+    <p></p>
+    <div class="info">
+      <h1>Information</h1>
+      <p style="white-space:pre">
+       Vous avez déjà créé une demande. Veuillez suivre ce lien pour <a href="{{ path('form3') }}">accéder à votre demande</a>.
+     </p>
+   </div>
+ </div>
+ {% endblock %}

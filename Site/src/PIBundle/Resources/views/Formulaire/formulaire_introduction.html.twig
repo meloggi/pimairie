@@ -1,0 +1,65 @@
+  
+{# src/PIBundle/Ressource/views/Formulaire/formulaire_introduction.html.twig #}
+
+{% extends "PIBundle:Formulaire:layout_formulaire.html.twig" %}
+
+{% block Accueil %}Introduction de la demande{% endblock %}
+
+
+
+{% block body %}
+
+
+
+<div class="coin" width="530" >
+
+  <p>
+  </p>
+  <div class="info">
+    <h1>Introduction</h1>
+    <p>
+      Vous allez informer la ville de Viller-Lès-Nancy de votre recherche de logement social par l'interm&eacute;diaire de ce site.
+    </p>
+  </div>
+  <div class="info">
+    <h1>Les &eacute;tapes de cr&eacute;ation</h1>
+    <p>
+      Pour cr&eacute;er votre informatin de recherche, munissez-vous de vos justificatifs de ressources.
+    </p>
+  </div>
+
+  <div class="info">
+    <h1>L'activation de votre adresse &eacute;lectronique</h1>
+    <p>
+      Avant de d&eacute;buter la saisie de la demande de logement, vous devrez renseigner votre adresse &eacute;lectronique.
+      Suite &agrave; cette saisie, vous recevrez un message d'activation : vous devrez cliquer sur le lien contenu dans ce message &eacute;lectronique pour pouvoir continuer votre saisie.
+    </p>
+  </div>
+
+  <div class="info">
+    <h1>La r&eacute;ception de votre code de t&eacute;l&eacute;demandeur</h1>
+    <p>
+      Suite &agrave; l'activation de votre adresse &eacute;lectronique, vous recevrez votre code de t&eacute;l&eacute;demandeur par message &eacute;lectronique.
+      Ce code vous sera utile pour modifier a posteriori votre information de recherche ou pour la renouveler.
+      Conservez-le pr&eacute;cieusement pendant toute la dur&eacute;e de vie de votre demande de logement
+    </p>
+  </div>
+
+  <div class="info">
+    <h1>La saisie des informations</h1>
+    <p>
+      Lors de la saisie des informations, laissez-vous guider par les diff&eacute;rentes questions qui vous seront pos&eacute;es.
+      S'il vous manque des &eacute;l&eacute;ments, vous avez la possibilit&eacute; d'arr&ecirc;ter votre saisie &agrave; tout moment pour la reprendre plus tard.
+    </p>
+  </div>
+
+  
+  <div class="placement">
+   <a href="{{ path('homepage') }}" class="btn btn-danger btn-outline"/>Annuler</a>
+   <a href="{{ path('form2') }}" class="btn btn-success btn-outline" />Valider</a>
+ </div>
+</div>
+
+{% endblock %}
+
+

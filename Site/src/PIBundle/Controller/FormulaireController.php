@@ -6,13 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use PIBundle\Entity\Demand;
 use PIBundle\Form\DemandType;
 use PIBundle\Repository\DemandRepository;
-
-
-use PIBundle\Entity\DemandDemand;
-use PIBundle\Form\DemandDemandType;
-use PIBundle\Repository\DemandDemandRepository;
-
-
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -21,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 
 
-class DefaultController extends Controller
+class FormulaireController extends Controller
 {
 
 
@@ -48,12 +41,12 @@ class DefaultController extends Controller
  }
          // sinon il s'agit d'un membre
         else
-           return $this->render('PIBundle:Default:accueil2.html.twig');
+           return $this->render('PIBundle:Formulaire:accueil.html.twig');
        
 
     }
 
-    public function form1Action()
+    public function formulaire_introductionAction()
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -64,12 +57,12 @@ class DefaultController extends Controller
         $demand = $em->getRepository('PIBundle:Demand')->findOneBy(array('idUser' => $id, 'archived' => "Non"));
         print_r($demand, true);
         if($demand == null){
-        return $this->render('PIBundle:Default:form1.html.twig');
+        return $this->render('PIBundle:Formulaire:formulaire_introduction.html.twig');
     }
-        return $this->render('PIBundle:Default:redirection_creer.html.twig');
+        return $this->render('PIBundle:Formulaire:redirection_creer.html.twig');
     }
 
-    public function form2Action(Request $request)
+    public function formulaire_creerDemandeAction(Request $request)
     {
 
         $em = $this->getDoctrine()->getManager();
@@ -97,15 +90,15 @@ class DefaultController extends Controller
                 $em->persist($demand);
                 $em->flush();
                 $this->envoiMail();
-                return $this->render('PIBundle:Default:form3.html.twig', array('form' => $form->createView(), 'demand' => $demand));
+                return $this->render('PIBundle:Formulaire:formulaire_accederDemande.html.twig', array('form' => $form->createView(), 'demand' => $demand));
             }
 
-            return $this->render('PIBundle:Default:form2.html.twig', array('form' => $form->createView(), 'demand' => $demand));
+            return $this->render('PIBundle:Formulaire:formulaire_creerDemande.html.twig', array('form' => $form->createView(), 'demand' => $demand));
     }
 
 
 
-        public function form2_modifierAction(Request $request)
+        public function formulaire_modifierDemandeAction(Request $request)
         {
 
             $em = $this->getDoctrine()->getManager();
@@ -125,90 +118,34 @@ class DefaultController extends Controller
                     $em->persist($demand);
                     $em->flush();
                     $this->envoiMail();
-                    return $this->render('PIBundle:Default:form3.html.twig', array('form' => $form->createView(), 'demand' => $demand));
+                    return $this->render('PIBundle:Formulaire:formulaire_accederDemande.html.twig', array('form' => $form->createView(), 'demand' => $demand));
             
                 }
-               return $this->render('PIBundle:Default:form2_modifier.html.twig', array('form' => $form->createView(), 'demand' => $demand));
+               return $this->render('PIBundle:Formulaire:formulaire_modifierDemande.html.twig', array('form' => $form->createView(), 'demand' => $demand));
            }
            
-           return $this->render('PIBundle:Default:contact.html.twig');
+           return $this->render('PIBundle:Formulaire:contact.html.twig');
 }
 
             
-        
-
-
-        public function form_proAction(Request $request)
-        {
-       //  $em = $this->getDoctrine()->getManager();
-       // // $user = $em->getRepository('PIBundle:Demand')->findDemand($mail);
-       //  $form = $this->createForm(DemandType::class,$user);
-
-
-       //  $em = $this->getDoctrine()->getManager();
-       //  $user->setMail($mail);
-       //  $em->persist($user);
-       //  $em->flush();
-
-       //  return $this->render('PIBundle:Default:form_pro.html.twig', array('form' => $form->createView(), 'demand' => $user));
-         $user= new DemandDemand(); 
-
-
-         $form = $this->createForm(DemandDemandType::class,$user); 
-
-
-
-
-         if ($form->handleRequest($request)->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
-
-            return $this->render('PIBundle:Default:form_pro.html.twig', array('form' => $form->createView(), 'demand_demand' => $user));
-        }
-        return $this->render('PIBundle:Default:form2_modifier.html.twig', array('form' => $form->createView(), 'demand_demand' => $user)); 
-
-    }
-
-    public function form_justificatifAction()
-    {
-        return $this->render('PIBundle:Default:form_justificatif.html.twig');
-    }
-
-    public function form_logementAction()
-    {
-        return $this->render('PIBundle:Default:form_logement.html.twig');
-    }
-
-    public function form_motifAction()
-    {
-        return $this->render('PIBundle:Default:form_motif.html.twig');
-    }
-
-
-
-    public function form_ressourceAction()
-    {
-        return $this->render('PIBundle:Default:form_ressource.html.twig');
-    }
 
     public function contactAction()
     {
-        return $this->render('PIBundle:Default:contact.html.twig');
+        return $this->render('PIBundle:Formulaire:contact.html.twig');
     }
 
      public function redirection_accessAction()
     {
-        return $this->render('PIBundle:Default:redirection_access.html.twig');
+        return $this->render('PIBundle:Formulaire:redirection_access.html.twig');
     }
 
      public function redirection_creerAction()
     {
-        return $this->render('PIBundle:Default:redirection_creer.html.twig');
+        return $this->render('PIBundle:Formulaire:redirection_creer.html.twig');
     }
 
 
-    public function form3Action(Request $request)
+    public function formulaire_accederDemandeAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -225,11 +162,11 @@ class DefaultController extends Controller
             
             $this->envoiMail();
 
-            return $this->render('PIBundle:Default:form3.html.twig', array('form' => $form->createView(), 'demand' => $demand1));
+            return $this->render('PIBundle:Formulaire:formulaire_accederDemande.html.twig', array('form' => $form->createView(), 'demand' => $demand1));
         }
-        return $this->render('PIBundle:Default:form3.html.twig', array('form' => $form->createView(), 'demand' => $demand1));
+        return $this->render('PIBundle:Formulaire:formulaire_accederDemande.html.twig', array('form' => $form->createView(), 'demand' => $demand1));
         }
-        return $this->render('PIBundle:Default:redirection_access.html.twig');
+        return $this->render('PIBundle:Formulaire:redirection_access.html.twig');
     }
 
     public function envoiMail()

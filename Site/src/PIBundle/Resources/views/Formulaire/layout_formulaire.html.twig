@@ -1,4 +1,4 @@
-{# app/Resources/views/Default/index.html.twig #}
+{# app/Resources/views/Default/layout_formulaire.html.twig #}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +14,7 @@
   <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
   <script src="/script.js"></script>
 
-  <title>Demande de logement social-Mairie de Villers-lès-Nancy</title>
+  <title>{% block Accueil %}Demandes de logements sociales{% endblock %}</title>
 
   {% block stylesheets %}
   <link rel="stylesheet" href="{{ asset('/css/bootstrap/css/bootstrap.min.css') }}">
@@ -97,49 +97,9 @@
         <li class="main_menu"><a href="{{ path('contact') }}">Contact</a></li>
         
       </ul>
+    </div>
+    {% block body %}{% endblock %}
+  </div>
 
-
-
-
-
-      
-
-     
-
-      <div class="coin" width="530" >
-
-          <p>
-          </p>
-          <div class="info">
-            <h1>Le parc HLM à Villers-Lès-Nancy</h1>
-            <p>
-              Il existe un formulaire unique de demande de logement mais pas de dossier partagé par l’ensemble des bailleurs. Après l’enregistrement de votre dossier par un bailleur, vous sera attribué un n° unique commun à tous les bailleurs. Les pièces justificatives nécessaires au passage en commission d’attribution doivent être déposées auprès de chaque bailleur.
-            </p>
-          </div>
-          <div class="info">
-           
-            <p>
-             Il est également possible de déposer sa demande de logement social sur le site www.demande-logement-social.gouv.fr. 
-            Une demande déposée sur ce site doit être accompagnée de la copie électronique d’une pièce d’identité (carte d’identité ou passeport) ou d’un titre de séjour attestant de la régularité du séjour sur le territoire français. Après vérification de la pièce d’identité ou du titre de séjour, votre demande sera validée dans un délai de 48 à 72h. Vous recevrez alors, par courrier électronique, un récépissé attestant de l’enregistrement de la demande et comportant le numéro unique d’enregistrement. Ce numéro atteste de l’ancienneté de votre demande. Attention, tant que vous n’avez pas reçu le récépissé sur lequel figure le numéro unique d’enregistrement, cela signifie que votre demande n’est pas prise en compte. Une fois le récépissé reçu veillez à le conserver précieusement. 
-            Le service solidarité logement de la Ville de Villers-lès-Nancy peut vous aider dans ces démarches.
-
-              <span class="glyphicon glyphicon-earphone" aria-hidden="true">  03 83 92 12 18</span>
-            </p>
-          </div>
-
-          <div class="info">
-           
-            <p>
-              Parallèlement à cette formalité, vous êtes invité à informer la ville de Villers-lès-Nancy de votre recherche de logement. En effet, le Maire (ou son représentant) siège au sein des commissions d’attribution de logement des bailleurs sociaux. Pour faciliter l’enregistrement de cette information et sa mise à jour, vous êtes invité à utiliser cette plate forme en ligne.
-            </p>
-          </div>
-
-          
-          <div class="info">
-
-          
-       </div>
-
-
-    </body>
-    </html>
+</body>
+</html>

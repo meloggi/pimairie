@@ -1,0 +1,383 @@
+{# src/PIBundle/Ressource/views/Formulaire/formulaire_accederDemande.html.twig #}
+
+{% extends "PIBundle:Formulaire:layout_formulaire.html.twig" %}
+
+{% block Accueil %}Accéder à la demande{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/bootstrap/css/bootstrap.css') }}">
+<link rel="stylesheet" href="{{ asset('css/bootstrap/css/accueil.css') }}">
+<link rel="stylesheet" href="{{ asset('css/bootstrap/css/form2.css') }}">
+{% endblock %}
+
+
+{% block body %}
+
+
+<div class="well">
+
+  <div id="myTabContent" class="tab-content">
+    <div class="tab-pane active in" id="home">
+
+
+      <form action="{{path('form3')}}" method="post" role="form">
+
+        <div class="info page1">
+          <h2>Récapitulatif du formulaire</h2>
+          <p>
+            {% if demand.genre != null or demand.firstName != null or demand.lastName != null or demand.date != null or emand_current.telephone !=null or demand.email != null %}
+            <h1>Coordonnées</h1>
+            {%endif%}
+            <p/>
+            {% if demand.genre != null %}
+            <p>
+              <label class="labelform3">Civilité: {{ demand.genre}}</label>
+            </p>
+            {%endif%}
+            {% if demand.firstName != null %}
+            <p>  
+              <label class="labelform3">Nom : {{ app.user.firstName}} </label>
+            </p>
+            {%endif%}
+            {% if demand.lastName != null %}
+
+            <p>
+              <label class="labelform3">Prénom: {{ app.user.lastName}}</label>
+            </p>
+            {%endif%}
+
+            {% if demand.date != null %}
+            <p>
+              <label class="labelform3">Date de naissance: {{demand.date}}</label>
+            </p>
+            {%endif%}
+            {% if demand.telephone != null %}
+            <p>
+              <label class="labelform3">Telephone: {{ demand.telephone}}</label>
+            </p>
+            {%endif%}
+            {% if demand.email != null %}
+            <p>
+              <label class="labelform3">Mail: {{ demand.email}}</label>
+            </p>
+            {%endif%}
+            <p>
+
+              {% if demand.numero != null or demand.voie != null or demand.complementadresse != null or demand.lieudit != null or demand.codepostal != null or demand.codepostal != null or demand.commune != null %}
+              <h1>Adresse pour l'envoie du courrier</h1>
+              {%endif%}
+
+
+            </p>
+            {% if demand.numero != null %}
+            <p>
+              <label class="labelform3">Numéro: {{ demand.numero}}</label>
+            </p>
+            {%endif%}
+            {% if demand.voie != null %}
+            <p>
+              <label class="labelform3">Voie: {{ demand.voie}}</label>
+            </p>
+            {%endif%}
+            {% if demand.complementadresse != null %}
+            <p>
+              <label class="labelform3">Complément adresse: {{ demand.complementadresse}}</label>
+            </p>
+            {%endif%}
+            {% if demand.lieudit != null %}
+            <p>
+              <label class="labelform3">Lieu-dit: {{ demand.lieudit}}</label>
+            </p>
+            {%endif%}
+            {% if demand.codepostal != null %}
+            <p>
+              <label class="labelform3">Code postal: {{ demand.codepostal}}</label>
+            </p>
+            {%endif%}
+            {% if demand.commune != null %}
+            <p>
+              <label class="labelform3">Commune: {{ demand.commune}}</label>
+            </p>
+            {%endif%}
+
+            {% if demand.personnecharge != null or demand.nombrepersonnecharge != null %}
+            <p>
+              <h1>Personnes fiscalement à charges</h1>
+            </p>
+            {%endif%}
+
+            {% if demand.personnecharge != null %}
+            <p>
+              <label class="labelform3">Personne à charges: {{ demand.personnecharge}}</label>
+            </p>
+            {%endif%}
+            {% if demand.nombrepersonnecharge != null %}
+            <p>
+              <label class="labelform3">Si oui combien ? {{ demand.nombrepersonnecharge}}</label>
+            </p>    
+            {%endif%}
+
+            {% if demand.profession != null or demand.status != null or demand.nomemployeur != null or  demand.codepostalemployeur != null or demand.communeemployeur != null%}
+            <p>
+              <h1>Le demandeur</h1>
+            </p>
+            {%endif%}
+            {% if demand.profession != null %}
+            <p>
+              <label class="labelform3">Profession: {{ demand.profession}}</label>
+            </p>
+            {%endif%}
+            {% if demand.status != null %}
+            <p>
+              <label class="labelform3">Statut: {{ demand.status}}</label>
+            </p>
+            {%endif%}
+            {% if demand.nomemployeur != null %}
+            <p>
+              <label class="labelform3">Nom de votre employeur : {{ demand.nomemployeur}}</label>
+
+            </p>
+            {%endif%}
+            {% if demand.codepostalemployeur != null %}
+            <p>
+              <label class="labelform3">Code postal: {{ demand.codepostalemployeur}}</label>
+            </p>
+            {%endif%}
+            {% if demand.communeemployeur != null %}
+            <p>
+              <label class="labelform3">Commune du lieu de travail : {{ demand.communeemployeur}}</label>
+            </p>
+            {%endif%}
+
+            {% if demand.statusconjoint != null  or demand.nomemployeurconjoint != null or demand.codepostalemployeurconjoint != null or demand.communeemployeurconjoint != null %}
+            <p>
+              <h1>Le conjoint ou le futur co-titulaire du bail</h1>
+            </p>
+            {%endif%}
+
+            {% if demand.professionconjoint != null %}
+
+
+
+
+            <p>
+              <label class="labelform3">Profession conjoint: {{ demand.professionconjoint}}</label>
+            </p>
+            {%endif%}
+            {% if demand.statusconjoint != null %}
+            <p>
+              <label class="labelform3">Statut: {{ demand.statusconjoint}}</label>
+            </p>
+            {%endif%}
+            {% if demand.nomemployeurconjoint != null %}
+            <p> 
+              <label class="labelform3">Nom de votre employeur : {{ demand.nomemployeurconjoint}}</label>
+            </p>
+            {%endif%}
+            {% if demand.codepostalemployeurconjoint != null %}
+            <p>
+              <label class="labelform3">Code postal: {{ demand.codepostalemployeurconjoint}}</label>
+            </p>
+            {%endif%}
+            {% if demand.communeemployeurconjoint != null %}
+            <p>
+              <label class="labelform3">Commune du lieu de travail : {{ demand.communeemployeurconjoint}}</label>
+            </p>
+            {%endif%}
+
+            {% if demand.avisimposition1 != null or demand.avisimposition1 != null %}
+            <p>
+              <h1>Revenu fiscal de référence</h1>
+            </p>
+            {%endif%}
+
+            {% if demand.avisimposition1 != null %}
+            <p>
+              <label class="labelform3">Avis d'imposition <script>document.write(new Date().getFullYear()-1)</script>: {{ demand.avisimposition1}}</label>
+            </p>
+            {%endif%}
+            {% if demand.avisimposition2 != null %}
+            <p>
+              <label class="labelform3">Avis d'imposition <script>document.write(new Date().getFullYear()-2)</script>: {{ demand.avisimposition2}}</label>
+            </p>
+            {%endif%}
+
+            {% if demand.salary != null and demand.retraite != null and demand.allocationchomage != null and demand.pensionalimentaire != null and demand.pensioninvalidite != null and demand.allocationfamilial != null and demand.rsa != null and demand.autres != null%}
+            <p>
+              <h1>Ressources Mensuelles</h1>
+
+            </p>
+            {%endif%}
+
+            {% if demand.salary != null %}
+            <p>
+              <label class="labelform3">Salaire : {{ demand.salary}}</label>
+            </p>
+            {%endif%}
+            {% if demand.retraite != null %}
+            <p>
+              <label class="labelform3">Retraite: {{ demand.retraite}}</label>
+            </p>
+            {%endif%}
+            {% if demand.allocationchomage != null %}
+            <p>
+              <label class="labelform3">Allocation chômage: {{ demand.allocationchomage}}</label>
+            </p>
+            {%endif%}
+            {% if demand.pensionalimentaire != null %}
+            <p>
+              <label class="labelform3">Pension alimentaire: {{ demand.pensionalimentaire}}</label>
+            </p>
+            {%endif%}
+            {% if demand.pensioninvalidite != null %}
+            <p>
+              <label class="labelform3">Pension d'invaidité: {{ demand.pensioninvalidite}}</label>
+            </p>
+            {%endif%}
+            {% if demand.allocationfamilial != null %}
+            <p>
+              <label class="labelform3">Allocation familiale: {{ demand.allocationfamilial}}</label>
+            </p>
+            {%endif%}
+            {% if demand.rsa != null %}
+            <p>
+              <label class="labelform3">Revenu de soldarité active (RSA): {{ demand.rsa}}</label>
+            </p>
+            {%endif%}
+            {% if demand.autres != null %}
+            <p>
+              <label class="labelform3">Autres : {{ demand.autres}}</label>
+            </p>
+            {%endif%}
+
+            {% if demand.situation != null or demand.loyerlogementactuel != null or demand.nbpersonnelogementactuel != null or demand.categorielogementactuel != null or demand.typelogementactuel != null or demand.surfacelogementactuel != null%}
+            <p>
+              <h1>Logement Actuel</h1>
+            </p>
+            {%endif%}
+
+            {% if demand.situation != null %}
+            <p>
+              <label class="labelform3">Situation du logement: {{ demand.situation}}</label>
+            </p>
+            {%endif%}
+
+            {% if demand.loyerlogementactuel != null %}
+            <p>
+              <label class="labelform3">Si vous payez un loyer ou une redevance, montant mensuel: {{ demand.loyerlogementactuel}}</label>
+            </p>
+            {%endif%}
+
+            {% if demand.nbpersonnelogementactuel != null %}
+            <p>
+              <label class="labelform3">Nombre de personnes occupant le logement actuel: {{ demand.nbpersonnelogementactuel}}</label>
+            </p>  
+            {%endif%}
+
+            {% if demand.categorielogementactuel != null %}
+
+            <p>
+              <label class="labelform3">Autres : {{ demand.categorielogementactuel}}</label>
+            </p>
+            {%endif%}
+
+            {% if demand.typelogementactuel != null %}
+
+            <p>
+              <label class="labelform3">Type de logement: {{ demand.typelogementactuel}}</label>
+            </p>
+            {%endif%}
+
+            {% if demand.surfacelogementactuel != null %}
+
+            <p>
+              <label class="labelform3">Surface: {{ demand.surfacelogementactuel}}</label>
+            </p>
+            {%endif%}
+
+            {% if demand.locationVillersCentre != null or demand.locationVillersBas != null or demand.locationClairlieu != null or demand.categorielogementrecherche != null or demand.parking != null or demand.type1 != null or demand.rdc != null or demand.montantmaxi != null   %}
+            <p>
+              <h1>Logement recherché</h1>
+            </p>
+            {%endif%}
+
+            {% if demand.locationVillersCentre != null %}
+
+            <p>
+              <label class="labelform3">Location à Villers-centre : {{ demand.locationVillersCentre}}</label>
+            </p>
+            {%endif%}
+            {% if demand.locationVillersBas != null %}
+
+            <p>
+              <label class="labelform3">Location à Villers-bas : {{ demand.locationVillersBas}}</label>
+            </p>
+            {%endif%}
+            {% if demand.locationClairlieu != null %}
+
+            <p>
+              <label class="labelform3">Location à Clairlieu : {{ demand.locationClairlieu}}</label>
+            </p>
+            {%endif%}
+
+            {% if demand.categorielogementrecherche != null %}
+
+            <p>
+              <label class="labelform3">Catégorie: {{ demand.categorielogementrecherche}}</label>
+            </p>
+            {%endif%}
+
+            {% if demand.parking != null %}
+
+            <p>
+              <label class="labelform3">Souhaitez-vous un parking? {{ demand.parking}}</label>
+            </p>
+            {%endif%}
+
+            {% if demand.type1 != null %}
+
+            <p>
+              <label class="labelform3">Typologie d'appartement: {{ demand.type1}}</label>
+            </p>
+            {%endif%}
+
+            {% if demand.rdc != null %}
+
+            <p>
+              <label class="labelform3">Logement rez-de-chaussée: {{ demand.rdc}}</label>
+            </p>
+            {%endif%}
+
+            {% if demand.montantmaxi != null %}
+
+            <p>
+              <label class="labelform3">Montant maximum de la dépense de logement (loyer + charge): {{ demand.montantmaxi}}</label>
+            </p>
+            {%endif%}
+
+          </p>
+        </p>
+      </p>
+    </p>
+
+
+
+
+
+  </div>
+</div> 
+
+{{ form_widget(form._token) }}
+
+<div class="placement">
+  <a href="{{ path('form2_modifier') }}" class="btn btn-danger btn-outline"/>Modifier</a>
+  <a href="{{ path('homepage') }}" class="btn btn-success btn-outline " style="margin-bottom: 30px;"/>Valider</a>
+</div>
+</form>
+</div> 
+</div> 
+</div>
+
+{% endblock %}
+
+
