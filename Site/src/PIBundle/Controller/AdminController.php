@@ -33,7 +33,7 @@ class AdminController extends Controller
     *demandes éronnées, nouvelles, expirées et non attribuées.
     *Les demandes sont classées en fonction de la date de saisie du formulaire
     */
-    h function dashboardAction()
+    public function dashboardAction()
     {
         $em = $this->getDoctrine()->getManager();
         $list_demand_new = $em->getRepository('PIBundle:Demand')->findBy(array('confirmed' => "Non", 'wrong' => "Non", 'archived' =>"Non"));
