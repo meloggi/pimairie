@@ -1,0 +1,152 @@
+{# app/Resources/views/Default/index.html.twig #}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../favicon.ico">
+
+  <title>Demande de logement social-Mairie de Villers-lès-Nancy</title>
+
+  {% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/bootstrap/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/bootstrap/css/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/bootstrap/css/accueil.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/bootstrap/css/form_ressource.css') }}">
+  {% endblock %}
+
+</head>
+
+<body>
+
+  <div class="container">
+    <div id="logo">
+      <img class="col-xs-2 col-sm-2 col-md-2 col-lg-2 "  src="{{ asset('images/logo-villers.png') }}" >
+
+
+
+
+      <div class="connexion">
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+        <a href="{{ path('fos_user_security_logout') }}" class="btn btn-lg btn-secondary" role="button">
+          {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+        </a>
+        {% else %}
+        <a href="{{ path('fos_user_security_login') }}" class="btn btn-lg btn-secondary" role="button">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+        <a href="{{ path('fos_user_registration_register') }}" class="btn btn-lg btn-secondary" role="button">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+        <a href="{{ path('fos_user_resetting_request') }}" class="btn btn-lg btn-secondary" role="button" style="margin-right: 20px">Mot de passe perdu?</a>
+        {% endif %}
+      </div>
+
+      {% if app.request.hasPreviousSession %}
+      {% for type, messages in app.session.flashbag.all() %}
+      {% for message in messages %}
+      <div class="flash-{{ type }}">
+        {{ message }}
+      </div>
+      {% endfor %}
+      {% endfor %}
+      {% endif %}
+
+      <div>
+        {% block fos_user_content %}
+        {% endblock fos_user_content %}
+      </div> 
+    </div>
+
+    <div id="chateau">
+      <img class="col-xs-12 col-sm-9 col-md-15 col-lg-10 col-lg-offset-1"  src="{{ asset('images/chateau.jpg') }}" >
+    </div>
+    <ul class="main_menu">
+      <li class="main_menu"><a href="{{ path('homepage') }}">Home</a></li>
+      <li class="main_menu"><a href="{{ path('form1') }}">Créer une demande</a>
+        <li class="main_menu"><a href="#">Accéder à ma demande</a>
+          <li class="main_menu"><a>Contact</a></li>
+        </li>
+      </ul> 
+
+      <div class="well">
+        <ul class="nav nav-tabs">
+          <li><a id="nonactif" class="onglet" href="{{ path('form2') }}" data-toggle="tab">Demande</a></li>
+          <li><a id="nonactif" class="onglet" href="{{ path('form_pro') }}" data-toggle="tab">Situation Professionnelle</a></li>
+          <li><a id="actif" class="onglet-actif" href="#home" data-toggle="tab">Ressources actuelles</a></li>
+          <li><a id="nonactif" class="onglet" href="{{ path('form_motif') }}" data-toggle="tab">Motif et logement recherché</a></li>
+          <li><a id="nonactif" class="onglet" href="{{ path('form_justificatif') }}" data-toggle="tab">Téléchargement</a></li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+          <div class="tab-pane active in" id="home">
+
+            <form action="{{path('form_motif')}}" method="post" role="form">
+
+              <div class="info">
+                <h1>Revenus fiscaux</h1>
+                <p>
+                  <label class="labelavis">Avis d'imposition</label>
+                  <input cla ss="input-xlarge" id="demande_avis" type="text"  name="demande[avisimposition"     ></input>
+                </p>
+                
+                
+
+              </div>
+              <div class="info">
+                <h1>Ressources Mensuelles</h1>
+                <p>
+                  <label class="labelsalaire">Salaire</label>
+                  <input class="input-xlarge" id="demande_salaire" type="text"  name="demande[salaire]"     ></input>
+                </p>
+                <p>
+                  <label class="labelretraite">Retraite</label>
+                  <input class="input-xlarge" id="demande_retraitechomage" type="text"  name="demande[retraite]"     ></input>
+                </p>
+                <p>
+                  <label class="labelalloc">Allocation chômage</label>
+                  <input class="input-xlarge" id="demande_allocationchomage" type="text"  name="demande[allocationchomage]"     ></input>
+                </p>
+                <p>
+                  <label class="labelpensionalim">Pension alimentaire</label>
+                  <input class="input-xlarge" id="demande_pensionalimentaire" type="text"  name="demande[pensionalimentaire]"     ></input>
+                </p>
+                <p>
+                  <label class="labelpensioninval">Pension d'invaidité</label>
+                  <input class="input-xlarge" id="demande_pensioninvalidite" type="text"  name="demande[pensioninvalidite]"     ></input>
+                </p>
+                <p>
+                  <label class="labelallocfamilial">Allocation familiale</label>
+                  <input class="input-xlarge" id="demande_allocationfamilial" type="text"  name="demande[allocationfamilial]"     ></input>
+                </p>
+                <p>
+                  <label class="labelrsa">Revenu de soldarité active (RSA)</label>
+                  <input class="input-xlarge" id="demande_rsa" type="text"  name="demande[rsa]"     ></input>
+                </p>
+                <p>
+                  <label class="labelautres">Autres</label>
+                  <input class="input-xlarge" id="demande_autres" type="text"  name="demande[autres]"     ></input>
+                </p>
+
+              </div>
+
+              <div class="placement">
+                <a href="{{ path('form_pro') }}" class="btn btn-danger btn-outline"/>Précédent</a>
+                <input type="submit" class="btn btn-success btn-outline" value="Valider" style="margin-bottom: 50px; margin-top: 20px" href="{{ path('form_motif') }}" />
+              </div>
+
+            </form> 
+          </div> 
+        </div> 
+      </div> 
+    </div>
+    
+  </div>
+
+
+  
+
+
+</body>
+</html>

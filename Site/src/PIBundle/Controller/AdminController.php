@@ -162,7 +162,7 @@ class AdminController extends Controller
         
  $pagination = array(
             'page' => $page,
-            'nbPages' => 0,
+            'nbPages' => ceil(count($liste_appartment) / 5),
             'nomRoute' => 'platform_admin_appartment',
             'paramsRoute' => array()
         );

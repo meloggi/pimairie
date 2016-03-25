@@ -1,0 +1,244 @@
+{# app/Resources/views/Default/index.html.twig #}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../favicon.ico">
+
+  <title>Demande de logement social-Mairie de Villers-lès-Nancy</title>
+
+  {% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/bootstrap/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/bootstrap/css/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/bootstrap/css/accueil.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/bootstrap/css/form2.css') }}">
+  {% endblock %}
+
+</head>
+
+<body>
+
+  <div class="container">
+    <div id="logo">
+      <img class="col-xs-2 col-sm-2 col-md-2 col-lg-2 "  src="{{ asset('images/logo-villers.png') }}" >
+
+
+
+
+      <div class="connexion">
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+        <a href="{{ path('fos_user_security_logout') }}" class="btn btn-lg btn-secondary" role="button">
+          {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+        </a>
+        {% else %}
+        <a href="{{ path('fos_user_security_login') }}" class="btn btn-lg btn-secondary" role="button">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+        <a href="{{ path('fos_user_registration_register') }}" class="btn btn-lg btn-secondary" role="button">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+        <a href="{{ path('fos_user_resetting_request') }}" class="btn btn-lg btn-secondary" role="button" style="margin-right: 20px">Mot de passe perdu?</a>
+        {% endif %}
+      </div>
+
+      {% if app.request.hasPreviousSession %}
+      {% for type, messages in app.session.flashbag.all() %}
+      {% for message in messages %}
+      <div class="flash-{{ type }}">
+        {{ message }}
+      </div>
+      {% endfor %}
+      {% endfor %}
+      {% endif %}
+
+      <div>
+        {% block fos_user_content %}
+        {% endblock fos_user_content %}
+      </div> 
+    </div>
+
+    <div id="chateau">
+      <img class="col-xs-12 col-sm-9 col-md-15 col-lg-10 col-lg-offset-1"  src="{{ asset('images/chateau.jpg') }}" >
+    </div>
+    <ul class="main_menu">
+      <li class="main_menu"><a href="{{ path('homepage') }}">Home</a></li>
+      <li class="main_menu"><a href="{{ path('form1') }}">Créer une demande</a>
+        <li class="main_menu"><a href="#">Accéder à ma demande</a>
+          <li class="main_menu"><a>Contact</a></li>
+        </li>
+      </ul> 
+
+      <div class="well">
+        <ul class="nav nav-tabs">
+          <li class="active"><a class="onglet" href="#home" data-toggle="tab">Demandeur</a></li>
+          <li><a class="onglet" href="{{ path('form_pro') }}" data-toggle="tab">Situation Professionnelle</a></li>
+          <li><a class="onglet" href="{{ path('form_ressource') }}" data-toggle="tab">Ressources actuelles</a></li>
+          <li><span class="onglet-actif" href="{{ path('form_logement') }}" data-toggle="tab">Logement</a></li>
+          <li><a class="onglet" href="{{ path('form_motif') }}" data-toggle="tab">Motif et logement recherché</a></li>
+          <li><a class="onglet" href="{{ path('form_justificatif') }}" data-toggle="tab">Justificatif</a></li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+          <div class="tab-pane active in" id="home">
+            <div class="info">
+              <h1>Coordonnées</h1>
+              <p>
+                <label>Nom</label>
+                <input type="text" value="jsmith" class="input-xlarge">
+              </p>
+              <p>
+                <label>Prénom</label>
+                <input type="text" value="John" class="input-xlarge">
+              </p>
+              <p>
+                <label>Date de naissance</label>
+                <input type="text" value="John" class="input-xlarge">
+              </p>
+              <p>
+                <label>Situation Familial</label>
+                <input type="text" value="John" class="input-xlarge">
+              </p>
+              <p>
+                <label>Téléphone</label>
+                <input type="text" value="John" class="input-xlarge">
+              </p>
+              <p>
+                <label>Mail</label>
+                <input type="text" value="John" class="input-xlarge">
+              </p>
+
+            </div>
+            <div class="info">
+              <h1>Adresse pour l'envoie du courrier</h1>
+              <p>
+                <label>Numéro</label>
+                <input type="text" value="jsmith" class="input-xlarge">
+              </p>
+              <p>
+                <label>Voie</label>
+                <input type="text" value="John" class="input-xlarge">
+              </p>
+              <p>
+                <label>Complément adresse</label>
+                <input type="text" value="John" class="input-xlarge">
+              </p>
+              <p>
+                <label>Lieu-dit</label>
+                <input type="text" value="John" class="input-xlarge">
+              </p>
+              <p>
+                <label>Code postal</label>
+                <input type="text" value="John" class="input-xlarge">
+              </p>
+              <p>
+                <label>Commune</label>
+                <input type="text" value="John" class="input-xlarge">
+              </p>
+
+            </div>
+
+            <div class="info">
+              <h1>Personne fiscalement à charges</h1>
+              <p>
+                <label>Personne à charges</label>
+                <input type="text" value="jsmith" class="input-xlarge">
+              </p>
+              <p>
+                <label>Si oui combien ?</label>
+                <input type="text" value="John" class="input-xlarge">
+              </p>
+              <p>
+                <label>Attendez-vous la naissance d'enfants ?</label>
+                <input type="text" value="John" class="input-xlarge">
+              </p>
+              <p>
+                <label>Si oui, combien ?</label>
+                <input type="text" value="John" class="input-xlarge">
+              </p>
+              <p>
+                <label>Avez-vous des enfants en garde alternée ?</label>
+                <input type="text" value="John" class="input-xlarge">
+              </p>
+              <p>
+                <label>Si oui, combien ?</label>
+                <input type="text" value="John" class="input-xlarge">
+              </p>
+
+            </div>
+<!--            <form id="tab">
+              <label>Username</label>
+              <input type="text" value="jsmith" class="input-xlarge">
+              <label>First Name</label>
+              <input type="text" value="John" class="input-xlarge">
+              <label>Last Name</label>
+              <input type="text" value="Smith" class="input-xlarge">
+              <label>Email</label>
+              <input type="text" value="jsmith@yourcompany.com" class="input-xlarge">
+              <label>Address</label>
+              <textarea value="Smith" rows="3" class="input-xlarge">2817 S 49th
+                Apt 314
+                San Jose, CA 95101
+              </textarea>
+              <label>Time Zone</label>
+              <select name="DropDownTimezone" id="DropDownTimezone" class="input-xlarge">
+                <option value="-12.0">(GMT -12:00) Eniwetok, Kwajalein</option>
+                <option value="-11.0">(GMT -11:00) Midway Island, Samoa</option>
+                <option value="-10.0">(GMT -10:00) Hawaii</option>
+                <option value="-9.0">(GMT -9:00) Alaska</option>
+                <option selected="selected" value="-8.0">(GMT -8:00) Pacific Time (US & Canada)</option>
+                <option value="-7.0">(GMT -7:00) Mountain Time (US & Canada)</option>
+                <option value="-6.0">(GMT -6:00) Central Time (US & Canada), Mexico City</option>
+                <option value="-5.0">(GMT -5:00) Eastern Time (US & Canada), Bogota, Lima</option>
+                <option value="-4.0">(GMT -4:00) Atlantic Time (Canada), Caracas, La Paz</option>
+                <option value="-3.5">(GMT -3:30) Newfoundland</option>
+                <option value="-3.0">(GMT -3:00) Brazil, Buenos Aires, Georgetown</option>
+                <option value="-2.0">(GMT -2:00) Mid-Atlantic</option>
+                <option value="-1.0">(GMT -1:00 hour) Azores, Cape Verde Islands</option>
+                <option value="0.0">(GMT) Western Europe Time, London, Lisbon, Casablanca</option>
+                <option value="1.0">(GMT +1:00 hour) Brussels, Copenhagen, Madrid, Paris</option>
+                <option value="2.0">(GMT +2:00) Kaliningrad, South Africa</option>
+                <option value="3.0">(GMT +3:00) Baghdad, Riyadh, Moscow, St. Petersburg</option>
+                <option value="3.5">(GMT +3:30) Tehran</option>
+                <option value="4.0">(GMT +4:00) Abu Dhabi, Muscat, Baku, Tbilisi</option>
+                <option value="4.5">(GMT +4:30) Kabul</option>
+                <option value="5.0">(GMT +5:00) Ekaterinburg, Islamabad, Karachi, Tashkent</option>
+                <option value="5.5">(GMT +5:30) Bombay, Calcutta, Madras, New Delhi</option>
+                <option value="5.75">(GMT +5:45) Kathmandu</option>
+                <option value="6.0">(GMT +6:00) Almaty, Dhaka, Colombo</option>
+                <option value="7.0">(GMT +7:00) Bangkok, Hanoi, Jakarta</option>
+                <option value="8.0">(GMT +8:00) Beijing, Perth, Singapore, Hong Kong</option>
+                <option value="9.0">(GMT +9:00) Tokyo, Seoul, Osaka, Sapporo, Yakutsk</option>
+                <option value="9.5">(GMT +9:30) Adelaide, Darwin</option>
+                <option value="10.0">(GMT +10:00) Eastern Australia, Guam, Vladivostok</option>
+                <option value="11.0">(GMT +11:00) Magadan, Solomon Islands, New Caledonia</option>
+                <option value="12.0">(GMT +12:00) Auckland, Wellington, Fiji, Kamchatka</option>
+              </select>
+              <div>
+                <button class="btn btn-primary">Update</button>
+              </div>
+            </form>
+          </div>
+          <div class="tab-pane fade" id="profile">
+            <form id="tab2">
+              <label>New Password</label>
+              <input type="password" class="input-xlarge">
+              <div>
+                <button class="btn btn-primary">Update</button>
+              </div>
+            </form> -->
+          </div> 
+        </div> 
+      </div> 
+    </div>
+    <a href="{{ path('form_ressource') }}"><button type="button" class="btn btn-danger">Annuler</button></a>
+    <a href="{{ path('form_motif') }}"><button type="button" class="btn btn-success">Valider</button></a>
+  </div>
+
+
+  
+
+
+</body>
+</html>
