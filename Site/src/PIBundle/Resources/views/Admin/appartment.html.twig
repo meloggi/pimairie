@@ -35,7 +35,7 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li><a href="{{ path('platform_admin_dashboard') }}"><i class="fa fa-tachometer"></i> Tableau de bord</a></li>
-                    <li class="active"><a href="{{ path('platform_admin_appartment') }}"><i class="fa fa-building-o "></i> Appartements</a></li>                    
+                    <li class="active"><a href="{{ path('platform_admin_appartment', pagination.paramsRoute|merge({'page': 0}))}})"><i class="fa fa-building-o "></i> Appartements</a></li>                    
                     <li><a href="{{ path('platform_admin_demandeur') }}"><i class="fa fa-users"></i> Demandeurs</a></li>
                     <li><a href="{{ path('platform_admin_statistiques') }}"><i class="fa fa-bar-chart "></i> Statistiques</a></li>
                     <li><a href="{{ path('platform_admin_archive') }}"><i class="fa fa-archive"></i> Archives</a></li>                    
@@ -63,7 +63,7 @@
               <div class="row">
                 <div class="col-lg-6">
                       
-                        <form action="{{path('platform_admin_appartment')}}" method="post" role="form" novalidate>
+                        <form action="{{path('platform_admin_appartment', pagination.paramsRoute|merge({'page': pagination.page}))}}" method="post" role="form" novalidate>
                         
                            <div class="form-group">
                                 <label for="location">{{ form_label(form.location) }}</label>
@@ -168,16 +168,18 @@
                             </div>
 
                             {{ form_widget(form._token) }}
-                            <input type="submit" class="btn btn-success pull-right" style="margin-top: 30px" value="Rechercher" />
+                            <input href="{{ path('platform_admin_appartment', { 'page': 1 } , pagination.paramsRoute|merge({'page': 1})) }}" type="submit" class="btn btn-success pull-right" style="margin-top: 30px" value="Rechercher" />
 
                         </form>
                 </div>
               </div>    
             </div>
           </div>
-          {% if liste_appartment != 'vide' %}
+
+
+            {% if liste_appartment != 'vide' %}
                     <p>Vous avez "{{liste_appartment|length}}" résultats.</p>
-                    {% for appartment in liste_appartment %}
+                     {% for appartment in liste_appartment %}
                       <hr />
                       <div class="row">
                           <div class="col-lg-6 col-md-6">
@@ -214,9 +216,9 @@
                       </div>
                     {%endfor%}
                     <hr />
+                    {% include 'PIBundle:Admin:pagination.html.twig' %}
           {%endif%}     
-          
-
+  
           
     </div>
 

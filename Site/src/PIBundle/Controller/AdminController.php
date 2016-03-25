@@ -14,6 +14,10 @@ use PIBundle\Form\RegistrationType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\DateTime;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class AdminController extends Controller
 {
@@ -36,29 +40,142 @@ class AdminController extends Controller
         return $this->render('PIBundle:Admin:dashboard.html.twig', array('list_demand_new' => $list_demand_new, 'list_demand_not_viewed' => $list_demand_not_viewed, 'list_demand_free' => $list_demand_free, 'list_demand_wrong' => $list_demand_wrong, 'list_demand_expired' => $list_demand_expired, 'date' => $date));
     }
 
-    public function appartmentAction(Request $request)
+     /**
+     * Liste l'ensemble des articles triés par date de publication pour une page donnée.
+     *
+     * @Route("/admin/appartment/{page}", requirements={"page" = "\d+"}, name="platform_admin_appartment")
+     * @Method("GET")
+     * @Template("PIBundle:Admin:appartment.html.twig")
+     *
+     * @param int $page Le numéro de la page
+     *
+     * @return array
+     */
+
+    public function appartmentAction(Request $request, $page)
     {
+
+
         $search = new SearchHousing();
         $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(SearchHousingType::class,$search);
         $liste_appartment = 'vide';
+        
+    if($page==0){
+            $page=1;
+      $pagination = array(
+                    'page' => $page,
+                    'nbPages' => 0,
+                    'nomRoute' => 'platform_admin_appartment',
+                    'paramsRoute' => array()
+                );
+   return $this->render('PIBundle:Admin:appartment.html.twig', array('form' => $form->createView(), 'liste_appartment' => $liste_appartment, 'pagination' => $pagination ));
+  }
+
         if ($form->handleRequest($request)->isValid()) {
-            $em->persist($search);
-            $location = $search->getLocation();
-            $bailleur = $search->getBailleur();
-            $adress = $search->getAdress();
-            $residence = $search->getResidence();
-            $type = $search->getType();
-            $rentmin = $search->getRentmin();
-            $rentmax = $search->getRentmax();
-            $floor = $search->getFloor();
-            $numero = $search->getNumero();
-            $contingent = $search->getContingent();
-            $attribution = $search->getAttribution();
-            $liste_appartment = $em->getRepository('PIBundle:Housing')->findAppartment($location, $bailleur, $adress, $residence, $type, $rentmin, $rentmax, $floor, $numero, $contingent, $attribution);
-            return $this->render('PIBundle:Admin:appartment.html.twig', array('form' => $form->createView(), 'liste_appartment' => $liste_appartment ));
+
+
+             if($page!=0){
+            $page=1;
+
         }
-        return $this->render('PIBundle:Admin:appartment.html.twig', array('form' => $form->createView(), 'liste_appartment' => $liste_appartment ));
+                $em->persist($search);
+                $location = $search->getLocation();
+                $bailleur = $search->getBailleur();
+                $adress = $search->getAdress();
+                $residence = $search->getResidence();
+                $type = $search->getType();
+                $rentmin = $search->getRentmin();
+                $rentmax = $search->getRentmax();
+                $floor = $search->getFloor();
+                $numero = $search->getNumero();
+                $contingent = $search->getContingent();
+                $attribution = $search->getAttribution();
+                $liste_appartment = $em->getRepository('PIBundle:Housing')->findAppartementPagine($location, $bailleur, $adress, $residence, $type, $rentmin, $rentmax, $floor, $numero, $contingent, $attribution, $page, 5);
+                
+
+    $pagination = array(
+                    'page' => $page,
+                    'nbPages' => ceil(count($liste_appartment) / 5),
+                    'nomRoute' => 'platform_admin_appartment',
+                    'paramsRoute' => array()
+                );
+
+
+   $session = $request->getSession();
+
+                $session->set('last_request', [
+                        'location'=>  $location ,
+                        'bailleur' => $bailleur,
+                        'adress' => $adress,
+                        'residence' => $residence,
+                        'type' => $type,
+                        'rentmin' => $rentmin,
+                        'rentmax' => $rentmax,
+                        'floor' => $floor,
+                        'numero' => $numero,
+                        'contingent' => $contingent,
+                        'attribution' => $attribution,
+                       
+                    ]);
+
+           
+
+        return $this->render('PIBundle:Admin:appartment.html.twig', array('form' => $form->createView(), 'liste_appartment' => $liste_appartment, 'pagination' => $pagination ));
+
+             
+          //  $session=$session->set('last_request');
+
+           // $liste_appartment = $em->getRepository('PIBundle:Housing')->findAppartment($location, $bailleur, $adress, $residence, $type, $rentmin, $rentmax, $floor, $numero, $contingent, $attribution);
+        }
+
+        else{
+                $session = $request->getSession();
+
+                $location = $session->get('last_request')['location'];
+                $bailleur = $session->get('last_request')['bailleur'];
+                $adress = $session->get('last_request')['adress'];
+                $residence = $session->get('last_request')['residence'];
+                $type = $session->get('last_request')['type'];
+                $rentmin = $session->get('last_request')['rentmin'];
+                $rentmax = $session->get('last_request')['rentmax'];
+                $floor = $session->get('last_request')['floor'];
+                $numero = $session->get('last_request')['numero'];
+                $contingent = $session->get('last_request')['contingent'];
+                $attribution = $session->get('last_request')['attribution'];
+              $liste_appartment = $em->getRepository('PIBundle:Housing')->findAppartementPagine($location, $bailleur, $adress, $residence, $type, $rentmin, $rentmax, $floor, $numero, $contingent, $attribution, $page, 5);
+   
+        
+ $pagination = array(
+            'page' => $page,
+            'nbPages' => 0,
+            'nomRoute' => 'platform_admin_appartment',
+            'paramsRoute' => array()
+        );
+     
+     
+       /*
+        if($page==0){
+           $pagination = array(
+            'page' => $page,
+            'nbPages' => 0,
+            'nomRoute' => 'platform_admin_appartment',
+            'paramsRoute' => array()
+        );
+       
+        }else{
+        $pagination = array(
+            'page' => $page,
+      'nbPages' => ceil(count($liste_appartment) / 5),
+                  'nomRoute' => 'platform_admin_appartment',
+            'paramsRoute' => array()
+        );
+            
+        }
+        */
+
+        return $this->render('PIBundle:Admin:appartment.html.twig', array('form' => $form->createView(), 'liste_appartment' => $liste_appartment, 'pagination' => $pagination ));
+    }
     }
 
     public function ajouter_appartmentAction(Request $request)

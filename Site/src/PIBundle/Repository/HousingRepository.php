@@ -2,6 +2,10 @@
 
 namespace PIBundle\Repository;
 
+use Doctrine\ORM\Tools\Pagination\Paginator;
+use InvalidArgumentException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 /**
  * HousingRepository
  *
@@ -74,5 +78,98 @@ class HousingRepository extends \Doctrine\ORM\EntityRepository
 
         return $query->getQuery()->getResult();
 
+    }
+
+     public function findAppartementPagine($location, $bailleur, $adress, $residence, $type, $rentmin, $rentmax, $floor, $numero, $contingent, $attribution, $page, $nbMaxParPage)
+    {
+        if (!is_numeric($page)) {
+            throw new InvalidArgumentException(
+                'La valeur de l\'argument $page est incorrecte (valeur : ' . $page . ').'
+            );
+        }
+
+        if ($page < 1) {
+            throw new NotFoundHttpException('La page demandée n\'existe pas');
+        }
+
+        if (!is_numeric($nbMaxParPage)) {
+            throw new InvalidArgumentException(
+                'La valeur de l\'argument $nbMaxParPage est incorrecte (valeur : ' . $nbMaxParPage . ').'
+            );
+        }
+
+     $query = $this->createQueryBuilder('a');
+
+        $query->where('a.rent BETWEEN :rentmin AND :rentmax')
+                    ->setParameter('rentmin', $rentmin)
+                    ->setParameter('rentmax', $rentmax);
+        
+        if($location != 'Tous')
+        {
+            $query->andWhere('a.location = :location')
+                        ->setParameter('location', $location);
+        }
+
+        if($bailleur != 'Tous')
+        {
+            $query->andWhere('a.bailleur = :bailleur')
+                        ->setParameter('bailleur', $bailleur);
+        }
+
+        if($adress != 'Tous')
+        {
+            $query->andWhere('a.adress = :adress')
+                        ->setParameter('adress', $adress);
+        }
+
+        if($residence != 'Tous')
+        {
+            $query->andWhere('a.residence = :residence')
+                        ->setParameter('residence', $residence);
+        }
+
+        if($type != 'Tous')
+        {
+            $query->andWhere('a.type = :type')
+                        ->setParameter('type', $type);
+        }
+
+        if($floor != 'Tous')
+        {
+            $query->andWhere('a.floor = :floor')
+                        ->setParameter('floor', $floor);
+        }
+
+        if($numero != 'Tous')
+        {
+            $query->andWhere('a.numero = :numero')
+                        ->setParameter('numero', $numero);
+        }
+
+        if($contingent != 'Tous')
+        {
+            $query->andWhere('a.contingent = :contingent')
+                ->setParameter('contingent', $contingent);
+        }
+
+        if($attribution != 'Tous')
+        {
+          $query->andWhere('a.attribution = :attribution')
+                ->setParameter('attribution', $attribution);
+        }
+     
+        $query = $query->getQuery();
+
+        $json_query = json_encode($query);
+
+        $premierResultat = ($page - 1) * $nbMaxParPage;
+        $query->setFirstResult($premierResultat)->setMaxResults($nbMaxParPage);
+        $paginator = new Paginator($query);
+
+        if ( ($paginator->count() <= $premierResultat) && $page != 1) {
+            throw new NotFoundHttpException('La page demandée n\'existe pas.'); // page 404, sauf pour la première page
+        }
+
+        return $paginator;
     }
 }

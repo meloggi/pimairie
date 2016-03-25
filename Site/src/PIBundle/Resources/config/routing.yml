@@ -16,7 +16,7 @@ platform_admin_statistiques:
     defaults: { _controller: PIBundle:Admin:statistiques }
 
 platform_admin_appartment:
-    path:     /admin/appartment
+    path:     /admin/appartment/{page}
     defaults: { _controller: PIBundle:Admin:appartment }
 
 platform_admin_ajouter_appartment:
