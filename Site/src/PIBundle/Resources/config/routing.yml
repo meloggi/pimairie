@@ -1,10 +1,36 @@
 homepage:
     path:     /
-    defaults: { _controller: PIBundle:Default:accueil }
+    defaults: { _controller: PIBundle:Formulaire:accueil }
 
 form1:
-    path:     /user/form1
-    defaults: { _controller: PIBundle:Default:form1 }
+    path:     /user/formulaire_introduction
+    defaults: { _controller: PIBundle:Formulaire:formulaire_introduction }
+
+form2:
+     path:     /user/formulaire_creerDemande
+     defaults: { _controller: PIBundle:Formulaire:formulaire_creerDemande }
+ 
+form2_modifier:
+     path:     /user/formulaire_modifierDemande
+     defaults: { _controller: PIBundle:Formulaire:formulaire_modifierDemande }
+
+form3:
+    path:     /user/formulaire_accederDemande
+    defaults: { _controller: PIBundle:Formulaire:formulaire_accederDemande } 
+
+contact:
+    path:     /contact
+    defaults: { _controller: PIBundle:Formulaire:contact }
+
+
+
+redirection_acces:
+    path:     /redirection_acces
+    defaults: { _controller: PIBundle:Formulaire:redirection_access }
+
+redirection_creer:
+    path:     /redirection_creer
+    defaults: { _controller: PIBundle:Formulaire:redirection_creer }  
 
 
 platform_admin_dashboard:
@@ -134,51 +160,3 @@ platform_admin_delete_appartment:
 platform_admin_delete_user:
     path:     /admin/demandeur/{id}
     defaults: { _controller: PIBundle:Admin:delete_user }
-
-# platform_admin_delete_demand:
-#     path:     /dashboard
-#     defaults: { _controller: PIBundle:Admin:delete_demand }
-
-form3:
-    path:     /user/form3
-    defaults: { _controller: PIBundle:Default:form3 } 
-contact:
-    path:     /contact
-    defaults: { _controller: PIBundle:Default:contact }
-form2:
-     path:     /user/form2
-     defaults: { _controller: PIBundle:Default:form2 }
- 
-form2_modifier:
-     path:     /user/form2_modifier
-     defaults: { _controller: PIBundle:Default:form2_modifier }
- 
- 
- 
-form_logement:
-     path:     /user/form_logement
-     defaults: { _controller: PIBundle:Default:form_logement }
- 
-form_motif:
-     path:     /user/form_motif
-     defaults: { _controller: PIBundle:Default:form_motif }
- 
-form_ressource:
-     path:     /user/form_ressource
-     defaults: { _controller: PIBundle:Default:form_ressource}
- 
-form_justificatif:
-     path:     /form_justificatif
-     defaults: { _controller: PIBundle:Default:form_justificatif}
- 
-telecharger:
-     path:     /telecharger
-     defaults: { _controller: PIBundle:Default:telecharger }
- 
-redirection_acces:
-    path:     /redirection_acces
-    defaults: { _controller: PIBundle:Default:redirection_access }
-
-redirection_creer:
-    path:     /redirection_creer
-    defaults: { _controller: PIBundle:Default:redirection_creer }  

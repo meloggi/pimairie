@@ -1,3 +1,12 @@
+{# app/Resources/views/Resetting/reset_content.html.twig 
+
+
+  @Auteurs: Paul Le Noac'h, Komel Jamal, Brian Blessou
+  @Mail: brian.blessou@telecomnancy.net
+  @Version: HTML5 & Twig
+
+#}
+
 {% trans_default_domain 'FOSUserBundle' %}
 
 {{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'fos_user_resetting_reset' } }) }}

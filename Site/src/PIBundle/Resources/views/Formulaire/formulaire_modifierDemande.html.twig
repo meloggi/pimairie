@@ -1,0 +1,490 @@
+{# src/PIBundle/Ressource/views/Formulaire/formulaire_modifierDemande.html.twig 
+
+
+  @Auteurs: Paul Le Noac'h, Komel Jamal, Brian Blessou
+  @Mail: brian.blessou@telecomnancy.net
+  @Version: HTML5 & Twig
+
+  Cette page permet de modifier la demande précédemment saisie par le demandeur.
+#}
+
+{% extends "PIBundle:Formulaire:layout_formulaire.html.twig" %}
+
+{% block Accueil %}Modifier la demande{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/bootstrap/css/bootstrap.css') }}">
+<link rel="stylesheet" href="{{ asset('css/bootstrap/css/accueil.css') }}">
+<link rel="stylesheet" href="{{ asset('css/bootstrap/css/form2.css') }}">
+{% endblock %}
+
+
+{% block body %}
+
+<div class="well">
+  <div id="myTabContent" class="tab-content">
+    <div class="tab-pane active in" id="home">
+      <form action="{{path('form2_modifier')}}" method="post" role="form">
+        <div class="info page1">
+          <h1>Coordonnées</h1>
+          <p>
+            <label class="labelform">Civilité<span class="obligatoire"> *</span>:</label>
+            <select class="input-xlarge" id="search_housing_bailleur" type="text"   name="demand[genre]" value={{demand.genre}} >
+              <option>Monsieur</option>
+              <option>Madame</option>
+              <option>Mademoiselle</option>
+            </select>
+          </p>
+          <p>  
+            <label class="labelform">Nom<span class="obligatoire"> *</span>:</label>
+            <input class="input-xlarge" id="demand_lastName" type="text"  name="demand[lastName]"  value={{ app.user.lastName}}   ></input>
+          </p>
+          <p>
+            <label class="labelform">Prénom<span class="obligatoire"> *</span>:</label>
+            <input class="input-xlarge" id="demand_firstName  " type="text"  name="demand[firstName]" value={{ app.user.firstName}} ></input>
+          </p>
+          <p>
+            <label class="labelform">Date de naissance:<span class="obligatoire"> *</span>:</label>
+            <input class="input-xlarge" id="demand_date" type="text"  name="demand[date]" value={{demand.date}} ></input>
+          </p>
+          <p>
+            <label class="labelform">Téléphone:</label>
+            <input class="input-xlarge" id="demand_telephone" type="text"  name="demand[telephone]" value={{ demand.telephone}} ></input>
+          </p>
+
+          <p>
+            <label class="labelform">Mail:</label>
+            <label class="input-xlarge">{{ app.user.username }}</label>
+          </p>
+
+        </div>
+        <div class="info page1">
+          <h1>Adresse pour l'envoie du courrier</h1>
+          <p>
+            <label class="labelform">Numéro:</label>
+            <input class="input-xlarge" id="demand_numero" type="text"  name="demand[numero]" value={{ demand.numero}}></input>
+          </p>
+          <p>
+            <label class="labelform">Voie:<span class="obligatoire"> *</span></label>
+            <input class="input-xlarge" id="demand_voie" type="text"  name="demand[voie]" value={{ demand.voie}} ></input>
+          </p>
+          <p>
+            <label class="labelform">Complément adresse:</label>
+            <input class="input-xlarge" id="demand_complementadresse" type="text"  name="demand[complementadresse]" value={{ demand.complementadresse }}></input>
+          </p>
+          <p>
+            <label class="labelform">Lieu-dit:</label>
+            <input class="input-xlarge" id="demand_lieudit" type="text"  name="demand[lieudit]" value={{ demand.lieudit}}></input>
+          </p>
+          <p>
+            <label class="labelform">Code postal<span class="obligatoire"> *</span>:</label>
+            <input class="input-xlarge" id="demand_codepostal"  type="text"  name="demand[codepostal]" value={{ demand.codepostal}} ></input>
+          </p>
+          <p>
+            <label class="labelform">Commune<span class="obligatoire"> *</span>:</label>
+            <input class="input-xlarge" id="demand_commune" type="text"  name="demand[commune]" value={{ demand.commune}} ></input>
+          </p>
+
+        </div>
+
+        <div class="info page1">
+          <h1>Personnes fiscalement à charges</h1>
+          <p>
+            <label class="labelform">Avez-vous des personnes à charges?</label>
+
+            <select class="input-xlarge" id="demand_personnecharge" type="text"   name="demand[personnecharge]" value={{demand.personnecharge}} >
+              <option>Oui</option>
+              <option>Non</option>
+            </select>
+            <p>
+              <label class="labelform">Si oui, combien?</label>
+              <input class="input-xlarge" id="demand_nombrepersonnecharge" type="text" name="demand[nombrepersonnecharge]" value={{ demand.nombrepersonnecharge}}></input>
+            </p>
+          </p>
+
+
+
+        </div>
+
+        <div class="info page2">
+          <h1>Le demandeur</h1>    
+
+          <p>
+            <label class="labelform">Profession:</label>
+            <input class="input-xlarge" id="demand_profession" type="text"  name="demand[profession]" value={{demand.profession}} ></input> 
+          </p>
+
+          <p>
+            <label class="labelform">Statut <span class="obligatoire"> *</span>:</label>
+
+            <select class="input-xlarge" id="demand_statusdemandeur" type="text"   name="demand[status]" value={{demand.status}} >
+
+              <option>CDI (ou fonctionnaire)</option>
+              <option>CDD, stage, intérim</option>
+              <option>Artisan, commerçant, profession libérale</option>
+              <option>Chômage</option>
+              <option>Etudiant</option>
+              <option>Retraité</option>
+              <option>Autre</option>
+            </select>
+          </p>
+
+          <p>
+            <label class="labelform">Nom de votre employeur<span class="obligatoire"> *</span>:</label>
+            <input class="input-xlarge" id="demand_nomemployeur" type="text"  name="demand[nomemployeur]" value={{demand.nomemployeur}} ></input>
+
+          </p>
+
+          <p>
+            <label class="labelform">Code postal<span class="obligatoire"> *</span>:</label>
+            <input class="input-xlarge" id="demand_codeemployeur" type="text"  name="demand[codepostalemployeur]" value={{demand.codepostalemployeur}} ></input>
+          </p>
+
+          <p>
+            <label class="labelform">Commune du lieu de travail<span class="obligatoire"> *</span>:</label>
+            <input class="input-xlarge" id="demand_communeemployeur" type="text"  name="demand[communeemployeur]" value={{demand.communeemployeur}} ></input>
+          </p>
+          <h1>Le conjoint ou le futur co-titulaire du bail</h1>    
+
+
+          <p>
+            <label class="labelform">Profession:</label>
+            <input class="input-xlarge" id="demand_profession" type="text"  name="demand[professionconjoint]"  value={{demand.professionconjoint}}></input> 
+          </p>
+
+          <p>
+            <label class="labelform">Statut:</label>
+            <select class="input-xlarge" id="demand_statusconjoint" type="text"   name="demand[genre]" value={{demand.genre}} >
+              <option>CDI (ou fonctionnaire)</option>
+              <option>CDD, stage, intérim</option>
+              <option>Artisan, commerçant, profession libérale</option>
+              <option>Chômage</option>
+              <option>Etudiant</option>
+              <option>Retraité</option>
+              <option>Autre</option>
+            </select>
+          </p>
+          <p>
+            <label class="labelform">Nom de votre employeur:</label>
+            <input class="input-xlarge" id="demand_nomemployeur" type="text"  name="demand[nomemployeurconjoint]" value={{demand.nomemployeurconjoint}}></input>
+
+          </p>
+
+          <p>
+            <label class="labelform">Code postal:</label>
+
+            <input class="input-xlarge" id="demand_codeemployeur" type="text"  name="demand[codepostalemployeurconjoint]" value={{demand.codepostalemployeurconjoint}}></input>
+          </p>
+
+          <p>
+            <label class="labelform">Commune du lieu de travail:</label>
+            <input class="input-xlarge" id="demand_communeemployeur" type="text"  name="demand[communeemployeurconjoint]" value={{demand.communeemployeurconjoint}}></input>
+          </p>
+        </div>
+
+        <div class="info page3">
+
+          <h1>Revenu fiscal de référence</h1>
+
+          <p>
+            <label class="labelform">Avis d'imposition sur<br> les revenus de l'année <script>document.write(new Date().getFullYear()-1)</script>:</label>
+            <input class="input-xlarge" id="demand_salary" type="text"  name="demand[avisimposition2]" value={{demand.avisimposition2}} ></input>
+          </p>
+
+
+          <p>
+            <label class="labelform">Avis d'imposition sur les revenus de l'année <script>document.write(new Date().getFullYear()-2)</script>:</label>
+            <input class="input-xlarge" id="demand_retraitechomage" type="text"  name="demand[avisimposition1]" value={{demand.avisimposition1}} ></input>
+          </p>
+
+          <h1>Ressources Mensuelles</h1>
+          <p>
+            <label class="labelform">Salaire:</label>
+            <input class="input-xlarge" id="demand_salary" type="text"  name="demand[salary]" value={{demand.salary}}    ></input>
+          </p>
+          <p>
+            <label class="labelform">Retraite:</label>
+            <input class="input-xlarge" id="demand_retraitechomage" type="text"  name="demand[retraite]"   value={{demand.retraite}}  ></input>
+          </p>
+          <p>
+            <label class="labelform">Allocation chômage:</label>
+            <input class="input-xlarge" id="demand_allocationchomage" type="text"  name="demand[allocationchomage]"  value={{demand.allocationchomage}}   ></input>
+          </p>
+          <p>
+            <label class="labelform">Pension alimentaire:</label>
+            <input class="input-xlarge" id="demand_pensionalimentaire" type="text"  name="demand[pensionalimentaire]"  value={{demand.pensionalimentaire}}   ></input>
+          </p>
+          <p>
+            <label class="labelform">Pension d'invalidité:</label>
+            <input class="input-xlarge" id="demand_pensioninvalidite" type="text"  name="demand[pensioninvalidite]"  value={{demand.pensioninvalidite}}   ></input>
+          </p>
+          <p>
+            <label class="labelform">Allocation familiale:</label>
+            <input class="input-xlarge" id="demand_allocationfamilial" type="text"  name="demand[allocationfamilial]"  value={{demand.allocationfamilial}}   ></input>
+          </p>
+          <p>
+            <label class="labelform">Revenu de soldarité active (RSA):</label>
+            <input class="input-xlarge" id="demand_rsa" type="text"  name="demand[rsa]"  value={{demand.rsa}}   ></input>
+          </p>
+          <p>
+            <label class="labelform">Autres:</label>
+            <input class="input-xlarge" id="demand_autres" type="text"  name="demand[autres]"  value={{demand.autres}}   ></input>
+          </p>
+
+        </div>
+
+        <div class="info page4">
+          <h1>Logement Actuel</h1>
+
+
+          <p>
+            <label class="labelform">Situation du logement:</label>
+            <select class="input-xlarge" id="search_housing_bailleur" type="text"  name="demand[situation]" value={{demand.situation}}>
+              <option>Location HLM</option>
+              <option>Location parc privé</option>
+              <option>Autres</option>
+            </select>
+          </p>
+
+          <p>
+            <label class="labelform">Si vous payez un loyer ou une redevance, montant mensuel:</label>
+            <input class="input-xlarge" id="demand_parking" type="text"  name="demand[loyerlogementactuel]" value={{demand.loyerlogementactuel}}></input>
+          </p>
+
+          <p>
+            <label class="labelform">Nombre de personnes occupant le logement actuel:</label>
+            <input class="input-xlarge" id="demand_rdc" type="text"  name="demand[nbpersonnelogementactuel]" value={{demand.nbpersonnelogementactuel}}></input>
+          </p>
+          <p>
+            <label class="labelform">Catégorie:</label>
+            <select class="input-xlarge" id="search_housing_bailleur" type="text"  name="demand[categorielogementactuel]" value={{demand.categorielogementactuel}}>
+              <option>Appartement</option>
+              <option>Maison</option>
+            </select>
+          </p>
+
+          <p>
+            <label class="labelform">Type de logement:</label>
+            <select class="input-xlarge" id="search_housing_bailleur" type="text"   name="demand[typelogementactuel]" value={{demand.typelogementactuel}} >
+              <option>T1</option>
+              <option>T2</option>
+              <option>T3</option>
+              <option>T4</option>
+              <option>T5</option>
+              <option>T6 et plus</option>
+            </select>
+          </p>
+
+
+          <p>
+            <label class='labelform'>Surface:</label>
+            <input class="input-xlarge" id="demand_montantmaxi" type="text"  name="demand[surfacelogementactuel]" value={{demand.surfacelogementactuel}}></input>
+            <label>m&sup2</label>
+          </p>
+
+
+
+        </div> 
+
+        <div class="info page5">
+          <h1>Logement recherché</h1>
+
+          <p>
+            <label class="labelform">Location à Villers-centre:</label>
+            <select class="input-xlarge" id="search_housing_bailleur" type="text" selected="Oui"  name="demand[locationVillersCentre]" value={{demand.locationVillersCentre}}>
+              <option>Oui</option>
+              <option>Non</option>
+            </select>
+          </p>
+
+          <p>
+            <label class="labelform">Location à Villers-bas:</label>
+            <select class="input-xlarge" id="search_housing_bailleur" type="text" selected="Oui"  name="demand[locationVillersBas]" value={{demand.LocationVillersBas}}>
+              <option>Oui</option>
+              <option>Non</option>
+            </select>
+          </p>
+
+          <p>
+            <label class="labelform">Location à Clarlieu:</label>
+            <select class="input-xlarge" id="search_housing_bailleur" type="text" selected="Oui"  name="demand[locationClairlieu]" value={{demand.locationClairlieu}}>
+              <option>Oui</option>
+              <option>Non</option>
+            </select>
+          </p>
+
+          <p>
+            <label class="labelform">Catégorie:</label>
+            <select class="input-xlarge" id="search_housing_bailleur" type="text"  name="demand[categorielogementrecherche]" value={{demand.categorielogementrecherche}}>
+              <option>Appartement</option>
+              <option>Maison</option>
+            </select>
+          </p>
+
+          <p>
+            <label class="labelform">Souhaitez-vous un parking?</label>
+            <select class="input-xlarge" id="demand_parking" type="text"   name="demand[parking]" value={{demand.parking}} >
+              <option>Oui</option>
+              <option>Non</option>
+            </select>
+          </p>
+
+          <p>
+            <label class="labelform">Typologie d'appartement:</label>
+
+            <select class="input-xlarge" id="search_housing_bailleur" type="text"   name="demand[type1]" value={{demand.type1}} >
+              <option>T1</option>
+              <option>T2</option>
+              <option>T3</option>
+              <option>T4</option>
+              <option>T5</option>
+              <option>T6 et plus</option>
+            </select>
+          </p>
+          <p>
+            <label class="labelform">Logement rez-de-chaussée:</label>
+            <select class="input-xlarge" id="demand_ascenseur" type="text"   name="demand[rdc]" value={{demand.rdc}} >
+              <option>Oui</option>
+              <option>Non</option>
+            </select>
+          </p>
+
+          <p>
+            <label class="labelform">Montant maximum de la dépense de logement (loyer + charge):</label>
+            <input class="input-xlarge" id="demand_typelogement" type="text"  name="demand[montantmaxi]" value={{demand.montantmaxi}}></input>
+          </p>
+
+
+        </div> 
+
+      </div> 
+
+      {{ form_widget(form._token) }}
+
+      <div class="placement">
+       <!--   <a href="{{ path('homepage') }}" class="btn btn-danger btn-outline"/>Annuler</a> -->
+       <button class="btn btn-danger btn-outline" type="button" id="bouton_js2" style="margin-bottom: -0.3cm; margin-top: 0.5cm margin-left: 5cm">Précédent</button>
+
+       <button class="btn btn-success btn-outline" type="button" id="bouton_js" style="margin-bottom: 0.5cm; margin-top: 0.5cm margin-left: 15cm">Suivant</button>
+
+       <input type="submit" class="btn btn-success btn-outline" id="vrai_submit" value="Suivant" style="margin-bottom: 39px; margin-top: 20px" ></input>
+
+     </div>
+   </form>
+
+ </div> 
+</div> 
+</div>
+
+
+</div>
+
+<script>
+$(document).ready(function(){
+
+  var page_active=1;
+
+  // init : cacher les formulaire a ne pas afficher + le vrai button submit
+  $(".page2").hide();
+  $(".page3").hide();
+  $(".page4").hide();
+  $(".page5").hide(200);
+  $("#vrai_submit").hide();
+
+  //bind button suivant
+  $("#bouton_js").on('click',function(){
+
+    if(page_active==1){
+      $(".page1").hide(200);
+      $(".page2").show(200);
+      $(".page3").hide(200);
+      $(".page4").hide(200);
+      $(".page5").hide(200);
+      page_active=2;
+      return;
+    }
+
+    if(page_active==2){
+      $(".page1").hide(200);
+      $(".page2").hide(200);
+      $(".page3").show(200);      
+      $(".page4").hide(200);
+      $(".page5").hide(200);
+        //derniere page ??
+        $("#bouton_js2").show(200);
+        $("#vrai_submit").hide(200);
+        $("#bouton_js").show();
+        page_active=3;
+        return;
+      }
+
+
+      if(page_active==3){
+       $(".page1").hide(200);
+       $(".page2").hide(200);
+       $(".page3").hide(200);      
+       $(".page4").show(200);
+       $(".page5").show(200);
+        //derniere page ??
+        $("#vrai_submit").show(200);
+        $("#bouton_js2").show(200);
+        $("#bouton_js").hide();
+
+        page_active=4;
+        return;
+      }
+
+    });
+
+
+  $("#bouton_js2").on('click',function(){
+
+    if(page_active==1){
+      document.location.href = "form1";
+      return;
+    }
+
+    if(page_active==2){
+      $(".page1").show(200);
+      $(".page2").hide(200);
+      $(".page3").hide(200);      
+      $(".page4").hide(200);
+      $("#vrai_submit").hide(200);
+
+
+      page_active=1;
+      return;
+    }
+
+
+
+    if(page_active==3){
+     $(".page1").hide(200);
+     $(".page2").show(200);
+     $(".page3").hide(200);
+     $(".page4").hide(200);
+     $("#vrai_submit").hide(200);
+ //    $("#vrai_submit").hide();
+ page_active=2;
+ return;
+}
+
+if(page_active==4){
+  $(".page1").hide(200);
+  $(".page2").hide(200);
+  $(".page3").show(200);
+  $(".page4").hide(200);
+  $(".page5").hide(200);
+  $("#bouton_js").show();
+    //    $("#bouton_js2").show();
+    $("#vrai_submit").hide();
+    page_active=3;
+    return;
+  }
+
+});
+});
+
+
+</script>
+{% endblock %}
