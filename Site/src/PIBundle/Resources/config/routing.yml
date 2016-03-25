@@ -160,3 +160,7 @@ platform_admin_delete_appartment:
 platform_admin_delete_user:
     path:     /admin/demandeur/{id}
     defaults: { _controller: PIBundle:Admin:delete_user }
+
+platform_admin_exportCSV:
+    path:     /admin/exportCSV
+    defaults: { _controller: PIBundle:Admin:exportCSV }    

@@ -76,7 +76,7 @@ class HousingRepository extends \Doctrine\ORM\EntityRepository
                 ->setParameter('attribution', $attribution);
         }
 
-        return $query->getQuery()->getResult();
+        return $query->getQuery()->getArrayResult();
 
     }
 

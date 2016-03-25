@@ -72,11 +72,12 @@ class AdminController extends Controller
 
     {
 
-
+ $session = $request->getSession();
         $search = new SearchHousing();
         $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(SearchHousingType::class,$search);
         $liste_appartment = 'vide';
+        $liste_appartment2 = 'vide';
         
     if($page==0){
             $page=1;
@@ -86,6 +87,8 @@ class AdminController extends Controller
                     'nomRoute' => 'platform_admin_appartment',
                     'paramsRoute' => array()
                 );
+     
+        $session->set('liste_appartment2',$liste_appartment2);
    return $this->render('PIBundle:Admin:appartment.html.twig', array('form' => $form->createView(), 'liste_appartment' => $liste_appartment, 'pagination' => $pagination ));
   }
 
@@ -109,7 +112,8 @@ class AdminController extends Controller
                 $contingent = $search->getContingent();
                 $attribution = $search->getAttribution();
                 $liste_appartment = $em->getRepository('PIBundle:Housing')->findAppartementPagine($location, $bailleur, $adress, $residence, $type, $rentmin, $rentmax, $floor, $numero, $contingent, $attribution, $page, 5);
-                
+           $liste_appartment2 = $em->getRepository('PIBundle:Housing')->findAppartment($location, $bailleur, $adress, $residence, $type, $rentmin, $rentmax, $floor, $numero, $contingent, $attribution);
+                     
 
     $pagination = array(
                     'page' => $page,
@@ -136,8 +140,10 @@ class AdminController extends Controller
                        
                     ]);
 
+               
            
 
+        $session->set('liste_appartment2',$liste_appartment2);
         return $this->render('PIBundle:Admin:appartment.html.twig', array('form' => $form->createView(), 'liste_appartment' => $liste_appartment, 'pagination' => $pagination ));
 
              
@@ -158,7 +164,8 @@ class AdminController extends Controller
                 $contingent = $session->get('last_request')['contingent'];
                 $attribution = $session->get('last_request')['attribution'];
               $liste_appartment = $em->getRepository('PIBundle:Housing')->findAppartementPagine($location, $bailleur, $adress, $residence, $type, $rentmin, $rentmax, $floor, $numero, $contingent, $attribution, $page, 5);
-   
+                 $liste_appartment2 = $em->getRepository('PIBundle:Housing')->findAppartment($location, $bailleur, $adress, $residence, $type, $rentmin, $rentmax, $floor, $numero, $contingent, $attribution);
+              
         
  $pagination = array(
             'page' => $page,
@@ -168,10 +175,47 @@ class AdminController extends Controller
         );
      
      
-
+     $session->set('liste_appartment2',$liste_appartment2);
         return $this->render('PIBundle:Admin:appartment.html.twig', array('form' => $form->createView(), 'liste_appartment' => $liste_appartment, 'pagination' => $pagination ));
     }
     }
+
+function exportCSVAction(Request $request)
+{
+     $input_array=  $request->getSession()->get('liste_appartment2');
+$output_file_name="Appartements.csv"; 
+    $delimiter=',';
+       $search = new SearchHousing();
+    $form = $this->createForm(SearchHousingType::class,$search);
+   
+
+    $pagination = array(
+            'page' => 1,
+            'nbPages' => ceil(count($input_array) / 5),
+            'nomRoute' => 'platform_admin_appartment',
+            'paramsRoute' => array()
+        );
+
+    /** open raw memory as file, no need for temp files, be careful not to run out of memory thought */
+    $f = fopen('php://memory', 'w');
+    /** loop through array  */
+    foreach ($input_array as $line) {
+        /** default php csv handler **/
+        fputcsv($f, $line, $delimiter);
+    }
+    /** rewrind the "file" with the csv lines **/
+    fseek($f, 0);
+    /** modify header to be downloadable csv file **/
+    header('Content-Type: application/csv');
+    header('Content-Disposition: attachement; filename="' . $output_file_name . '";');
+    /** Send file to browser for download */
+    fpassthru($f);
+    fclose($f);
+    exit;
+    
+      return $this->render('PIBundle:Admin:appartment.html.twig', array('form' => $form->createView(), 'liste_appartment' => $input_array, 'pagination' => $pagination ));
+  }
+
 
     /*
     *La fonction ajouter_appartmentAction permet d'ajouter un nouvel appartement
